@@ -1,4 +1,3 @@
-import MaterialCommunityIcons from "@expo/vector-icons/MaterialCommunityIcons";
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";

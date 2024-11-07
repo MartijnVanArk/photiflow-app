@@ -6,14 +6,14 @@ import {
 } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
-import { Text, StyleSheet, View, Dimensions } from "react-native";
+import { Text, View, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import MyButton from "@/components/ui/MyButton";
 const { width: winWidth, height: winHeight } = Dimensions.get("window");
 
 export default function ScanScreen() {
-  const [facing, _setFacing] = useState<CameraType>("back");
+  const [facing] = useState<CameraType>("back");
   const [permission, requestPermission] = useCameraPermissions();
 
   const cameraRef = useRef<CameraView>(null);
@@ -77,43 +77,4 @@ export default function ScanScreen() {
       </CameraView>
     </View>
   );
-
-  // return (
-  //   <SafeAreaView>
-  //     <View>
-  //       <Text>Scannen</Text>
-  //       <MyButton title="back" onPress={back}></MyButton>
-  //     </View>
-  //   </SafeAreaView>
-  // );
 }
-
-const styles = StyleSheet.create({
-  container: {
-    flex: 1,
-    justifyContent: "center",
-  },
-  message: {
-    textAlign: "center",
-    paddingBottom: 10,
-  },
-  camera: {
-    flex: 1,
-  },
-  buttonContainer: {
-    flex: 1,
-    flexDirection: "row",
-    backgroundColor: "transparent",
-    margin: 64,
-  },
-  button: {
-    flex: 1,
-    alignSelf: "flex-end",
-    alignItems: "center",
-  },
-  text: {
-    fontSize: 24,
-    fontWeight: "bold",
-    color: "white",
-  },
-});
