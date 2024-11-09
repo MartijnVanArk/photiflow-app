@@ -1,19 +1,11 @@
-import { createContext } from "react";
+import { createContext, Dispatch } from "react";
 
-export type PartyAuthState = {
-  isValidPartyId: boolean;
-  partyId: string;
-  loading: boolean;
-};
-
-export type PartyJoinResult = {
-  didJoin: boolean;
-};
+import { PartyAuthactions } from "@/actions/PartyAuthActions";
+import { PartyAuthState } from "@/reducers/PartyAuthReducer";
 
 export type PartyAutContextType = {
   partyState: PartyAuthState;
-  tryJoinParty: (partyId: string) => Promise<PartyJoinResult>;
-  leaveCurrentParty: () => void;
+  partyStateDispatch: Dispatch<PartyAuthactions>;
 };
 
 export const PartyAuthContext = createContext<PartyAutContextType | null>(null);

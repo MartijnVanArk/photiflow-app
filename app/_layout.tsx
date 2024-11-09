@@ -4,8 +4,10 @@ import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
 
-import { PartyAuthContextProvider } from "@/context/PartyAuthContextProvider";
-import { ThemeProvider } from "@/providers/ThemeProvider";
+import ProviderList from "@/providers/ProviderList";
+import { initLanguages } from "@/utils/language";
+
+initLanguages();
 
 SplashScreen.preventAutoHideAsync();
 
@@ -31,13 +33,11 @@ export default function RootLayout() {
   }
 
   return (
-    <ThemeProvider>
-      <PartyAuthContextProvider>
-        <Stack screenOptions={{ headerShown: false }}>
-          <Stack.Screen name="index" options={{ headerShown: false }} />
-          <Stack.Screen name="+not-found" options={{ headerShown: false }} />
-        </Stack>
-      </PartyAuthContextProvider>
-    </ThemeProvider>
+    <ProviderList>
+      <Stack screenOptions={{ headerShown: false }}>
+        <Stack.Screen name="index" options={{ headerShown: false }} />
+        <Stack.Screen name="+not-found" options={{ headerShown: false }} />
+      </Stack>
+    </ProviderList>
   );
 }

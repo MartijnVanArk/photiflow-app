@@ -1,15 +1,10 @@
-import { NavigationContainer } from "@react-navigation/native";
-import { createStackNavigator } from "@react-navigation/stack";
-
-const Stack = createStackNavigator();
+import { Stack } from "expo-router";
 
 const Layout = () => {
   return (
-    <NavigationContainer>
-      <Stack.Navigator screenOptions={{ headerShown: false }}>
-        <Stack.Screen name="index" />
-      </Stack.Navigator>
-    </NavigationContainer>
+    <Stack initialRouteName="index" screenOptions={{ headerShown: false }}>
+      <Stack.Screen name="index" options={{ headerShown: false }} />
+    </Stack>
   );
 };
 

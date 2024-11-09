@@ -1,4 +1,4 @@
-const { plugins } = require("./tailwind.config");
+//const { plugins } = require("./tailwind.config");
 
 module.exports = function (api) {
   api.cache(true);

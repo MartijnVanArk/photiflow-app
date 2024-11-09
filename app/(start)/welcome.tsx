@@ -3,7 +3,7 @@ import { useCallback } from "react";
 import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import MyButton from "@/components/ui/MyButton";
+import ThemeButton from "@/components/ui/ThemeButton";
 
 export default function WelcomeScreen() {
   const goScan = () => {
@@ -20,11 +20,13 @@ export default function WelcomeScreen() {
     }
   }, []);
 
+  //  const { t } = useTranslation();
+
   return (
     <>
       <SafeAreaView className="flex h-screen items-center justify-between bg-light p-8">
         <View className="flex flex-row items-center justify-center w-full mt-10">
-          <Text className="text-black text-5xl text-textmain font-NunitoBold mx-10 text-center">
+          <Text className="text-5xl text-textmain font-NunitoBold mx-10 text-center">
             Welcome to Photobooth
           </Text>
         </View>
@@ -32,17 +34,18 @@ export default function WelcomeScreen() {
           lets make some memories!
         </Text>
 
-        <MyButton
+        <ThemeButton
           onPress={goScan}
-          className="py-8 text-xl"
-          bgVariant="primary"
+          className="py-8 w-full text-xl"
+          variant="primary"
           title="Scan Party Code"
           textSize="text-2xl"
           iconLeft={{ name: "qrcode-scan", size: 36 }}
         />
-
-        <View className="flex flex-row my-4">
-          <Text className="font-Nunito">Dont know what to do </Text>
+        <View className="flex flex-row my-4 py-4 ">
+          <Text className="font-Nunito text-textmain">
+            Dont know what to do{" "}
+          </Text>
           <TouchableOpacity onPress={openSite}>
             <Text className="font-NunitoExtraBold text-primary underline ">
               click here

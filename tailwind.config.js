@@ -42,12 +42,21 @@ module.exports = {
         light: {
           DEFAULT: "var(--color-light-default)",
         },
+        lightsec: {
+          DEFAULT: "var(--color-light-sec-default)",
+        },
         overlay: "var(--color-overlay)",
+        overlayinv: "var(--color-overlay-inv)",
+        overlaydark: "var(--color-overlay-dark)",
+        overlaylight: "var(--color-overlay-light)",
         textmain: {
           DEFAULT: "var(--color-text-main)",
         },
         textsecondary: {
           DEFAULT: "var(--color-text-secondary)",
+        },
+        inputbg: {
+          DEFAULT: "var(--color-input-bg)",
         },
       },
     },
