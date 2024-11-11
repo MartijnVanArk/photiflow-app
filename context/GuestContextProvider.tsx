@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useReducer } from "react";
-import { Settings } from "react-native";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
+import { AppMainStorage, GUEST_INFO_KEY } from "@/lib/storage";
 import { GuestInfoState, GuestReducer } from "@/reducers/GuestReducer";
 
 import { GuestContext } from "./base/BaseGuestContext";
@@ -9,18 +9,25 @@ export const GuestContextProvider = ({ children }: PropsWithChildren) => {
   const [guestInfo, guestInfoDispatch] = useReducer(GuestReducer, {
     name: "",
     email: "",
+    avatar: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
   });
 
   useEffect(() => {
-    const savedGuestInfo: GuestInfoState = Settings.get("guest-info");
+    const loadGuestInfo = async () => {
+      const savedGuestInfo = await AppMainStorage.getItem(GUEST_INFO_KEY);
 
-    if (savedGuestInfo)
-      guestInfoDispatch({
-        type: GuestActionTypes.LOADED,
-        payload: {
-          guestInfo: savedGuestInfo,
-        },
-      });
+      const parsedInfo = JSON.parse(savedGuestInfo || "{}");
+
+      if (savedGuestInfo)
+        guestInfoDispatch({
+          type: GuestActionTypes.LOADED,
+          payload: {
+            guestInfo: parsedInfo as GuestInfoState,
+          },
+        });
+    };
+
+    loadGuestInfo();
   }, []);
 
   return (

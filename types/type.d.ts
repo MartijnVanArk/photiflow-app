@@ -8,14 +8,25 @@ export interface ButtonIconProps {
 }
 
 export interface ButtonProps extends TouchableOpacityProps {
-  title: string;
-  variant?: "primary" | "secondary" | "danger" | "outline" | "success";
+  title?: string;
+  subtitle?: string;
+  variant?:
+    | "primary"
+    | "secondary"
+    | "danger"
+    | "outline"
+    | "success"
+    | "accent"
+    | "tertiary";
   iconLeft?: ButtonIconProps;
   iconRight?: ButtonIconProps;
   className?: string;
   textSize?: string;
   rounding?: string;
   style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
+  rounded?: string;
+  tag?: string;
   onPress?: () => void;
 }
 
@@ -24,7 +35,7 @@ export interface ShutterTriggerProps extends TouchableOpacityProps {
   onPress?: () => void;
 }
 
-declare interface InputControlProps extends TextInputProps {
+export interface InputControlProps extends TextInputProps {
   label?: string;
   icon?: ButtonIconProps;
   secureTextEntry?: boolean;
@@ -33,4 +44,15 @@ declare interface InputControlProps extends TextInputProps {
   inputStyle?: string;
   iconStyle?: string;
   className?: string;
+}
+
+export interface TagInputProps extends InputControlProps {
+  tags: string[];
+  triggerKeys?: string[];
+  onNewTags?: (tags: string[]) => void;
+}
+
+export interface TagInputTagProps {
+  tag: string;
+  onDelete: (tag: string) => void;
 }

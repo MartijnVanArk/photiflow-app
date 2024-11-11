@@ -16,6 +16,9 @@ export interface PartyInfo {
   OwnerId: string;
   Owner?: OwnerInfo;
   Name: string;
+  WelcomeMessage: string;
+  BackgroundImage: string;
+  IntroPhoto: string;
   CreationDate: string;
   LastUpdateDate: string;
   PartyDate: string;

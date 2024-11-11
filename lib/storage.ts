@@ -1,6 +1,9 @@
 import * as SecureStore from "expo-secure-store";
 
-export const partyIdCache = {
+export const PARTY_ID_KEY = "party-id";
+export const GUEST_INFO_KEY = "guest-info";
+
+export const AppMainStorage = {
   async getItem(key: string) {
     try {
       const item = await SecureStore.getItemAsync(key);
@@ -8,7 +11,7 @@ export const partyIdCache = {
       if (item) {
         console.log("Got Item : ", item);
       } else {
-        console.log("No such item");
+        console.log("No such item - ", key);
       }
 
       return item;

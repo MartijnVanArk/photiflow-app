@@ -2,7 +2,7 @@ import {
   PartyAuthactions,
   PartyAuthActionTypes,
 } from "@/actions/PartyAuthActions";
-import { partyIdCache, validatePartyId } from "@/lib/partyIdAuth";
+import { AppMainStorage, PARTY_ID_KEY, validatePartyId } from "@/lib/storage";
 import { PartyInfo } from "@/types/partyinfo";
 
 export type PartyAuthState = {
@@ -18,7 +18,7 @@ export type PartyJoinResult = {
 };
 
 export const fakeTestparty: PartyInfo = {
-  Name: "Mijn test Party",
+  Name: "Bruiloft Joost & Marianne",
   CreationDate: "2024-11-08 13:12:14",
   LastUpdateDate: "2024-11-08 13:12:14",
   OwnerId: "O12345",
@@ -60,7 +60,7 @@ export const PartyAuthReducer = (
       const hasParty = action.payload.party !== null;
       const partyId = hasParty ? action.payload.party!.PartyId : "";
 
-      partyIdCache.saveItem("party-id", partyId);
+      AppMainStorage.saveItem(PARTY_ID_KEY, partyId);
 
       return {
         ...state,
@@ -72,7 +72,7 @@ export const PartyAuthReducer = (
     }
 
     case PartyAuthActionTypes.LEAVE: {
-      partyIdCache.saveItem("party-id", "");
+      AppMainStorage.saveItem(PARTY_ID_KEY, "");
       return {
         ...state,
         isValidPartyId: false,

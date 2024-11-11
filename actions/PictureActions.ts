@@ -1,14 +1,38 @@
-import { BasicImageData } from "@/types/pictureinfo";
+import { InternalImageData } from "@/types/pictureinfo";
 
 export enum PictureActionTypes {
   NEW_PICTURE = "NEW_PICTURE",
+  CLEAR_PICTURE = "CLEAR_PICTURE",
+  WAS_UPLOADED = "WAS_UPLOADED",
+  SET_PRE_UPLOAD_INFO = "SET_PRE_UPLOAD_INFO",
 }
 
 export type NewPictureAction = {
   type: PictureActionTypes.NEW_PICTURE;
   payload: {
-    photo: BasicImageData;
+    photo: InternalImageData;
   };
 };
 
-export type PictureActions = NewPictureAction;
+export type ClearPictureAction = {
+  type: PictureActionTypes.CLEAR_PICTURE;
+};
+
+export type PictureWasUploadedAction = {
+  type: PictureActionTypes.WAS_UPLOADED;
+};
+
+export type SetNameAndCommentAction = {
+  type: PictureActionTypes.SET_PRE_UPLOAD_INFO;
+  payload: {
+    name: string;
+    comment: string;
+    tags: string[];
+  };
+};
+
+export type PictureActions =
+  | NewPictureAction
+  | ClearPictureAction
+  | PictureWasUploadedAction
+  | SetNameAndCommentAction;

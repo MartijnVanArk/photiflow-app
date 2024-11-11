@@ -2,7 +2,9 @@ import { PartyInfo, SourceInfo } from "./partyinfo";
 
 export type ImageTags = Map<string, string>;
 
-export type BasicImageData = {
+export type ImageExifData = Map<string, any>;
+
+export type InternalImageData = {
   isValid: boolean;
   width: number;
   height: number;
@@ -11,6 +13,14 @@ export type BasicImageData = {
   uri: string;
   wasUploaded: boolean;
   timeTaken: string;
+  guest: {
+    name: string;
+    email: string;
+    avatar: string;
+  };
+  comment: string;
+  tags: ImageTags;
+  exif: ImageExifData;
 };
 
 export interface ImageInfo {

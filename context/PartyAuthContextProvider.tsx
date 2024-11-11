@@ -1,7 +1,7 @@
 import { PropsWithChildren, useEffect, useReducer } from "react";
 
 import { PartyAuthActionTypes } from "@/actions/PartyAuthActions";
-import { partyIdCache } from "@/lib/partyIdAuth";
+import { AppMainStorage, PARTY_ID_KEY } from "@/lib/storage";
 import { PartyAuthReducer } from "@/reducers/PartyAuthReducer";
 
 import { PartyAuthContext } from "./base/BasePartyAuthContext";
@@ -19,7 +19,7 @@ export const PartyAuthContextProvider = ({ children }: PropsWithChildren) => {
     console.log("Loading Party Id Stuff");
 
     const loadPartyId = async () => {
-      const savedId = (await partyIdCache.getItem("party-id")) ?? "";
+      const savedId = (await AppMainStorage.getItem(PARTY_ID_KEY)) ?? "";
 
       partyStateDispatch({
         type: PartyAuthActionTypes.LOADED,
@@ -31,47 +31,6 @@ export const PartyAuthContextProvider = ({ children }: PropsWithChildren) => {
     loadPartyId();
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
-
-  // const tryJoinParty = (partyId: string): Promise<PartyJoinResult> => {
-  //   return new Promise<PartyJoinResult>((resolve, _reject) => {
-  //     setPartyState({ ...partyState, isTryingToJoin: true });
-  //     setTimeout(() => {
-  //       console.log("Checking ", partyId);
-  //       if (validatePartyId("P1234567890")) {
-  //         setPartyState({
-  //           ...partyState,
-  //           isTryingToJoin: false,
-  //           partyId,
-  //           isValidPartyId: true,
-  //           partyInfo: fakeTestparty,
-  //         });
-  //         partyIdCache.savePartyId(partyKey, partyId);
-  //         resolve({ didJoin: false });
-  //       } else {
-  //         setPartyState({
-  //           ...partyState,
-  //           isTryingToJoin: false,
-  //           partyId: "",
-  //           partyInfo: null,
-  //         });
-  //         partyIdCache.savePartyId(partyKey, "");
-  //         resolve({ didJoin: false });
-  //       }
-  //     }, 2000);
-  //   });
-  // };
-
-  // const leaveCurrentParty = () => {
-  //   setPartyState({
-  //     ...partyState,
-  //     isValidPartyId: false,
-  //     partyId: "",
-  //     loading: false,
-  //     isTryingToJoin: false,
-  //     partyInfo: null,
-  //   });
-  //   partyIdCache.savePartyId(partyKey, "");
-  // };
 
   return (
     <PartyAuthContext.Provider value={{ partyState, partyStateDispatch }}>

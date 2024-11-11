@@ -1,38 +1,41 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
-import { useRef } from "react";
+import { forwardRef, useImperativeHandle, useRef } from "react";
 import {
-  Keyboard,
   KeyboardAvoidingView,
   Platform,
   Text,
   TextInput,
   View,
 } from "react-native";
-import { TouchableWithoutFeedback } from "react-native-gesture-handler";
 
 import useTheme from "@/hooks/useTheme";
 import { InputControlProps } from "@/types/type";
 
-const InputControl = ({
-  label,
-  icon,
-  secureTextEntry = false,
-  labelStyle,
-  containerStyle,
-  inputStyle,
-  iconStyle,
-  className,
-  placeholder,
-  ...props
-}: InputControlProps) => {
-  const inputRef = useRef<TextInput>(null);
-  const { getVarColor } = useTheme();
+const InputControl = forwardRef<TextInput, InputControlProps>(
+  (
+    {
+      label,
+      icon,
+      secureTextEntry = false,
+      labelStyle,
+      containerStyle,
+      inputStyle,
+      iconStyle,
+      className,
+      placeholder,
+      ...props
+    },
+    ref,
+  ) => {
+    const inputRef = useRef<TextInput>(null);
+    const { getVarColor } = useTheme();
 
-  return (
-    <KeyboardAvoidingView
-      behavior={Platform.OS === "ios" ? "padding" : "height"}
-    >
-      <TouchableWithoutFeedback onPress={Keyboard.dismiss}>
+    useImperativeHandle(ref, () => inputRef.current as TextInput);
+
+    return (
+      <KeyboardAvoidingView
+        behavior={Platform.OS === "ios" ? "padding" : "height"}
+      >
         <View className="my-2 w-full">
           {label && (
             <Text
@@ -55,16 +58,19 @@ const InputControl = ({
             )}
             <TextInput
               ref={inputRef}
+              cursorColor="black"
               placeholder={placeholder}
-              className={`rounded-xl p-4 text-black font-NunitoSemiBold text-[16px] flex-1 ${inputStyle} text-left`}
+              className={`rounded-xl p-4 text-black font-NunitoSemiBold text-lg flex-1 ${inputStyle} text-left`}
               secureTextEntry={secureTextEntry}
               {...props}
             />
           </View>
         </View>
-      </TouchableWithoutFeedback>
-    </KeyboardAvoidingView>
-  );
-};
+      </KeyboardAvoidingView>
+    );
+  },
+);
+
+InputControl.displayName = "InputControl";
 
 export default InputControl;

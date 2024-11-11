@@ -37,11 +37,8 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
   const getVarColor = (cssvar: string): string => {
     //@ts-expect-error forced var typing
-
     const theTheme = baseThemeVars[ensureTheme(colorScheme) as string];
     const c = theTheme[cssvar] ?? "";
-
-    // console.log("Get V Col ", cssvar, " = ", c);
 
     return c;
   };

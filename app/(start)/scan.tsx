@@ -1,24 +1,19 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   BarcodeScanningResult,
   CameraType,
   CameraView,
-  FlashMode,
   useCameraPermissions,
 } from "expo-camera";
 import { router } from "expo-router";
 import { useEffect, useRef, useState } from "react";
-import {
-  View,
-  Dimensions,
-  ActivityIndicator,
-  TouchableOpacity,
-} from "react-native";
+import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
+import Torch from "react-native-torch";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import CameraPermissionScreen from "@/components/CameraPermissionScreen";
 import QRTargetOverlay from "@/components/ui/QRTargetOverlay";
+import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import usePartyAuthContext from "@/hooks/usePartyAuthContext";
@@ -27,8 +22,10 @@ const { width: winWidth, height: winHeight } = Dimensions.get("window");
 
 export default function ScanScreen() {
   const [facing] = useState<CameraType>("back");
-  const [flash, setFlash] = useState<FlashMode>("off");
+
   const [gotBarcode, setGotBarcode] = useState(false);
+
+  const [torch, setTorch] = useState(false);
 
   const [permission, requestPermission] = useCameraPermissions();
 
@@ -39,13 +36,14 @@ export default function ScanScreen() {
   const CC = useCommandCenter();
 
   useEffect(() => {
-    console.log("Party Joining state ", partyState);
-
     if (gotBarcode && !partyState.isTryingToJoin) {
-      console.log(" Results of join request are in ");
-
       if (partyState.isValidPartyId) {
         router.replace("/(root)/");
+      } else {
+        Alert.alert(
+          "Invalid event code",
+          "This is not a valid event code, please try again",
+        );
       }
 
       setGotBarcode(false);
@@ -62,8 +60,19 @@ export default function ScanScreen() {
     return <CameraPermissionScreen requestPermission={requestPermission} />;
   }
 
-  const toggleFlash = () => {
-    setFlash((curr) => (curr === "off" ? "on" : "off"));
+  const toggleTorch = () => {
+    const newTorch = !torch;
+
+    const setTorchState = async () => {
+      try {
+        await Torch.switchState(newTorch);
+        setTorch(newTorch);
+      } catch {
+        Alert.alert("Error with torch");
+      }
+    };
+
+    setTorchState();
   };
 
   const fakeCode = async () => {
@@ -84,7 +93,6 @@ export default function ScanScreen() {
   };
 
   const back = () => {
-    console.log("bak");
     router.back();
   };
 
@@ -93,16 +101,16 @@ export default function ScanScreen() {
 
     console.log(scanningResult);
 
-    if (scanningResult.type === "qr") {
-      setGotBarcode(true);
+    //    if (scanningResult.type === "qr") {
+    setGotBarcode(true);
 
-      CC.perform({
-        type: CCActionTypes.TRY_JOIN_PARTY,
-        payload: {
-          partyId: scanningResult.data,
-        },
-      });
-    }
+    CC.perform({
+      type: CCActionTypes.TRY_JOIN_PARTY,
+      payload: {
+        partyId: scanningResult.data,
+      },
+    });
+    //  }
   };
 
   return (
@@ -125,17 +133,20 @@ export default function ScanScreen() {
           className="flex flex-row justify-between p-8"
           style={{ marginTop: insets.top, zIndex: 2, elevation: 2 }}
         >
-          <TouchableOpacity onPress={back}>
-            <MaterialCommunityIcons color="white" name="close" size={24} />
-          </TouchableOpacity>
+          <SimpleIconButton
+            backGround="p-2 bg-[#ffffff22]"
+            icon={{ name: "close", color: "white" }}
+            onPress={back}
+          />
 
-          <TouchableOpacity onPress={toggleFlash}>
-            <MaterialCommunityIcons
-              size={24}
-              color="white"
-              name={flash === "on" ? "flash" : "flash-off"}
-            />
-          </TouchableOpacity>
+          <SimpleIconButton
+            icon={{
+              name: torch ? "flashlight-off" : "flashlight",
+              color: "white",
+            }}
+            backGround="p-2 bg-[#ffffff22]"
+            onPress={toggleTorch}
+          />
         </View>
 
         {partyState.isTryingToJoin && (
@@ -156,7 +167,7 @@ export default function ScanScreen() {
         >
           <ThemeButton
             style={{ zIndex: 2, elevation: 2 }}
-            title="Fake Test Code"
+            title="Debug with Fake Test Code"
             onPress={fakeCode}
             className="mb-4"
           ></ThemeButton>

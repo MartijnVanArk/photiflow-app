@@ -27,13 +27,11 @@ const QRTargetOverlay = ({
           toValue: 1.05,
           duration: 600,
           useNativeDriver: true,
-          //          easing: Easing.inOut(Easing.elastic(1)),
         }),
         Animated.timing(pulseValue, {
           toValue: 1,
           duration: 600,
           useNativeDriver: true,
-          //          easing: Easing.inOut(Easing.elastic(1)),
         }),
       ]),
     ).start();

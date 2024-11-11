@@ -1,4 +1,3 @@
-import { MaterialCommunityIcons } from "@expo/vector-icons";
 import {
   CameraType,
   CameraView,
@@ -7,12 +6,13 @@ import {
 } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
-import { Alert, Dimensions, TouchableOpacity, View } from "react-native";
+import { Alert, Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import CameraPermissionScreen from "@/components/CameraPermissionScreen";
 import ShutterTrigger from "@/components/ui/ShutterTrigger";
+import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import useCommandCenter from "@/hooks/useCommandCenter";
 
 const { width: winWidth, height: winHeight } = Dimensions.get("window");
@@ -39,7 +39,10 @@ export default function TakePictureScreen() {
 
   const takePicture = async () => {
     if (cameraRef.current) {
-      const photo = await cameraRef.current.takePictureAsync();
+      const photo = await cameraRef.current.takePictureAsync({
+        base64: false,
+        exif: true,
+      });
 
       if (photo) {
         CC.perform({
@@ -83,23 +86,20 @@ export default function TakePictureScreen() {
           className="flex flex-row justify-between p-8"
           style={{ marginTop: insets.top, zIndex: 2, elevation: 2 }}
         >
-          <TouchableOpacity
+          <SimpleIconButton
+            icon={{ name: "close", color: "white" }}
+            backGround="p-2 bg-[#ffffff22]"
             onPress={back}
-            className="blur-sm bg-[#ffffff22] p-2 rounded-full"
-          >
-            <MaterialCommunityIcons color="white" name="close" size={24} />
-          </TouchableOpacity>
+          />
 
-          <TouchableOpacity
+          <SimpleIconButton
+            icon={{
+              name: flash === "on" ? "flash" : "flash-off",
+              color: "white",
+            }}
+            backGround="p-2 bg-[#ffffff22]"
             onPress={toggleFlash}
-            className="blur-sm bg-[#ffffff22] p-2 rounded-full"
-          >
-            <MaterialCommunityIcons
-              size={24}
-              color="white"
-              name={flash === "on" ? "flash" : "flash-off"}
-            />
-          </TouchableOpacity>
+          />
         </View>
 
         <View
@@ -107,18 +107,18 @@ export default function TakePictureScreen() {
           className="p-8 flex-1 flex justify-end"
         >
           <View className="pb-8 flex flex-row items-center justify-around gap-8">
-            <TouchableOpacity
+            <SimpleIconButton
+              icon={{
+                name: "camera-flip-outline",
+                color: "white",
+                size: 32,
+              }}
+              backGround="p-3 bg-[#ffffff22]"
               onPress={toggleCameraFacing}
-              className="blur-sm bg-[#ffffff22] p-2 rounded-full"
-            >
-              <MaterialCommunityIcons
-                name="camera-flip-outline"
-                color="white"
-                size={32}
-              />
-            </TouchableOpacity>
+            />
+
             <ShutterTrigger onPress={takePicture} />
-            <View style={{ width: 48, height: 48 }}></View>
+            <View style={{ width: 56, height: 56 }}></View>
           </View>
         </View>
       </CameraView>
