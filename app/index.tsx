@@ -1,15 +1,15 @@
 import { Redirect } from "expo-router";
 
-import usePartyAuthContext from "@/hooks/usePartyAuthContext";
+import useEventAuthContext from "@/hooks/useEventAuthContext";
 
 const Index = () => {
-  const { partyState } = usePartyAuthContext();
+  const { EventState } = useEventAuthContext();
 
-  console.log("In Index Check : ", partyState);
+  console.log("In Index Check : ", EventState);
 
-  if (partyState.loading) return null;
+  if (EventState.loading) return null;
 
-  if (partyState.isValidPartyId) return <Redirect href="/(root)/" />;
+  if (EventState.isValidEventId) return <Redirect href="/(root)/" />;
 
   return <Redirect href="/(start)/welcome" />;
 };

@@ -84,9 +84,9 @@ const SinglePictureViewer = () => {
         onGestureEvent={onPanEvent}
         ref={panRef}
         simultaneousHandlers={pinchRef}
-        enabled={panEnabled}
+        enabled={true}
         failOffsetX={[-1000, 1000]}
-        shouldCancelWhenOutside
+        //        shouldCancelWhenOutside
       >
         <Animated.View>
           <PinchGestureHandler

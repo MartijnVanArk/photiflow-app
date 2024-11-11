@@ -1,5 +1,28 @@
 {
   "translation": {
-    "test": "EN test"
+    "welcome-welcome-title": "Welcome to Photobooth",
+    "welcome-welcome-tagline": "Lets make some memories",
+    "welcome-scan-button-title": "Scan Event Code",
+    "welcome-scan-button-subtitle": "and start snapping",
+    "welcome-create-button-title": "Create Event",
+    "welcome-create-button-subtitle": "start your own event",
+    "welcome-dontknow-text": "Dont know what to do",
+    "welcome-dontknow-linktext": "click here",
+    "scan-invalidevent-title": "Invalid event code",
+    "scan-invalidevent-message": "This is not a valid event code. Please try again.",
+    "scan-torch-error": "Error interacting with torch",
+    "event-generic-welcome": "Welcome",
+    "event-leave-title": "Leave Event?",
+    "event-leave-message": "Are you sure you want to miss out on the fun?",
+    "event-generic-upload": "Upload",
+    "profile-name-placeholder": "your name",
+    "profile-email-placeholder": "your email",
+    "profile-button-save-title": "Save",
+    "sendphoto-name-placeholder": "enter your name",
+    "sendphoto-comment-placeholder": "optionally add a comment",
+    "sendphoto-tags-placeholder": "optionally add some tags",
+    "sendphoto-sendbutton-title": "Share Picture",
+    "takepicture-error-title": "Error taking picture",
+    "takepicture-error-message": "Somethinig went wrong while taking your picture"
   }
 }

@@ -2,20 +2,20 @@ import { CameraCapturedPicture } from "expo-camera";
 import { ImagePickerResult } from "expo-image-picker";
 
 export enum CCActionTypes {
-  LEAVE_PARTY = "LEAVE_PARTY",
-  TRY_JOIN_PARTY = "TRY_JOIN_PARTY",
+  LEAVE_Event = "LEAVE_Event",
+  TRY_JOIN_Event = "TRY_JOIN_Event",
   ADD_PIC_FROM_CAMERA = "ADD_FROM_CAMERA",
   ADD_PIC_FROM_GALLERY = "ADD_FROM_GALLERY",
 }
 
-export type CCLeaveParty = {
-  type: CCActionTypes.LEAVE_PARTY;
+export type CCLeaveEvent = {
+  type: CCActionTypes.LEAVE_Event;
 };
 
-export type CCTryJoinParty = {
-  type: CCActionTypes.TRY_JOIN_PARTY;
+export type CCTryJoinEvent = {
+  type: CCActionTypes.TRY_JOIN_Event;
   payload: {
-    partyId: string;
+    EventId: string;
   };
 };
 
@@ -34,7 +34,7 @@ export type CCPictureFromGalleryAction = {
 };
 
 export type CCActions =
-  | CCLeaveParty
-  | CCTryJoinParty
+  | CCLeaveEvent
+  | CCTryJoinEvent
   | CCPictureFromCameraAction
   | CCPictureFromGalleryAction;

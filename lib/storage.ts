@@ -1,6 +1,6 @@
 import * as SecureStore from "expo-secure-store";
 
-export const PARTY_ID_KEY = "party-id";
+export const EVENT_ID_KEY = "event-id";
 export const GUEST_INFO_KEY = "guest-info";
 
 export const AppMainStorage = {
@@ -31,7 +31,7 @@ export const AppMainStorage = {
   },
 };
 
-export const validatePartyId = (partyId: string): boolean => {
-  console.log("Check Valid : ", partyId);
-  return partyId === "P1234567890";
+export const validateEventId = (EventId: string): boolean => {
+  console.log("Check Valid : ", EventId);
+  return EventId === "P1234567890";
 };

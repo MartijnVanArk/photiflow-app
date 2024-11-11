@@ -52,7 +52,6 @@ export const processCameraPicture = async (
     if (photo.exif) {
       Object.keys(photo.exif).forEach((k) => newExif.set(k, photo.exif[k]));
     }
-    console.log("New EXIF : ", newExif);
 
     resolve({
       width: photo.width,
@@ -103,8 +102,6 @@ export const processGalleryPicture = (
       if (pic.exif) {
         Object.keys(pic.exif).forEach((k) => newExif.set(k, pic.exif![k]));
       }
-
-      console.log("New EXIF : ", newExif);
 
       //      if (pic.base64) {
       resolve({

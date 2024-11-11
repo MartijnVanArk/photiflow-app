@@ -1,4 +1,4 @@
-import { PartyInfo, SourceInfo } from "./partyinfo";
+import { EventInfo, SourceInfo } from "./eventinfo";
 
 export type ImageTags = Map<string, string>;
 
@@ -24,8 +24,8 @@ export type InternalImageData = {
 };
 
 export interface ImageInfo {
-  PartyId: string;
-  Party?: PartyInfo;
+  EventId: string;
+  Event?: EventInfo;
   SourceId: string;
   Source?: SourceInfo;
   CreateDate: string;

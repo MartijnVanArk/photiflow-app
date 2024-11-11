@@ -1,22 +1,22 @@
 import { PropsWithChildren, useCallback } from "react";
 
 import { CCActions, CCActionTypes } from "@/actions/CommandCenterActions";
-import { PartyAuthActionTypes } from "@/actions/PartyAuthActions";
+import { EventAuthActionTypes } from "@/actions/EventAuthActions";
 import { PictureActionTypes } from "@/actions/PictureActions";
 import { CommandCenterContext } from "@/context/base/CommandCenterContext";
+import useEventAuthContext from "@/hooks/useEventAuthContext";
 import useGuestContext from "@/hooks/useGuestContext";
-import usePartyAuthContext from "@/hooks/usePartyAuthContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import {
   processCameraPicture,
   processGalleryPicture,
 } from "@/lib/pictureprocessing";
-import { validatePartyId } from "@/lib/storage";
-import { fakeTestparty } from "@/reducers/PartyAuthReducer";
+import { validateEventId } from "@/lib/storage";
+import { fakeTestEvent } from "@/reducers/EventAuthReducer";
 import { InternalImageData } from "@/types/pictureinfo";
 
 const CommandCenterProvider = ({ children }: PropsWithChildren) => {
-  const { partyStateDispatch } = usePartyAuthContext();
+  const { EventStateDispatch } = useEventAuthContext();
   const { pictureStateDispatch } = usePictureContext();
   const { guestInfo } = useGuestContext();
 
@@ -32,28 +32,28 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
       console.log("Command center ", action);
 
       switch (action.type) {
-        case CCActionTypes.TRY_JOIN_PARTY: {
-          partyStateDispatch({
-            type: PartyAuthActionTypes.TRYJOINSTART,
+        case CCActionTypes.TRY_JOIN_Event: {
+          EventStateDispatch({
+            type: EventAuthActionTypes.TRYJOINSTART,
             payload: {
-              partyId: action.payload.partyId,
+              EventId: action.payload.EventId,
             },
           });
 
           //todo call api, for now we fake a timeout
           setTimeout(() => {
-            if (validatePartyId(action.payload.partyId)) {
-              partyStateDispatch({
-                type: PartyAuthActionTypes.TRYJOINRESULT,
+            if (validateEventId(action.payload.EventId)) {
+              EventStateDispatch({
+                type: EventAuthActionTypes.TRYJOINRESULT,
                 payload: {
-                  party: fakeTestparty,
+                  Event: fakeTestEvent,
                 },
               });
             } else {
-              partyStateDispatch({
-                type: PartyAuthActionTypes.TRYJOINRESULT,
+              EventStateDispatch({
+                type: EventAuthActionTypes.TRYJOINRESULT,
                 payload: {
-                  party: null,
+                  Event: null,
                 },
               });
             }
@@ -62,9 +62,9 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
           break;
         }
 
-        case CCActionTypes.LEAVE_PARTY: {
-          partyStateDispatch({
-            type: PartyAuthActionTypes.LEAVE,
+        case CCActionTypes.LEAVE_Event: {
+          EventStateDispatch({
+            type: EventAuthActionTypes.LEAVE,
           });
           pictureStateDispatch({
             type: PictureActionTypes.CLEAR_PICTURE,
@@ -99,7 +99,7 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
       }
     },
     // eslint-disable-next-line react-hooks/exhaustive-deps
-    [partyStateDispatch, pictureStateDispatch],
+    [EventStateDispatch, pictureStateDispatch],
   );
 
   // const {pictureState, pictureState}

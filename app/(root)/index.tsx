@@ -4,6 +4,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router, useFocusEffect } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import {
   Alert,
   Image,
@@ -19,14 +20,15 @@ import {
 } from "react-native-safe-area-context";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
-import PartyInfoNoPicture from "@/components/fragments/PartInfoNoPicuture";
+import EventInfoNoPicture from "@/components/fragments/EventInfoNoPicuture";
+import LastPictureInfoBar from "@/components/fragments/LastPictureInfoBar";
 import SendPhotoSheet from "@/components/fragments/SendPhotoSheet";
 import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
 import useCommandCenter from "@/hooks/useCommandCenter";
-import usePartyAuthContext from "@/hooks/usePartyAuthContext";
+import useEventAuthContext from "@/hooks/useEventAuthContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import { encodeSafePicUri } from "@/lib/pictureprocessing";
 import { formatDate } from "@/utils/datestuff";
@@ -34,31 +36,28 @@ import { formatTagMap } from "@/utils/tagutils";
 
 const WeddingBackground = require("@/assets/images/wedding.png");
 
-export default function PartyScreen() {
-  const { partyState } = usePartyAuthContext();
+export default function EventScreen() {
+  const { EventState } = useEventAuthContext();
   const { pictureState } = usePictureContext();
   //  const { guestInfo } = useGuestContext();
   const [lastPicTime, setLastPicTime] = useState("");
 
   const CC = useCommandCenter();
+  const { t } = useTranslation();
 
   const leave = () => {
-    Alert.alert(
-      "Leave Party?",
-      "Are you sure you want to miss out on the fun?",
-      [
-        {
-          text: "Yes",
-          onPress: () => {
-            CC.perform({
-              type: CCActionTypes.LEAVE_PARTY,
-            });
-            router.replace("/(start)/welcome");
-          },
+    Alert.alert(t("event-leave-title"), t("event-leave-message"), [
+      {
+        text: "Yes",
+        onPress: () => {
+          CC.perform({
+            type: CCActionTypes.LEAVE_Event,
+          });
+          router.replace("/(start)/welcome");
         },
-        { text: "No", style: "cancel" },
-      ],
-    );
+      },
+      { text: "No", style: "cancel" },
+    ]);
   };
 
   const pickImage = async () => {
@@ -120,18 +119,16 @@ export default function PartyScreen() {
     }, []),
   );
 
-  const imgClick = useCallback(() => {
-    router.navigate({
-      pathname: "/(root)/singlepictureviewer",
-      params: {
-        picture: encodeSafePicUri(pictureState.lastPicture?.uri || ""),
-        width: pictureState.lastPicture?.width,
-        height: pictureState.lastPicture?.height,
-      },
-    });
-  }, [pictureState.lastPicture]);
-
-  console.log(pictureState.lastPicture);
+  // const imgClick = useCallback(() => {
+  //   router.navigate({
+  //     pathname: "/(root)/singlepictureviewer",
+  //     params: {
+  //       picture: encodeSafePicUri(pictureState.lastPicture?.uri || ""),
+  //       width: pictureState.lastPicture?.width,
+  //       height: pictureState.lastPicture?.height,
+  //     },
+  //   });
+  // }, [pictureState.lastPicture]);
 
   return (
     <KeyboardDismisWrappable>
@@ -150,16 +147,18 @@ export default function PartyScreen() {
           />
 
           <View className="flex items-center gap-4 pt-8">
-            <Text className="text-slate-300 font-Nunito text-xl">Welcome</Text>
+            <Text className="text-slate-300 font-Nunito text-xl">
+              {t("event-generic-welcome")}
+            </Text>
             <Text className="text-white font-NunitoSemiBold text-4xl text-center">
-              {partyState.partyInfo?.Name}
+              {EventState.EventInfo?.Name}
             </Text>
           </View>
 
           {/* <Text className="text-textmain font-Nunito text-xl">
-        {JSON.stringify(partyState)}
+        {JSON.stringify(EventState)}
       </Text> */}
-          {!hasLastPicture && <PartyInfoNoPicture />}
+          {!hasLastPicture && <EventInfoNoPicture />}
           {hasLastPicture && (
             <ImageBackground
               className="border-primary border-1 w-full rounded-3xl flex-1 flex justify-end overflow-hidden elevation-md"
@@ -169,7 +168,7 @@ export default function PartyScreen() {
               <TouchableOpacity
                 activeOpacity={1}
                 className="flex flex-1 justify-end"
-                onPress={imgClick}
+                //  onPress={imgClick}
               >
                 <LinearGradient
                   colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.9)"]}
@@ -180,41 +179,12 @@ export default function PartyScreen() {
                       onPress={() => {
                         doUpload(10);
                       }}
-                      title="Upload"
+                      title={t("event-generic-upload")}
                       iconLeft={{ name: "cloud-upload-outline" }}
                     ></ThemeButton>
                   )}
                   {pictureState.lastPicture?.wasUploaded && (
-                    <View className="flex gap-4 flex-row w-full bg-overlaydark py-2 px-4 rounded-md">
-                      {pictureState.lastPicture.guest.avatar && (
-                        <Image
-                          className="w-10 mt-1 h-10 rounded-full"
-                          source={{
-                            uri: pictureState.lastPicture.guest.avatar,
-                          }}
-                        />
-                      )}
-                      <View className="flex-1 flex ">
-                        {pictureState.lastPicture.guest.name && (
-                          <Text className="font-Nunito text-white">
-                            {pictureState.lastPicture.guest.name}
-                          </Text>
-                        )}
-                        <Text className="font-Nunito text-slate-400">
-                          {formatDate(pictureState.lastPicture.timeTaken)}
-                        </Text>
-                        {pictureState.lastPicture.comment && (
-                          <Text className="font-Nunito text-white">
-                            {pictureState.lastPicture.comment}
-                          </Text>
-                        )}
-                        {pictureState.lastPicture.tags.size > 0 && (
-                          <Text className="font-Nunito text-white">
-                            {formatTagMap(pictureState.lastPicture.tags)}
-                          </Text>
-                        )}
-                      </View>
-                    </View>
+                    <LastPictureInfoBar picture={pictureState.lastPicture} />
                   )}
                 </LinearGradient>
               </TouchableOpacity>

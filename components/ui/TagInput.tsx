@@ -86,7 +86,6 @@ const TagInput = ({
         autoCorrect={false}
         returnKeyType="done"
         keyboardType="default"
-        placeholder="Enter your tags"
         onBlur={Platform.OS === "ios" ? onBlur : undefined}
         inputMode="text"
         icon={icon ? icon : { name: "label-multiple-outline" }}

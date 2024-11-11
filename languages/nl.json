@@ -1,5 +1,28 @@
 {
   "translation": {
-    "test": "NL Test"
+    "welcome-welcome-title": "Welkom bij Photobooth",
+    "welcome-welcome-tagline": "Laten we herinneringen maken",
+    "welcome-scan-button-title": "Scan Code",
+    "welcome-scan-button-subtitle": "en begin direct",
+    "welcome-create-button-title": "Maak Evenement",
+    "welcome-create-button-subtitle": "begin je eigen evenement",
+    "welcome-dontknow-text": "Weet je niet wat te doen",
+    "welcome-dontknow-linktext": "klik hier",
+    "scan-invalidevent-title": "Ongeldige evenement code",
+    "scan-invalidevent-message": "Dit is geen geldige evenement code. Probeer het opnieuw",
+    "scan-torch-error": "Fout bij interactie met zaklamp",
+    "event-generic-welcome": "Welkom",
+    "event-leave-title": "Evenement verlaten?",
+    "event-leave-message": "Weet je zeker dat je wilt stoppen met plezier hebben?",
+    "event-generic-upload": "Upload",
+    "profile-name-placeholder": "je naam",
+    "profile-email-placeholder": "je email",
+    "profile-button-save-title": "Opslaan",
+    "sendphoto-name-placeholder": "geef je naam",
+    "sendphoto-comment-placeholder": "optioneel commentaar",
+    "sendphoto-tags-placeholder": "optionele tags toevoegen",
+    "sendphoto-sendbutton-title": "Deel Photo",
+    "takepicture-error-title": "Fout tijdens maken van foto",
+    "takepicture-error-message": "Er is iets mis gegaan tijdens het maken van je foto"
   }
 }

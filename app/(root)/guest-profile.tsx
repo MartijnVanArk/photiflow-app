@@ -1,5 +1,6 @@
 import { router } from "expo-router";
 import { useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Image, PixelRatio, StatusBar, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -29,6 +30,8 @@ export default function GuestProfileScreen() {
 
   const ratio = PixelRatio.get();
   const inset = useSafeAreaInsets();
+
+  const { t } = useTranslation();
 
   return (
     <KeyboardDismisWrappable>
@@ -75,7 +78,7 @@ export default function GuestProfileScreen() {
                 setGuestProfile({ ...guestProfile, name: val });
               }}
               value={guestProfile.name}
-              placeholder="Your Name"
+              placeholder={t("profile-name-placeholder")}
               icon={{ name: "account" }}
             />
             <InputControl
@@ -86,12 +89,16 @@ export default function GuestProfileScreen() {
               onChangeText={(val) => {
                 setGuestProfile({ ...guestProfile, email: val });
               }}
-              placeholder="Your Email"
+              placeholder={t("profile-email-placeholder")}
               icon={{ name: "email-outline" }}
             />
           </View>
 
-          <ThemeButton title="Save" className="py-4" onPress={saveProfile} />
+          <ThemeButton
+            title={t("profile-button-save-title")}
+            className="py-4"
+            onPress={saveProfile}
+          />
         </View>
       </View>
     </KeyboardDismisWrappable>

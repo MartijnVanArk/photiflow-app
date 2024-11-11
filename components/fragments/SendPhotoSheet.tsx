@@ -7,6 +7,7 @@ import {
   useRef,
   useState,
 } from "react";
+import { useTranslation } from "react-i18next";
 import { Image, View } from "react-native";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
@@ -78,6 +79,8 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
       setTags(tags);
     };
 
+    const { t } = useTranslation();
+
     return (
       <BottomSheet
         ref={internalSheetRef}
@@ -100,16 +103,20 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
             <InputControl
               defaultValue={guestName}
               onChangeText={gnChange}
-              placeholder="Ënter your name"
+              placeholder={t("sendphoto-name-placeholder")}
               icon={{ name: "account" }}
             />
             <InputControl
               defaultValue={comment}
               onChangeText={cmChange}
-              placeholder="Optionally add a comment"
+              placeholder={t("sendphoto-comment-placeholder")}
               icon={{ name: "comment-edit-outline" }}
             />
-            <TagInput tags={tags} onNewTags={onNewTags} />
+            <TagInput
+              placeholder={t("sendphoto-tags-placeholder")}
+              tags={tags}
+              onNewTags={onNewTags}
+            />
           </View>
 
           <View className="flex-1 flex elevation-md rounded-xl">
@@ -123,7 +130,7 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
             onPress={sendClick}
             className="w-full py-8"
             variant="primary"
-            title="Share Picture"
+            title={t("sendphoto-sendbutton-title")}
             textSize="text-2xl"
             iconRight={{ name: "image-move", size: 36 }}
           ></ThemeButton>

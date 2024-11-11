@@ -5,7 +5,8 @@ import {
   useCameraPermissions,
 } from "expo-camera";
 import { router } from "expo-router";
-import { useEffect, useRef, useState } from "react";
+import { useEffect, useRef, useState, useTransition } from "react";
+import { useTranslation } from "react-i18next";
 import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Torch from "react-native-torch";
@@ -16,7 +17,7 @@ import QRTargetOverlay from "@/components/ui/QRTargetOverlay";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
 import useCommandCenter from "@/hooks/useCommandCenter";
-import usePartyAuthContext from "@/hooks/usePartyAuthContext";
+import useEventAuthContext from "@/hooks/useEventAuthContext";
 
 const { width: winWidth, height: winHeight } = Dimensions.get("window");
 
@@ -31,24 +32,25 @@ export default function ScanScreen() {
 
   const cameraRef = useRef<CameraView>(null);
 
-  const { partyState } = usePartyAuthContext();
+  const { EventState } = useEventAuthContext();
 
   const CC = useCommandCenter();
+  const { t } = useTranslation();
 
   useEffect(() => {
-    if (gotBarcode && !partyState.isTryingToJoin) {
-      if (partyState.isValidPartyId) {
+    if (gotBarcode && !EventState.isTryingToJoin) {
+      if (EventState.isValidEventId) {
         router.replace("/(root)/");
       } else {
         Alert.alert(
-          "Invalid event code",
-          "This is not a valid event code, please try again",
+          t("scan-invalidevent-title"),
+          t("scan-invalidevent-message"),
         );
       }
 
       setGotBarcode(false);
     }
-  }, [partyState, gotBarcode]);
+  }, [EventState, gotBarcode, t]);
 
   const insets = useSafeAreaInsets();
 
@@ -68,7 +70,7 @@ export default function ScanScreen() {
         await Torch.switchState(newTorch);
         setTorch(newTorch);
       } catch {
-        Alert.alert("Error with torch");
+        Alert.alert(t("scan-torch-error"));
       }
     };
 
@@ -76,7 +78,7 @@ export default function ScanScreen() {
   };
 
   const fakeCode = async () => {
-    if (partyState.isTryingToJoin) return;
+    if (EventState.isTryingToJoin) return;
 
     const fake: BarcodeScanningResult = {
       type: "qr",
@@ -97,20 +99,16 @@ export default function ScanScreen() {
   };
 
   const scannedBarcode = (scanningResult: BarcodeScanningResult) => {
-    if (partyState.isTryingToJoin) return;
+    if (EventState.isTryingToJoin) return;
 
-    console.log(scanningResult);
-
-    //    if (scanningResult.type === "qr") {
     setGotBarcode(true);
 
     CC.perform({
-      type: CCActionTypes.TRY_JOIN_PARTY,
+      type: CCActionTypes.TRY_JOIN_Event,
       payload: {
-        partyId: scanningResult.data,
+        EventId: scanningResult.data,
       },
     });
-    //  }
   };
 
   return (
@@ -126,7 +124,7 @@ export default function ScanScreen() {
         facing={facing}
       >
         <QRTargetOverlay
-          animated={!partyState.isTryingToJoin}
+          animated={!EventState.isTryingToJoin}
         ></QRTargetOverlay>
 
         <View
@@ -149,7 +147,7 @@ export default function ScanScreen() {
           />
         </View>
 
-        {partyState.isTryingToJoin && (
+        {EventState.isTryingToJoin && (
           <ActivityIndicator
             size="large"
             className="absolute mx-auto my-auto"

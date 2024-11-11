@@ -6,6 +6,7 @@ import {
 } from "expo-camera";
 import { router } from "expo-router";
 import { useRef, useState } from "react";
+import { useTranslation } from "react-i18next";
 import { Alert, Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
@@ -28,6 +29,7 @@ export default function TakePictureScreen() {
   const insets = useSafeAreaInsets();
 
   const CC = useCommandCenter();
+  const { t } = useTranslation();
 
   if (!permission) {
     return <View />;
@@ -55,8 +57,8 @@ export default function TakePictureScreen() {
         router.navigate("/(root)/");
       } else {
         Alert.alert(
-          "Error Taking Picture",
-          "Somethinig went wrong while taking your picture",
+          t("takepicture-error-title"),
+          t("takepicture-error-message"),
         );
       }
     }
