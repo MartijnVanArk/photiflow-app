@@ -2,7 +2,7 @@ import { useColorScheme } from "nativewind";
 import React, { createContext } from "react";
 import { View } from "react-native";
 
-import { baseThemeVars, themes } from "@/utils/color-theme";
+import { baseThemeVars, themes } from "@/constants/color-theme";
 
 interface ThemeProviderProps {
   children: React.ReactNode;

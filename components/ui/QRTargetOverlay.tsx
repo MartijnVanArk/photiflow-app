@@ -50,33 +50,7 @@ const QRTargetOverlay = ({
       style={{ zIndex: 0, elevation: 0 }}
       className="absolute top-0 bottom-0 left-0 right-0 pointer-events-none"
     >
-      {/* <View
-        id="top"
-        className="absolute bg-black opacity-[0.5] top-0 right-0 left-0"
-        style={{ height: hOff }}
-      ></View>
-      <View
-        id="bottom"
-        className="absolute bg-black opacity-[0.5] bottom-0 right-0 left-0"
-        style={{ top: hOff + minDim }}
-      >
-        {children}
-      </View>
-      <View
-        id="left"
-        className="absolute bg-black opacity-[0.5] left-0"
-        style={{ top: hOff, height: minDim, width: wOff }}
-      ></View>
-      <View
-        id="right"
-        className="absolute bg-black opacity-[0.5] right-0"
-        style={{ left: wOff + minDim, width: wOff, height: minDim, top: hOff }}
-      ></View> */}
-      <Animated.View
-        id="frame"
-        // className="absolute border-lime-500 border-4 rounded-lg"
-        style={pulseStyle}
-      >
+      <Animated.View id="frame" style={[pulseStyle, { opacity: 0.5 }]}>
         <QRTarget thickNess={12} />
       </Animated.View>
 

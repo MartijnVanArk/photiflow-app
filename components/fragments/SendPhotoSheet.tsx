@@ -1,5 +1,10 @@
-import BottomSheet, { BottomSheetView } from "@gorhom/bottom-sheet";
+import BottomSheet, {
+  BottomSheetBackdrop,
+  BottomSheetView,
+} from "@gorhom/bottom-sheet";
+import { BottomSheetDefaultBackdropProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetBackdrop/types";
 import { BottomSheetViewProps } from "@gorhom/bottom-sheet/lib/typescript/components/bottomSheetView/types";
+import { Image } from "expo-image";
 import {
   forwardRef,
   useCallback,
@@ -8,7 +13,7 @@ import {
   useState,
 } from "react";
 import { useTranslation } from "react-i18next";
-import { Image, View } from "react-native";
+import { View } from "react-native";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
 import { PictureActionTypes } from "@/actions/PictureActions";
@@ -81,8 +86,22 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
 
     const { t } = useTranslation();
 
+    const renderBackdrop = useCallback(
+      (props: BottomSheetDefaultBackdropProps) => (
+        <BottomSheetBackdrop
+          enableTouchThrough={false}
+          pressBehavior="close"
+          {...props}
+          disappearsOnIndex={-1}
+          appearsOnIndex={1}
+        />
+      ),
+      [],
+    );
+
     return (
       <BottomSheet
+        backdropComponent={renderBackdrop}
         ref={internalSheetRef}
         enablePanDownToClose={true}
         snapPoints={["85%"]}
@@ -119,9 +138,9 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
             />
           </View>
 
-          <View className="flex-1 flex elevation-md rounded-xl">
+          <View className="flex-1 flex elevation-md rounded-xl overflow-hidden">
             <Image
-              className="w-full h-full rounded-xl"
+              style={{ width: "100%", height: "100%" }}
               source={{ uri: pictureState.lastPicture?.uri }}
             />
           </View>

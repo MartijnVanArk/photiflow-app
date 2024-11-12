@@ -17,6 +17,7 @@ export type InternalImageData = {
     name: string;
     email: string;
     avatar: string;
+    uid: string;
   };
   comment: string;
   tags: ImageTags;

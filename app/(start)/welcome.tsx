@@ -1,15 +1,9 @@
+import { Image } from "expo-image";
 import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import {
-  Alert,
-  Image,
-  Linking,
-  Text,
-  TouchableOpacity,
-  View,
-} from "react-native";
+import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ThemeButton from "@/components/ui/ThemeButton";
@@ -66,8 +60,9 @@ export default function WelcomeScreen() {
         </Text>
 
         <Image
-          className="w-full flex-1 my-16"
-          resizeMode="contain"
+          style={{ flexGrow: 1, width: "100%" }}
+          className="my-16"
+          contentFit="contain"
           source={EventIntro}
         />
 

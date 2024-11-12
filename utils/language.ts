@@ -5,8 +5,13 @@ import { NativeModules, Platform } from "react-native";
 import en from "@/languages/en.json";
 import nl from "@/languages/nl.json";
 
-const defaultLang = "en";
-const supportedLanguages = ["en", "nl"];
+const resources = {
+  en: en,
+  nl: nl,
+};
+
+const supportedLanguages = Object.keys(resources);
+const fallBackLang = "en";
 
 const LangDetect = {
   type: "languageDetector",
@@ -26,29 +31,24 @@ const LangDetect = {
       return lowerCaseLocale;
     }
     console.warn(
-      `locale ${lowerCaseLocale} from ${locale} is not supported, defaulting to ${defaultLang}`,
+      `locale ${lowerCaseLocale} from ${locale} is not supported, defaulting to ${fallBackLang}`,
     );
-    return defaultLang;
+    return fallBackLang;
   },
 };
 
 export const initLanguages = () => {
-  const resources = {
-    en: en,
-    nl: nl,
-  };
-
   i18n
     .use(initReactI18next)
     //@ts-expect-error types thing
     .use(LangDetect)
     .init({
-      //      fallbackLng: "en",   /// in devmode uit laten om makkelijk te zien waar wat mist etc
+      //fallbackLng: fallBackLang, /// in devmode uit laten om makkelijk te zien waar wat mist etc
       lng: undefined, // anders geen detector
       compatibilityJSON: "v3",
       resources,
       interpolation: {
-        escapeValue: false, // react already safes from xss
+        escapeValue: false, // dubbelop met react eigen xss protectie
       },
     });
 };

@@ -1,6 +1,6 @@
 import { PictureActions, PictureActionTypes } from "@/actions/PictureActions";
-import { emptyImage } from "@/lib/pictureprocessing";
 import { InternalImageData } from "@/types/pictureinfo";
+import { emptyImage } from "@/utils/pictureprocessing";
 import { addTagsToMap, mapFromTags } from "@/utils/tagutils";
 
 export type PictureState = {

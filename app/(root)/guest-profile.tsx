@@ -1,24 +1,40 @@
-import { router } from "expo-router";
-import { useState } from "react";
+import BottomSheet from "@gorhom/bottom-sheet";
+import { router, useLocalSearchParams } from "expo-router";
+import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { Image, PixelRatio, StatusBar, View } from "react-native";
+import { PixelRatio, StatusBar, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
+import ProfileAvatarSheet from "@/components/fragments/ProfileAvatarSheet";
 import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
+import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/InputControl";
+import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
 import useGuestContext from "@/hooks/useGuestContext";
+import useTheme from "@/hooks/useTheme";
 import { GuestInfoState } from "@/reducers/GuestReducer";
+import {
+  avatarSaveURI,
+  deleteAvatar,
+  getSavedAvatarURI,
+  saveAvatar,
+} from "@/utils/avatar-utils";
+import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
 
-//const UserPlaceHolder = require("@/assets/images/user-placeholder.png");
+const UserPlaceHolder = require("@/assets/images/user-placeholder.png");
 
 export default function GuestProfileScreen() {
   const { guestInfo, guestInfoDispatch } = useGuestContext();
 
+  const params = useLocalSearchParams();
+
   const [guestProfile, setGuestProfile] = useState<GuestInfoState>(guestInfo);
 
   const saveProfile = () => {
+    if (!guestProfile.avatar) deleteAvatar(guestInfo.avatar);
+
     guestInfoDispatch({
       type: GuestActionTypes.PROFILESAVED,
       payload: {
@@ -33,6 +49,27 @@ export default function GuestProfileScreen() {
 
   const { t } = useTranslation();
 
+  const { getVarColor } = useTheme();
+
+  const sheetRef = useRef<BottomSheet>(null);
+
+  const openSourceSel = () => {
+    if (sheetRef.current) sheetRef.current.expand();
+  };
+
+  const newGuestProfile = (profile: GuestInfoState) => {
+    setGuestProfile(profile);
+  };
+
+  if (params.from && params.from === "take-picture" && params.photo) {
+    const incommingPhoto = revertTransferSafeCCP(
+      JSON.parse(params.photo.toString()),
+    );
+
+    saveAvatar(incommingPhoto.uri, guestProfile.avatar);
+    setGuestProfile({ ...guestProfile, avatar: avatarSaveURI() });
+  }
+
   return (
     <KeyboardDismisWrappable>
       <View
@@ -40,7 +77,8 @@ export default function GuestProfileScreen() {
         style={{ paddingTop: inset.top }}
       >
         <StatusBar barStyle="light-content" />
-        <View className="flex justify-between flex-1 bg-light h-full p-8 relative">
+
+        <View className="flex gap-2 justify-between flex-1 bg-light h-full p-8 relative">
           <View
             className="absolute pt-16 p-8 bg-primary"
             style={{
@@ -48,26 +86,26 @@ export default function GuestProfileScreen() {
               top: 0,
               left: 0,
               right: 0,
-              zIndex: 1,
-              elevation: 1,
             }}
           ></View>
 
           <View className="relative flex items-center  gap-4">
-            <Image
+            <DynamicAvatar
+              size={64}
               className="rounded-full border-8 border-primary"
-              style={{
-                width: 64 * ratio,
-                height: 64 * ratio,
+              styleExtra={{
                 zIndex: 2,
+                borderWidth: 3 * ratio,
+                borderColor: getVarColor("--color-primary-default"),
               }}
-              source={{
-                uri: guestInfo.avatar,
-              }}
-            ></Image>
+              imageUri={guestProfile.avatar}
+              name={guestProfile.name}
+              fallback={UserPlaceHolder}
+            />
             <ThemeButton
               className="absolute z-10 border-4 border-light bottom-[-24]"
-              title="change"
+              title={t("profile-avatar-change")}
+              onPress={openSourceSel}
             />
           </View>
           <View className=" flex-1 flex gap-4 justify-center">
@@ -99,7 +137,30 @@ export default function GuestProfileScreen() {
             className="py-4"
             onPress={saveProfile}
           />
+          <ThemeButton
+            title="AV INFO"
+            className="py-4"
+            onPress={() => getSavedAvatarURI(guestProfile.avatar)}
+          />
+          <ThemeButton
+            title="del"
+            className="py-4"
+            onPress={() => deleteAvatar(guestProfile.avatar)}
+          />
         </View>
+
+        <SimpleIconButton
+          onPress={() => router.back()}
+          style={{ top: inset.top + 8 * ratio, left: 8 * ratio }}
+          className="absolute"
+          icon={{ name: "close", color: "white" }}
+        />
+        <ProfileAvatarSheet
+          ref={sheetRef}
+          children={undefined}
+          guestProfile={guestProfile}
+          newGuestProfile={newGuestProfile}
+        />
       </View>
     </KeyboardDismisWrappable>
   );

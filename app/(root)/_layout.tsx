@@ -6,10 +6,7 @@ const Layout = () => {
       <Stack.Screen name="index" options={{ headerShown: false }} />
       <Stack.Screen name="takepicture" options={{ headerShown: false }} />
       <Stack.Screen name="guest-profile" options={{ headerShown: false }} />
-      <Stack.Screen
-        name="singlepictureviewer"
-        options={{ headerShown: false }}
-      />
+      <Stack.Screen name="pictureviewer" options={{ headerShown: false }} />
     </Stack>
   );
 };

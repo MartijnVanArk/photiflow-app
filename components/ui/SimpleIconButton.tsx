@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCallback } from "react";
-import { TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 import { ButtonIconProps } from "@/types/type";
 
@@ -8,6 +8,7 @@ export interface SimpleIconButtonProps extends TouchableOpacityProps {
   icon: ButtonIconProps;
   backGround?: string;
   tag?: string;
+  title?: string;
   onPressWithTag?: (tag: string) => void;
 }
 
@@ -18,6 +19,7 @@ export default function SimpleIconButton({
   tag,
   onPress,
   onPressWithTag,
+  title,
   ...props
 }: SimpleIconButtonProps) {
   const intPress = useCallback(() => {
@@ -28,7 +30,7 @@ export default function SimpleIconButton({
     <TouchableOpacity
       {...props}
       onPress={onPress ? onPress : intPress}
-      className={`rounded-full ${backGround} ${className}`}
+      className={`flex flex-col items-center gap-2 rounded-full ${backGround} ${className}`}
     >
       <MaterialCommunityIcons
         // @ts-expect-error dynamic name for type
@@ -37,6 +39,11 @@ export default function SimpleIconButton({
         className={`${icon.classes}`}
         color={icon.color}
       />
+      {title && (
+        <Text className="font-NunitoSemiBold text-md text-textmain">
+          {title}
+        </Text>
+      )}
     </TouchableOpacity>
   );
 }

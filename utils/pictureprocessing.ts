@@ -1,5 +1,4 @@
 import { CameraCapturedPicture } from "expo-camera";
-// import * as FileSystem from "expo-file-system";
 import { ImagePickerResult } from "expo-image-picker";
 import base64 from "react-native-base64";
 
@@ -29,6 +28,7 @@ export const emptyImage: InternalImageData = {
     avatar: "",
     email: "",
     name: "",
+    uid: "",
   },
 };
 
@@ -69,23 +69,9 @@ export const processCameraPicture = async (
         avatar: "",
         email: "",
         name: "",
+        uid: "",
       },
     });
-
-    // FileSystem.readAsStringAsync(photo.uri, { encoding: "base64" })
-    //   .then((base64) =>
-    //     resolve({
-    //       width: photo.width,
-    //       height: photo.height,
-    //       base64: base64,
-    //       isValid: true,
-    //       uri: photo.uri,
-    //       mime: inferMime(photo.uri),
-    //       wasUploaded: false,
-    //       timeTaken: new Date().toISOString(),
-    //     }),
-    //   )
-    //   .catch(() => resolve(emptyImage));
   });
 };
 
@@ -120,28 +106,25 @@ export const processGalleryPicture = (
           avatar: "",
           email: "",
           name: "",
+          uid: "",
         },
       });
-      //      }
-
-      // FileSystem.readAsStringAsync(pic.uri, { encoding: "base64" })
-      //   .then((base64) =>
-      //     resolve({
-      //       width: pic.width,
-      //       height: pic.height,
-      //       base64: base64,
-      //       isValid: true,
-      //       uri: pic.uri,
-      //       mime: mime,
-      //       wasUploaded: false,
-      //       timeTaken: new Date().toISOString(),
-      //     }),
-      //   )
-      //   .catch(() => {
-      //     resolve(emptyImage);
-      //   });
     } else {
       resolve(emptyImage);
     }
   });
+};
+
+export const makeTransferSafeCCP = (
+  photo: CameraCapturedPicture,
+): CameraCapturedPicture => {
+  photo.uri = base64.encode(photo.uri);
+  return photo;
+};
+
+export const revertTransferSafeCCP = (
+  photo: CameraCapturedPicture,
+): CameraCapturedPicture => {
+  photo.uri = base64.decode(photo.uri);
+  return photo;
 };

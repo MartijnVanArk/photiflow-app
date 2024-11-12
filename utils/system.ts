@@ -1,4 +1,18 @@
+import * as Application from "expo-application";
 import { NativeModules, Platform } from "react-native";
+
+export const getDeviceID = async (): Promise<string> => {
+  return new Promise<string>((resolve, reject) => {
+    if (Platform.OS === "android") {
+      resolve(Application.getAndroidId());
+      return;
+    } else if (Platform.OS === "ios") {
+      Application.getIosIdForVendorAsync().then((id) => resolve(id || ""));
+    } else {
+      resolve("");
+    }
+  });
+};
 
 export const getSysLocale = (fallback: string = "en-US"): string => {
   let locale = fallback;

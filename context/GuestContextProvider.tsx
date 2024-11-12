@@ -1,30 +1,49 @@
 import { PropsWithChildren, useEffect, useReducer } from "react";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
-import { AppMainStorage, GUEST_INFO_KEY } from "@/lib/storage";
 import { GuestInfoState, GuestReducer } from "@/reducers/GuestReducer";
+import { avatarSaveURI, getSavedAvatarURI } from "@/utils/avatar-utils";
+import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/storage";
+import { getDeviceID } from "@/utils/system";
 
 import { GuestContext } from "./base/BaseGuestContext";
+
 export const GuestContextProvider = ({ children }: PropsWithChildren) => {
   const [guestInfo, guestInfoDispatch] = useReducer(GuestReducer, {
     name: "",
     email: "",
-    avatar: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
+    avatar: "",
+    uid: "",
   });
 
   useEffect(() => {
     const loadGuestInfo = async () => {
       const savedGuestInfo = await AppMainStorage.getItem(GUEST_INFO_KEY);
 
-      const parsedInfo = JSON.parse(savedGuestInfo || "{}");
+      const parsedInfo = JSON.parse(savedGuestInfo || "{}") as GuestInfoState;
 
-      if (savedGuestInfo)
-        guestInfoDispatch({
-          type: GuestActionTypes.LOADED,
-          payload: {
-            guestInfo: parsedInfo as GuestInfoState,
-          },
-        });
+      if (parsedInfo) {
+        parsedInfo.uid = await getDeviceID();
+
+        if (parsedInfo.avatar === avatarSaveURI()) {
+          getSavedAvatarURI(parsedInfo.avatar).then((uri) => {
+            parsedInfo.avatar = uri;
+            guestInfoDispatch({
+              type: GuestActionTypes.LOADED,
+              payload: {
+                guestInfo: parsedInfo as GuestInfoState,
+              },
+            });
+          });
+        } else {
+          guestInfoDispatch({
+            type: GuestActionTypes.LOADED,
+            payload: {
+              guestInfo: parsedInfo as GuestInfoState,
+            },
+          });
+        }
+      }
     };
 
     loadGuestInfo();

@@ -7,25 +7,29 @@ import { CommandCenterContext } from "@/context/base/CommandCenterContext";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
+import { fakeTestEvent } from "@/reducers/EventAuthReducer";
+import { InternalImageData } from "@/types/pictureinfo";
 import {
   processCameraPicture,
   processGalleryPicture,
-} from "@/lib/pictureprocessing";
-import { validateEventId } from "@/lib/storage";
-import { fakeTestEvent } from "@/reducers/EventAuthReducer";
-import { InternalImageData } from "@/types/pictureinfo";
+} from "@/utils/pictureprocessing";
+import { validateEventId } from "@/utils/storage";
 
 const CommandCenterProvider = ({ children }: PropsWithChildren) => {
   const { EventStateDispatch } = useEventAuthContext();
   const { pictureStateDispatch } = usePictureContext();
   const { guestInfo } = useGuestContext();
 
-  const addGuestInfoToImage = (img: InternalImageData): InternalImageData => {
-    img.guest.avatar = guestInfo.avatar;
-    img.guest.email = guestInfo.avatar;
-    img.guest.name = guestInfo.avatar;
-    return img;
-  };
+  const addGuestInfoToImage = useCallback(
+    (img: InternalImageData): InternalImageData => {
+      img.guest.avatar = guestInfo.avatar;
+      img.guest.email = guestInfo.email;
+      img.guest.name = guestInfo.name;
+      img.guest.uid = guestInfo.uid;
+      return img;
+    },
+    [guestInfo],
+  );
 
   const perform = useCallback(
     (action: CCActions) => {
@@ -98,8 +102,7 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
         }
       }
     },
-    // eslint-disable-next-line react-hooks/exhaustive-deps
-    [EventStateDispatch, pictureStateDispatch],
+    [EventStateDispatch, addGuestInfoToImage, pictureStateDispatch],
   );
 
   // const {pictureState, pictureState}

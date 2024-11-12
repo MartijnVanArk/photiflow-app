@@ -4,17 +4,16 @@ import {
   FlashMode,
   useCameraPermissions,
 } from "expo-camera";
-import { router } from "expo-router";
+import { router, useLocalSearchParams } from "expo-router";
 import { useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import { CCActionTypes } from "@/actions/CommandCenterActions";
 import CameraPermissionScreen from "@/components/CameraPermissionScreen";
 import ShutterTrigger from "@/components/ui/ShutterTrigger";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
-import useCommandCenter from "@/hooks/useCommandCenter";
+import { makeTransferSafeCCP } from "@/utils/pictureprocessing";
 
 const { width: winWidth, height: winHeight } = Dimensions.get("window");
 
@@ -22,13 +21,14 @@ export default function TakePictureScreen() {
   const [facing, setFacing] = useState<CameraType>("back");
   const [flash, setFlash] = useState<FlashMode>("off");
 
+  const params = useLocalSearchParams();
+
   const [permission, requestPermission] = useCameraPermissions();
 
   const cameraRef = useRef<CameraView>(null);
 
   const insets = useSafeAreaInsets();
 
-  const CC = useCommandCenter();
   const { t } = useTranslation();
 
   if (!permission) {
@@ -47,14 +47,25 @@ export default function TakePictureScreen() {
       });
 
       if (photo) {
-        CC.perform({
-          type: CCActionTypes.ADD_PIC_FROM_CAMERA,
-          payload: {
-            cameraPhoto: photo,
-          },
-        });
+        // CC.perform({
+        //   type: CCActionTypes.ADD_PIC_FROM_CAMERA,
+        //   payload: {
+        //     cameraPhoto: photo,
+        //   },
+        // });
 
-        router.navigate("/(root)/");
+        if (params.returnpath) {
+          router.navigate({
+            //@ts-expect-error we have a variable route with types routing enabled
+            pathname: params.returnpath,
+            params: {
+              from: "take-picture",
+              photo: JSON.stringify(makeTransferSafeCCP(photo)),
+            },
+          });
+        } else {
+          router.back();
+        }
       } else {
         Alert.alert(
           t("takepicture-error-title"),

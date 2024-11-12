@@ -1,5 +1,5 @@
-import { useTranslation } from "react-i18next";
-import { Image, Text, View } from "react-native";
+import { Image } from "expo-image";
+import { Text, View } from "react-native";
 
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 
@@ -7,7 +7,6 @@ const WelComDef = require("@/assets/images/welcome-default.png");
 
 const EventInfoNoPicture = () => {
   const { EventState } = useEventAuthContext();
-  const { t } = useTranslation();
 
   return (
     <View className="flex-1 w-full items-center justify-center">
@@ -20,15 +19,14 @@ const EventInfoNoPicture = () => {
           width: "60%",
           height: undefined,
           margin: 20,
+          borderRadius: 5000,
         }}
         source={WelComDef}
-        resizeMode="cover"
-        className="rounded-full"
+        contentFit="cover"
       />
       <Text className="font-NunitoLight text-center text-white text-xl">
         {EventState.EventInfo?.WelcomeMessage}
       </Text>
-      <View></View>
     </View>
   );
 };

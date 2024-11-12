@@ -35,6 +35,7 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
     return (
       <KeyboardAvoidingView
         behavior={Platform.OS === "ios" ? "padding" : "height"}
+        keyboardVerticalOffset={100}
       >
         <View className="my-2 w-full">
           {label && (
@@ -60,6 +61,7 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
               ref={inputRef}
               cursorColor="black"
               placeholder={placeholder}
+              placeholderTextColor="#999"
               className={`rounded-xl p-4 text-black font-NunitoSemiBold text-lg flex-1 ${inputStyle} text-left`}
               secureTextEntry={secureTextEntry}
               {...props}

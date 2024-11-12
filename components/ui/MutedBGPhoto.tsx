@@ -1,10 +1,6 @@
+import { ImageBackground, ImageBackgroundProps } from "expo-image";
 import React from "react";
-import {
-  ImageBackground,
-  ImageBackgroundProps,
-  ImageSourcePropType,
-  View,
-} from "react-native";
+import { ImageSourcePropType, View } from "react-native";
 
 export interface MutedBGPhotoProps extends ImageBackgroundProps {
   overlay?: boolean;
@@ -12,6 +8,7 @@ export interface MutedBGPhotoProps extends ImageBackgroundProps {
   customOverLayColor?: string;
   overlayOpacity?: number;
   source?: ImageSourcePropType | undefined;
+  placeholder?: string;
 }
 
 export default function MutedBGPhoto({
@@ -22,6 +19,7 @@ export default function MutedBGPhoto({
   className,
   source,
   customOverLayColor,
+  placeholder,
 }: MutedBGPhotoProps) {
   const overlayColor = customOverLayColor
     ? customOverLayColor
@@ -31,6 +29,8 @@ export default function MutedBGPhoto({
 
   return (
     <ImageBackground
+      placeholder={{ blurhash: placeholder }}
+      style={{ width: "100%", height: "100%" }}
       source={source}
       className={`relative w-full h-full ${className}`}
     >

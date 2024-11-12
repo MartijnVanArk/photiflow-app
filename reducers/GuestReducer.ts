@@ -1,10 +1,11 @@
 import { GuestActions, GuestActionTypes } from "@/actions/GuestActions";
-import { AppMainStorage, GUEST_INFO_KEY } from "@/lib/storage";
+import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/storage";
 
 export type GuestInfoState = {
   name: string;
   email: string;
   avatar: string;
+  uid: string;
 };
 
 export const GuestReducer = (
@@ -15,7 +16,6 @@ export const GuestReducer = (
 
   const saveGuest = (guest: GuestInfoState) => {
     const saveInfo = JSON.stringify(guest);
-
     AppMainStorage.saveItem(GUEST_INFO_KEY, saveInfo);
   };
 
