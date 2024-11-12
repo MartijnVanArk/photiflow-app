@@ -7,9 +7,8 @@ import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ThemeButton from "@/components/ui/ThemeButton";
+import { images } from "@/constants/images";
 import useTheme from "@/hooks/useTheme";
-
-const EventIntro = require("@/assets/images/party-intro.png");
 
 export default function WelcomeScreen() {
   const goScan = useCallback(() => {
@@ -63,7 +62,7 @@ export default function WelcomeScreen() {
           style={{ flexGrow: 1, width: "100%" }}
           className="my-16"
           contentFit="contain"
-          source={EventIntro}
+          source={images.eventintro}
         />
 
         <ThemeButton

@@ -1,9 +1,8 @@
 import { Image } from "expo-image";
 import { Text, View } from "react-native";
 
+import { images } from "@/constants/images";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
-
-const WelComDef = require("@/assets/images/welcome-default.png");
 
 const EventInfoNoPicture = () => {
   const { EventState } = useEventAuthContext();
@@ -21,7 +20,7 @@ const EventInfoNoPicture = () => {
           margin: 20,
           borderRadius: 5000,
         }}
-        source={WelComDef}
+        source={images.welcomedefault}
         contentFit="cover"
       />
       <Text className="font-NunitoLight text-center text-white text-xl">

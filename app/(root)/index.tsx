@@ -17,12 +17,11 @@ import SendPhotoSheet from "@/components/fragments/SendPhotoSheet";
 import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
+import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
-
-const WeddingBackground = require("@/assets/images/wedding.png");
 
 export default function EventScreen() {
   const { EventState } = useEventAuthContext();
@@ -87,7 +86,7 @@ export default function EventScreen() {
 
   return (
     <KeyboardDismisWrappable>
-      <MutedBGPhoto overlayOpacity={0.6} source={WeddingBackground}>
+      <MutedBGPhoto overlayOpacity={0.6} source={images.weddingbackground}>
         <StatusBar style="light" />
         <SafeAreaView className="flex flex-1 justify-between p-8 h-screen gap-8 items-center relative">
           <SimpleIconButton

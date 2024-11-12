@@ -12,6 +12,7 @@ import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/InputControl";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
+import { images } from "@/constants/images";
 import useGuestContext from "@/hooks/useGuestContext";
 import { GuestInfoState } from "@/reducers/GuestReducer";
 import {
@@ -21,8 +22,6 @@ import {
   saveAvatar,
 } from "@/utils/avatar-utils";
 import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
-
-const UserPlaceHolder = require("@/assets/images/user-placeholder.png");
 
 export default function GuestProfileScreen() {
   const { guestInfo, guestInfoDispatch } = useGuestContext();
@@ -92,7 +91,7 @@ export default function GuestProfileScreen() {
               className="rounded-full border-8 border-primary"
               imageUri={guestProfile.avatar}
               name={guestProfile.name}
-              fallback={UserPlaceHolder}
+              fallback={images.userplaceholder}
             />
             <ThemeButton
               className="absolute z-10 border-4 border-light bottom-[-24]"
