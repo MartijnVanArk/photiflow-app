@@ -1,5 +1,5 @@
 import { GuestActions, GuestActionTypes } from "@/actions/GuestActions";
-import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/storage";
+import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/system/storage";
 
 export type GuestInfoState = {
   name: string;

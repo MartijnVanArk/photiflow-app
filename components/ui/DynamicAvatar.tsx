@@ -1,9 +1,9 @@
-import { Image, ImageSource } from "expo-image";
+import { Image, ImageSource, ImageStyle } from "expo-image";
 import React, { useState } from "react";
-import { View, Text, PixelRatio, StyleProp, ViewStyle } from "react-native";
+import { View, Text, PixelRatio, StyleProp } from "react-native";
 
-import { generateColorsForText } from "@/utils/colorutils";
-import { getNameAbbreviaton } from "@/utils/nameparsing";
+import { generateColorsForText } from "@/utils/generic/colorutils";
+import { getNameAbbreviaton } from "@/utils/generic/nameparsing";
 
 export interface DynamicAvatarProps {
   size?: number;
@@ -18,7 +18,7 @@ export interface DynamicAvatarProps {
     | string[]
     | null
     | undefined;
-  styleExtra?: StyleProp<ViewStyle>;
+  styleExtra?: StyleProp<ImageStyle>;
 }
 
 const ratio = PixelRatio.get();
@@ -73,7 +73,7 @@ export default function DynamicAvatar({
         <Image
           cachePolicy="none"
           onLoadStart={() => setImageError(false)}
-          style={{ width: "100%", height: "100%" }}
+          style={[{ width: "100%", height: "100%" }, styleExtra]}
           source={imageUri || fallback}
           onError={() => setImageError(true)}
         />

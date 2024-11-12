@@ -3,7 +3,11 @@ import {
   EventAuthActionTypes,
 } from "@/actions/EventAuthActions";
 import { EventInfo } from "@/types/eventinfo";
-import { AppMainStorage, EVENT_ID_KEY, validateEventId } from "@/utils/storage";
+import {
+  AppMainStorage,
+  EVENT_ID_KEY,
+  validateEventId,
+} from "@/utils/system/storage";
 
 export type EventAuthState = {
   isValidEventId: boolean;

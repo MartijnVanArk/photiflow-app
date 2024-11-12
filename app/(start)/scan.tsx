@@ -12,7 +12,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import Torch from "react-native-torch";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
-import CameraPermissionScreen from "@/components/CameraPermissionScreen";
+import CameraPermissionScreen from "@/components/fragments/CameraPermissionScreen";
 import QRTargetOverlay from "@/components/ui/QRTargetOverlay";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";

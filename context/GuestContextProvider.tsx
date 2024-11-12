@@ -3,8 +3,8 @@ import { PropsWithChildren, useEffect, useReducer } from "react";
 import { GuestActionTypes } from "@/actions/GuestActions";
 import { GuestInfoState, GuestReducer } from "@/reducers/GuestReducer";
 import { avatarSaveURI, getSavedAvatarURI } from "@/utils/avatar-utils";
-import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/storage";
-import { getDeviceID } from "@/utils/system";
+import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/system/storage";
+import { getDeviceID } from "@/utils/system/system";
 
 import { GuestContext } from "./base/BaseGuestContext";
 

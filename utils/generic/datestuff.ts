@@ -1,4 +1,4 @@
-import { getSysLocale } from "./system";
+import { getSysLocale } from "../system/system";
 
 export type DateInputType = Date | string;
 

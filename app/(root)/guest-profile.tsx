@@ -13,7 +13,6 @@ import InputControl from "@/components/ui/InputControl";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
 import useGuestContext from "@/hooks/useGuestContext";
-import useTheme from "@/hooks/useTheme";
 import { GuestInfoState } from "@/reducers/GuestReducer";
 import {
   avatarSaveURI,
@@ -48,8 +47,6 @@ export default function GuestProfileScreen() {
   const inset = useSafeAreaInsets();
 
   const { t } = useTranslation();
-
-  const { getVarColor } = useTheme();
 
   const sheetRef = useRef<BottomSheet>(null);
 
@@ -93,11 +90,6 @@ export default function GuestProfileScreen() {
             <DynamicAvatar
               size={64}
               className="rounded-full border-8 border-primary"
-              styleExtra={{
-                zIndex: 2,
-                borderWidth: 3 * ratio,
-                borderColor: getVarColor("--color-primary-default"),
-              }}
               imageUri={guestProfile.avatar}
               name={guestProfile.name}
               fallback={UserPlaceHolder}

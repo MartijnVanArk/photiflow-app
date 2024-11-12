@@ -2,7 +2,7 @@ import { PermissionResponse } from "expo-camera";
 import { Text } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import ThemeButton from "./ui/ThemeButton";
+import ThemeButton from "@/components/ui/ThemeButton";
 
 export interface CameraPermissionScreenProps {
   requestPermission: () => Promise<PermissionResponse>;

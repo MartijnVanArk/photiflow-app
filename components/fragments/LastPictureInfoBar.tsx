@@ -2,7 +2,7 @@ import React from "react";
 import { View, Text } from "react-native";
 
 import { InternalImageData } from "@/types/pictureinfo";
-import { formatDate } from "@/utils/datestuff";
+import { formatDate } from "@/utils/generic/datestuff";
 import { formatTagMap } from "@/utils/tagutils";
 
 import DynamicAvatar from "../ui/DynamicAvatar";

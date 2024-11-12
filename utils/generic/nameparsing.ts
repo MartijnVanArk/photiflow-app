@@ -1,4 +1,4 @@
-import { NAME_PREFIXES } from "../constants/nameprefixes";
+import { NAME_PREFIXES } from "../../constants/nameprefixes";
 
 export type ParsedNameParts = {
   first: string;

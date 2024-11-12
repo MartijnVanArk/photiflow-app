@@ -2,7 +2,7 @@ import { PropsWithChildren, useEffect, useReducer } from "react";
 
 import { EventAuthActionTypes } from "@/actions/EventAuthActions";
 import { EventAuthReducer } from "@/reducers/EventAuthReducer";
-import { AppMainStorage, EVENT_ID_KEY } from "@/utils/storage";
+import { AppMainStorage, EVENT_ID_KEY } from "@/utils/system/storage";
 
 import { EventAuthContext } from "./base/BaseEventAuthContext";
 

@@ -13,7 +13,7 @@ import {
   processCameraPicture,
   processGalleryPicture,
 } from "@/utils/pictureprocessing";
-import { validateEventId } from "@/utils/storage";
+import { validateEventId } from "@/utils/system/storage";
 
 const CommandCenterProvider = ({ children }: PropsWithChildren) => {
   const { EventStateDispatch } = useEventAuthContext();

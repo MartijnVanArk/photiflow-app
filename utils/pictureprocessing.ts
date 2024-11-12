@@ -3,7 +3,7 @@ import { ImagePickerResult } from "expo-image-picker";
 import base64 from "react-native-base64";
 
 import { InternalImageData } from "@/types/pictureinfo";
-import { getMimeTypeFromExtension } from "@/utils/mimetypes";
+import { getMimeTypeFromExtension } from "@/utils/generic/mimetypes";
 
 export const encodeSafePicUri = (uri: string): string => {
   return base64.encode(uri);

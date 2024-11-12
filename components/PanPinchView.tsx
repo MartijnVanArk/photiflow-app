@@ -13,7 +13,7 @@ import Animated, {
   runOnJS,
 } from "react-native-reanimated";
 
-import { clamp, Vector } from "@/utils/math";
+import { clamp, Vector } from "@/utils/generic/math";
 
 import type {
   GestureStateChangeEvent,

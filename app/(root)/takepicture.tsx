@@ -10,7 +10,7 @@ import { useTranslation } from "react-i18next";
 import { Alert, Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
-import CameraPermissionScreen from "@/components/CameraPermissionScreen";
+import CameraPermissionScreen from "@/components/fragments/CameraPermissionScreen";
 import ShutterTrigger from "@/components/ui/ShutterTrigger";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import { makeTransferSafeCCP } from "@/utils/pictureprocessing";

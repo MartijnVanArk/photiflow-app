@@ -6,7 +6,7 @@ import { GestureHandlerRootView } from "react-native-gesture-handler";
 
 import useAppLoaded from "@/hooks/useAppLoaded";
 import ProviderList from "@/providers/ProviderList";
-import { initLanguages } from "@/utils/language";
+import { initLanguages } from "@/utils/system/language";
 
 initLanguages();
 
