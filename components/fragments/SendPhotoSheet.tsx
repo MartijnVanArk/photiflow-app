@@ -51,13 +51,6 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
       () => internalSheetRef.current as BottomSheet,
     );
 
-    const gnChange = (val: string) => {
-      setGuestName(val);
-    };
-    const cmChange = (val: string) => {
-      setComment(val);
-    };
-
     const sendClick = useCallback(() => {
       if (sheetRef && internalSheetRef.current) {
         guestInfoDispatch({
@@ -80,9 +73,9 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
       // eslint-disable-next-line react-hooks/exhaustive-deps
     }, [comment, guestName, tags]);
 
-    const onNewTags = (tags: string[]) => {
+    const onNewTags = useCallback((tags: string[]) => {
       setTags(tags);
-    };
+    }, []);
 
     const { t } = useTranslation();
 
@@ -115,19 +108,18 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
         handleIndicatorStyle={{
           backgroundColor: getVarColor("--color-text-secondary"),
         }}
-        //        onChange={handleSheetChanges}
       >
         <BottomSheetView className="h-full p-8 flex gap-4 justify-between bg-lightsec">
           <View>
             <InputControl
               defaultValue={guestName}
-              onChangeText={gnChange}
+              onChangeText={(val) => setGuestName(val)}
               placeholder={t("sendphoto-name-placeholder")}
               icon={{ name: "account" }}
             />
             <InputControl
               defaultValue={comment}
-              onChangeText={cmChange}
+              onChangeText={(val) => setComment(val)}
               placeholder={t("sendphoto-comment-placeholder")}
               icon={{ name: "comment-edit-outline" }}
             />

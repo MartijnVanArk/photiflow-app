@@ -1,6 +1,6 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import { router, useLocalSearchParams } from "expo-router";
-import { useRef, useState } from "react";
+import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PixelRatio, StatusBar, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -30,7 +30,7 @@ export default function GuestProfileScreen() {
 
   const [guestProfile, setGuestProfile] = useState<GuestInfoState>(guestInfo);
 
-  const saveProfile = () => {
+  const saveProfile = useCallback(() => {
     if (!guestProfile.avatar) deleteAvatar(guestInfo.avatar);
 
     guestInfoDispatch({
@@ -40,7 +40,7 @@ export default function GuestProfileScreen() {
       },
     });
     router.back();
-  };
+  }, [guestInfo.avatar, guestInfoDispatch, guestProfile]);
 
   const ratio = PixelRatio.get();
   const inset = useSafeAreaInsets();
@@ -49,22 +49,27 @@ export default function GuestProfileScreen() {
 
   const sheetRef = useRef<BottomSheet>(null);
 
-  const openSourceSel = () => {
+  const openSourceSel = useCallback(() => {
     if (sheetRef.current) sheetRef.current.expand();
-  };
+  }, [sheetRef]);
 
-  const newGuestProfile = (profile: GuestInfoState) => {
-    setGuestProfile(profile);
-  };
+  const newGuestProfile = useCallback(
+    (profile: GuestInfoState) => {
+      setGuestProfile(profile);
+    },
+    [setGuestProfile],
+  );
 
-  if (params.from && params.from === "take-picture" && params.photo) {
-    const incommingPhoto = revertTransferSafeCCP(
-      JSON.parse(params.photo.toString()),
-    );
+  useEffect(() => {
+    if (params.from && params.from === "take-picture" && params.photo) {
+      const incommingPhoto = revertTransferSafeCCP(
+        JSON.parse(params.photo.toString()),
+      );
 
-    saveAvatar(incommingPhoto.uri, guestProfile.avatar);
-    setGuestProfile({ ...guestProfile, avatar: avatarSaveURI() });
-  }
+      saveAvatar(incommingPhoto.uri, guestProfile.avatar);
+      setGuestProfile({ ...guestProfile, avatar: avatarSaveURI() });
+    }
+  }, [guestProfile, params.from, params.photo]);
 
   return (
     <KeyboardDismisWrappable>

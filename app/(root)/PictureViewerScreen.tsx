@@ -1,4 +1,5 @@
 import { useLocalSearchParams } from "expo-router";
+import { useMemo } from "react";
 import { Dimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
 
@@ -6,12 +7,14 @@ import PanPinchView from "@/components/PanPinchView";
 import CloseBackButton from "@/components/ui/CloseBackButton";
 import { decodeSafePicUri } from "@/utils/pictureprocessing";
 
-const PictureViewer = () => {
+const PictureViewerScreen = () => {
   const params = useLocalSearchParams();
 
   const { width: winWitdh, height: winHeight } = Dimensions.get("window");
 
-  const picUri = decodeSafePicUri(params.picture.toString() || "");
+  const picUri = useMemo(() => {
+    return decodeSafePicUri(params.picture.toString() || "");
+  }, [params]);
 
   return (
     <View className="relative w-screen h-screen bg-black">
@@ -33,4 +36,4 @@ const PictureViewer = () => {
   );
 };
 
-export default PictureViewer;
+export default PictureViewerScreen;

@@ -44,12 +44,15 @@ const ProfileAvatarSheet = forwardRef<BottomSheet, ProfileAvatarSheetProps>(
       [],
     );
 
-    const gotNewAvatarUri = (aURI: string) => {
-      saveAvatar(aURI, guestProfile.avatar);
-      newGuestProfile({ ...guestProfile, avatar: avatarSaveURI() });
-    };
+    const gotNewAvatarUri = useCallback(
+      (aURI: string) => {
+        saveAvatar(aURI, guestProfile.avatar);
+        newGuestProfile({ ...guestProfile, avatar: avatarSaveURI() });
+      },
+      [guestProfile, newGuestProfile],
+    );
 
-    const picCamera = () => {
+    const picCamera = useCallback(() => {
       sheetRef.current?.close();
 
       router.navigate({
@@ -59,9 +62,9 @@ const ProfileAvatarSheet = forwardRef<BottomSheet, ProfileAvatarSheetProps>(
           camfacing: "front",
         },
       });
-    };
+    }, []);
 
-    const picGallery = async () => {
+    const picGallery = useCallback(async () => {
       sheetRef.current?.close();
 
       let result = await ImagePicker.launchImageLibraryAsync({
@@ -77,12 +80,12 @@ const ProfileAvatarSheet = forwardRef<BottomSheet, ProfileAvatarSheetProps>(
       if (!result.canceled) {
         gotNewAvatarUri(result.assets[0].uri);
       }
-    };
+    }, [gotNewAvatarUri]);
 
-    const clearAvatar = () => {
+    const clearAvatar = useCallback(() => {
       sheetRef.current?.close();
       newGuestProfile({ ...guestProfile, avatar: "" });
-    };
+    }, [guestProfile, newGuestProfile]);
 
     const { getVarColor } = useTheme();
     const { t } = useTranslation();

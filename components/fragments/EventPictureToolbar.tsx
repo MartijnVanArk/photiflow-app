@@ -1,6 +1,6 @@
 import * as ImagePicker from "expo-image-picker";
 import { router, UnknownOutputParams } from "expo-router";
-import React from "react";
+import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Alert } from "react-native";
 
@@ -17,7 +17,7 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
   const CC = useCommandCenter();
   const { t } = useTranslation();
 
-  const pickImage = async () => {
+  const pickImage = useCallback(async () => {
     let result = await ImagePicker.launchImageLibraryAsync({
       base64: false,
       exif: true,
@@ -36,16 +36,16 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
         },
       });
     }
-  };
+  }, [CC]);
 
-  const goTakePicture = () => {
+  const goTakePicture = useCallback(() => {
     router.push({
       pathname: "/(root)/TakePictureScreen",
       params: { returnpath: "/(root)/EventScreen" },
     });
-  };
+  }, []);
 
-  const leave = () => {
+  const leave = useCallback(() => {
     Alert.alert(t("event-leave-title"), t("event-leave-message"), [
       {
         text: "Yes",
@@ -58,7 +58,7 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
       },
       { text: "No", style: "cancel" },
     ]);
-  };
+  }, [CC, t]);
 
   return (
     <View className="flex w-full items-center justify-between flex-row gap-4">
