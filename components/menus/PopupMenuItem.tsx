@@ -29,7 +29,6 @@ const PopupMenuItem = ({
   total = 0,
 }: PopupMenuItemProps) => {
   const click = () => {
-    console.log("item clicked");
     if (onPress) onPress();
     if (closeModal) closeModal();
   };
@@ -42,10 +41,6 @@ const PopupMenuItem = ({
 
   const positionStyles = useMemo<StyleProp<ViewStyle>>(() => {
     const isLast = index === total - 1;
-
-    const ic = isLast ? getVarColor("--color-light-med") : "transparent";
-
-    console.log("item ic : ", ic);
 
     return {
       borderBottomColor: !isLast

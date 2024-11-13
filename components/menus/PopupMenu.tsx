@@ -88,8 +88,6 @@ export default function PopupMenu({
           elevation: 8,
         },
       }),
-      opacity:
-        modalDimensions.width !== 0 && triggerDimensions.left !== 0 ? 1 : 0,
       zIndex: 99,
     },
     overlay: {
@@ -101,7 +99,8 @@ export default function PopupMenu({
     },
   });
 
-  //const fadeAnim = useRef(new Animated.Value(0)).current;
+  const fadeAnim = useRef(new Animated.Value(0)).current;
+  const slideAnim = useRef(new Animated.Value(0)).current;
 
   const calculateDimensions = () => {
     triggerWrapperRef?.current?.measureInWindow((x, y, width, height) => {
@@ -114,24 +113,21 @@ export default function PopupMenu({
     });
 
     setTimeout(() => {
-      console.log("content dim 1 , ");
       itemsWrapperRef?.current?.measureInWindow((x, y, width, height) => {
-        console.log("content dim 2");
         setModalDimensions({ width, height });
       });
     }, 100);
   };
 
   useEffect(() => {
-    console.log("popup ", menuVisible);
     if (menuVisible) {
       if (triggerWrapperRef?.current) calculateDimensions();
     }
-    console.log(modalDimensions, triggerDimensions);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuVisible, itemsWrapperRef, setModalDimensions]);
 
   const closeModal = () => {
+    fadeAnim.setValue(0);
     setMenuVisible(false);
     setModalDimensions({ width: 0, height: 0 });
     setTriggerDimensions({ top: 0, left: 0, width: 0, height: 0 });
@@ -143,7 +139,7 @@ export default function PopupMenu({
 
     left =
       triggerDimensions.left - modalDimensions.width + triggerDimensions.width;
-    // if the popup is outside the screen from the left
+
     if (triggerDimensions.left - modalDimensions.width < 0)
       left = triggerDimensions.left;
 
@@ -177,10 +173,21 @@ export default function PopupMenu({
 
   const menuPositionStyles = { left, top };
 
-  const test = () => {
-    console.log("in test : ", hostname);
-    return true;
-  };
+  useEffect(() => {
+    if (modalDimensions.width !== 0 && triggerDimensions.left !== 0) {
+      fadeAnim.setValue(0);
+      slideAnim.setValue(-25);
+      Animated.spring(fadeAnim, {
+        toValue: 1,
+        bounciness: 2,
+        useNativeDriver: true,
+      }).start(({ finished }) => {});
+      Animated.spring(slideAnim, {
+        toValue: 0,
+        useNativeDriver: true,
+      }).start();
+    }
+  }, [fadeAnim, modalDimensions, slideAnim, triggerDimensions]);
 
   return (
     <>
@@ -191,7 +198,7 @@ export default function PopupMenu({
         {trigger}
       </TouchableOpacity>
       <Portal hostName={hostname}>
-        {menuVisible && test() && (
+        {menuVisible && (
           <TouchableOpacity
             activeOpacity={1}
             onPress={closeModal}
@@ -200,9 +207,16 @@ export default function PopupMenu({
             <Animated.View
               ref={itemsWrapperRef}
               collapsable={false}
-              style={[styles.activeSection, menuPositionStyles]}
+              style={[
+                {
+                  opacity: fadeAnim,
+                  transform: [{ translateY: slideAnim }],
+                  transformOrigin: "top",
+                },
+                styles.activeSection,
+                menuPositionStyles,
+              ]}
             >
-              {/* pass the closeModal to children prop  */}
               {Array.isArray(children)
                 ? children.map((childrenItem, idx) => {
                     return React.cloneElement(childrenItem, {
