@@ -127,10 +127,21 @@ export default function PopupMenu({
   }, [menuVisible, itemsWrapperRef, setModalDimensions]);
 
   const closeModal = () => {
-    fadeAnim.setValue(0);
-    setMenuVisible(false);
-    setModalDimensions({ width: 0, height: 0 });
-    setTriggerDimensions({ top: 0, left: 0, width: 0, height: 0 });
+    Animated.timing(fadeAnim, {
+      toValue: 0,
+      duration: 200,
+      useNativeDriver: true,
+    }).start();
+
+    Animated.timing(slideAnim, {
+      toValue: -25,
+      duration: 200,
+      useNativeDriver: true,
+    }).start((finished) => {
+      setMenuVisible(false);
+      setModalDimensions({ width: 0, height: 0 });
+      setTriggerDimensions({ top: 0, left: 0, width: 0, height: 0 });
+    });
   };
 
   const { top, left } = useMemo(() => {
