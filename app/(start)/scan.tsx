@@ -95,10 +95,6 @@ export default function ScanScreen() {
     scannedBarcode(fake);
   };
 
-  const back = () => {
-    router.back();
-  };
-
   const scannedBarcode = (scanningResult: BarcodeScanningResult) => {
     if (EventState.isTryingToJoin) return;
 

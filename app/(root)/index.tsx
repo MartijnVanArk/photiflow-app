@@ -1,4 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
+import { PortalHost } from "@gorhom/portal";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useRef, useState } from "react";
@@ -15,6 +16,8 @@ import EventLastPictureView from "@/components/fragments/EventLastPictureView";
 import EventPictureToolbar from "@/components/fragments/EventPictureToolbar";
 import SendPhotoSheet from "@/components/fragments/SendPhotoSheet";
 import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
+import PopupMenu from "@/components/menus/PopupMenu";
+import PopupMenuItem from "@/components/menus/PopupMenuItem";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import { images } from "@/constants/images";
@@ -119,12 +122,20 @@ export default function EventScreen() {
               picture={pictureState.lastPicture!}
             />
           )}
+
+          <PopupMenu hostname="event-menu" trigger={<Text>Popup test</Text>}>
+            <PopupMenuItem title="test item 1" icon={{ name: "cog" }} />
+            <PopupMenuItem title="test item 1" icon={{ name: "cog" }} />
+            <PopupMenuItem title="test item 1" icon={{ name: "cog" }} />
+          </PopupMenu>
+
           <EventPictureToolbar params={params} />
 
           {hasLastPicture && !pictureState.lastPicture?.wasUploaded && (
             <SendPhotoSheet ref={sheetRef} children={undefined} />
           )}
         </SafeAreaView>
+        <PortalHost name="event-menu" />
       </MutedBGPhoto>
     </KeyboardDismisWrappable>
   );

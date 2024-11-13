@@ -55,6 +55,9 @@ module.exports = {
         textsecondary: {
           DEFAULT: "var(--color-text-secondary)",
         },
+        textmedium: {
+          DEFAULT: "var(--color-text-med)",
+        },
         inputbg: {
           DEFAULT: "var(--color-input-bg)",
         },

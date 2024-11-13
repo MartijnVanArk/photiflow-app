@@ -1,3 +1,4 @@
+import { PortalProvider } from "@gorhom/portal";
 import { PropsWithChildren } from "react";
 
 import { EventAuthContextProvider } from "@/context/EventAuthContextProvider";
@@ -10,13 +11,15 @@ import { ThemeProvider } from "./ThemeProvider";
 const ProviderList = ({ children }: PropsWithChildren) => {
   return (
     <ThemeProvider>
-      <GuestContextProvider>
-        <EventAuthContextProvider>
-          <PictureContextProvider>
-            <CommandCenterProvider>{children}</CommandCenterProvider>
-          </PictureContextProvider>
-        </EventAuthContextProvider>
-      </GuestContextProvider>
+      <PortalProvider>
+        <GuestContextProvider>
+          <EventAuthContextProvider>
+            <PictureContextProvider>
+              <CommandCenterProvider>{children}</CommandCenterProvider>
+            </PictureContextProvider>
+          </EventAuthContextProvider>
+        </GuestContextProvider>
+      </PortalProvider>
     </ThemeProvider>
   );
 };

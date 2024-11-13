@@ -11,7 +11,6 @@ import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import CloseBackButton from "@/components/ui/CloseBackButton";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/InputControl";
-import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
 import { images } from "@/constants/images";
 import useGuestContext from "@/hooks/useGuestContext";
