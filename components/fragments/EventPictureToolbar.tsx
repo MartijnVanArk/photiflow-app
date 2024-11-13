@@ -40,8 +40,8 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
 
   const goTakePicture = () => {
     router.push({
-      pathname: "/(root)/takepicture",
-      params: { returnpath: "/(root)/" },
+      pathname: "/(root)/TakePictureScreen",
+      params: { returnpath: "/(root)/EventScreen" },
     });
   };
 
@@ -53,7 +53,7 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
           CC.perform({
             type: CCActionTypes.LEAVE_EVENT,
           });
-          router.replace("/(start)/welcome");
+          router.replace("/(start)/WelcomeScreen");
         },
       },
       { text: "No", style: "cancel" },

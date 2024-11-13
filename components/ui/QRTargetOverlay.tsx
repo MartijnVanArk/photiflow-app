@@ -23,14 +23,12 @@ const QRTargetOverlay = ({
   useEffect(() => {
     Animated.loop(
       Animated.sequence([
-        Animated.timing(pulseValue, {
+        Animated.spring(pulseValue, {
           toValue: 1.05,
-          duration: 600,
           useNativeDriver: true,
         }),
-        Animated.timing(pulseValue, {
+        Animated.spring(pulseValue, {
           toValue: 1,
-          duration: 600,
           useNativeDriver: true,
         }),
       ]),

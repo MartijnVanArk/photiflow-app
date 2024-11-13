@@ -1,5 +1,5 @@
 import { Image, ImageSource, ImageStyle } from "expo-image";
-import React, { useState } from "react";
+import React, { useMemo, useState } from "react";
 import { View, Text, PixelRatio, StyleProp } from "react-native";
 
 import { generateColorsForText } from "@/utils/generic/colorutils";
@@ -33,8 +33,12 @@ export default function DynamicAvatar({
 }: DynamicAvatarProps) {
   const [imageError, setImageError] = useState(false);
 
-  const nameAbrev = getNameAbbreviaton(name);
-  const colorInfo = generateColorsForText(name);
+  const { nameAbrev, colorInfo } = useMemo(() => {
+    return {
+      nameAbrev: getNameAbbreviaton(name),
+      colorInfo: generateColorsForText(name),
+    };
+  }, [name]);
 
   return (
     <View

@@ -1,10 +1,11 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
+import { useCallback, useMemo } from "react";
 import { TouchableOpacity, Text, View } from "react-native";
 
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps, ButtonProps } from "@/types/type";
 
-const getBgVariantStyle = (variant: ButtonProps["variant"]) => {
+const getBgVariantStyle = (variant: ButtonProps["variant"], _theme: string) => {
   switch (variant) {
     case "secondary":
       return "bg-gray-400";
@@ -23,7 +24,10 @@ const getBgVariantStyle = (variant: ButtonProps["variant"]) => {
   }
 };
 
-const getIconVariantStyle = (variant: ButtonIconProps["color"]) => {
+const getIconVariantStyle = (
+  variant: ButtonIconProps["color"],
+  _theme: string,
+) => {
   switch (variant) {
     case "secondary":
     case "tertiary":
@@ -39,7 +43,10 @@ const getIconVariantStyle = (variant: ButtonIconProps["color"]) => {
   }
 };
 
-const getTextVariantStyle = (variant: ButtonProps["variant"]) => {
+const getTextVariantStyle = (
+  variant: ButtonProps["variant"],
+  _theme: string,
+) => {
   switch (variant) {
     case "outline":
       return "text-primary";
@@ -72,16 +79,23 @@ const ThemeButton = ({
   rounded = "rounded-xl",
   ...props
 }: ButtonProps) => {
-  const { getVarColor } = useTheme();
+  const { theme, getVarColor } = useTheme();
 
-  const procColor = (c: string): string => {
-    if (c.startsWith("--")) return getVarColor(c);
-    return c;
-  };
+  const procColor = useCallback(
+    (c: string): string => {
+      if (c.startsWith("--")) return getVarColor(c);
+      return c;
+    },
+    [getVarColor],
+  );
 
-  const useTextVariant = procColor(getTextVariantStyle(variant));
-  const useBgVariant = getBgVariantStyle(variant);
-  const iconVariant = procColor(getIconVariantStyle(variant));
+  const { useTextVariant, useBgVariant, iconVariant } = useMemo(() => {
+    return {
+      useTextVariant: procColor(getTextVariantStyle(variant, theme || "light")),
+      useBgVariant: getBgVariantStyle(variant, theme || "light"),
+      iconVariant: procColor(getIconVariantStyle(variant, theme || "light")),
+    };
+  }, [procColor, variant, theme]);
 
   return (
     <TouchableOpacity

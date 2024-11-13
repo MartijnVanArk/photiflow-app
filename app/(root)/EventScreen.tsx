@@ -50,7 +50,7 @@ export default function EventScreen() {
   const ratio = PixelRatio.get();
 
   const openProfile = () => {
-    router.push("/(root)/guest-profile");
+    router.push("/(root)/GuestProfileScreen");
   };
 
   const CC = useCommandCenter();

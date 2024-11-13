@@ -41,7 +41,7 @@ export default function ScanScreen() {
   useEffect(() => {
     if (gotBarcode && !EventState.isTryingToJoin) {
       if (EventState.isValidEventId) {
-        router.replace("/(root)/");
+        router.replace("/(root)/EventScreen");
       } else {
         Alert.alert(
           t("scan-invalidevent-title"),

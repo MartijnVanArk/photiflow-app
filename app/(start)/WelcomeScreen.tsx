@@ -12,7 +12,7 @@ import useTheme from "@/hooks/useTheme";
 
 export default function WelcomeScreen() {
   const goScan = useCallback(() => {
-    router.push("/(start)/scan");
+    router.push("/(start)/ScanScreen");
   }, []);
 
   const goCreate = useCallback(async () => {

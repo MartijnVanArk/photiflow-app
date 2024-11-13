@@ -22,7 +22,7 @@ export default function EventLastPictureView({
 }: EventLastPictureViewProps) {
   const imgClick = useCallback(() => {
     router.navigate({
-      pathname: "/(root)/pictureviewer",
+      pathname: "/(root)/PictureViewerScreen",
       params: {
         picture: encodeSafePicUri(picture.uri || ""),
         width: picture.width,
