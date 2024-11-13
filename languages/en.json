@@ -27,6 +27,8 @@
     "sendphoto-tags-placeholder": "optionally add some tags",
     "sendphoto-sendbutton-title": "Share Picture",
     "takepicture-error-title": "Error taking picture",
-    "takepicture-error-message": "Somethinig went wrong while taking your picture"
+    "takepicture-error-message": "Somethinig went wrong while taking your picture",
+    "camera-permission-statement": "Photobooth needs your permission to acces the camera",
+    "camera-permission-button-grant": "Grant Permission"
   }
 }

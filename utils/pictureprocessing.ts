@@ -2,7 +2,7 @@ import { CameraCapturedPicture } from "expo-camera";
 import { ImagePickerResult } from "expo-image-picker";
 import base64 from "react-native-base64";
 
-import { InternalImageData } from "@/types/pictureinfo";
+import { ImageExifData, InternalImageData } from "@/types/pictureinfo";
 import { EmptyDeviceTagInfo } from "@/types/systypes";
 import { getMimeTypeFromExtension } from "@/utils/generic/mimetypes";
 
@@ -21,7 +21,7 @@ export const emptyImage: InternalImageData = {
   base64: "",
   isValid: false,
   mime: "",
-  exif: new Map<string, any>(),
+  exif: {},
   uri: "",
   wasUploaded: false,
   timeTaken: "",
@@ -51,10 +51,10 @@ export const processCameraPicture = async (
   photo: CameraCapturedPicture,
 ): Promise<InternalImageData> => {
   return new Promise<InternalImageData>((resolve) => {
-    const newExif = new Map<string, any>();
+    const newExif: ImageExifData = {};
 
     if (photo.exif) {
-      Object.keys(photo.exif).forEach((k) => newExif.set(k, photo.exif[k]));
+      Object.keys(photo.exif).forEach((k) => (newExif[k] = photo.exif[k]));
     }
 
     resolve({
@@ -88,13 +88,12 @@ export const processGalleryPicture = (
       const pic = photo.assets[0];
       const mime = pic.mimeType ? pic.mimeType : inferMime(pic.uri);
 
-      const newExif = new Map<string, any>();
+      const newExif: ImageExifData = {};
 
       if (pic.exif) {
-        Object.keys(pic.exif).forEach((k) => newExif.set(k, pic.exif![k]));
+        Object.keys(pic.exif).forEach((k) => (newExif[k] = pic.exif![k]));
       }
 
-      //      if (pic.base64) {
       resolve({
         width: pic.width,
         height: pic.height,

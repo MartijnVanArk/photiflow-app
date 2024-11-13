@@ -11,6 +11,7 @@ import { Alert, Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import CameraPermissionScreen from "@/components/fragments/CameraPermissionScreen";
+import CloseBackButton from "@/components/ui/CloseBackButton";
 import ShutterTrigger from "@/components/ui/ShutterTrigger";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import { makeTransferSafeCCP } from "@/utils/pictureprocessing";
@@ -32,10 +33,6 @@ export default function TakePictureScreen() {
   const { t } = useTranslation();
 
   useEffect(() => {
-    console.log("inital entry : ", params);
-
-    //    const paramsObject = JSON.parse(params.toString() || "{}");
-
     if (params.camfacing) setFacing(params.camfacing as CameraType);
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, []);
@@ -56,13 +53,6 @@ export default function TakePictureScreen() {
       });
 
       if (photo) {
-        // CC.perform({
-        //   type: CCActionTypes.ADD_PIC_FROM_CAMERA,
-        //   payload: {
-        //     cameraPhoto: photo,
-        //   },
-        // });
-
         if (params.returnpath) {
           router.navigate({
             //@ts-expect-error we have a variable route with types routing enabled
@@ -92,10 +82,6 @@ export default function TakePictureScreen() {
     setFacing((current) => (current === "back" ? "front" : "back"));
   }
 
-  const back = () => {
-    router.back();
-  };
-
   return (
     <View className="flex-1 h-screen bg-black">
       <CameraView
@@ -108,11 +94,7 @@ export default function TakePictureScreen() {
           className="flex flex-row justify-between p-8"
           style={{ marginTop: insets.top, zIndex: 2, elevation: 2 }}
         >
-          <SimpleIconButton
-            icon={{ name: "close", color: "white" }}
-            backGround="p-2 bg-[#00000044]"
-            onPress={back}
-          />
+          <CloseBackButton noAbsolute={true} />
 
           <SimpleIconButton
             icon={{

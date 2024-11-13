@@ -51,7 +51,7 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
         text: "Yes",
         onPress: () => {
           CC.perform({
-            type: CCActionTypes.LEAVE_Event,
+            type: CCActionTypes.LEAVE_EVENT,
           });
           router.replace("/(start)/welcome");
         },

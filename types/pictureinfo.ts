@@ -3,7 +3,7 @@ import { DeviceInfoTagsDefaults } from "./systypes";
 
 export type ImageTags = string[];
 
-export type ImageExifData = Map<string, any>;
+export type ImageExifData = { [key: string]: any };
 
 export type InternalImageData = {
   isValid: boolean;

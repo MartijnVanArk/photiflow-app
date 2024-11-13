@@ -14,8 +14,6 @@ export interface LastPictureInfoBarProps {
 export default function LastPictureInfoBar({
   picture,
 }: LastPictureInfoBarProps) {
-  console.log("info : ", JSON.stringify(picture));
-
   return (
     <View className="flex gap-4 flex-row w-full bg-overlaydark py-2 px-4 rounded-md">
       <DynamicAvatar

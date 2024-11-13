@@ -4,6 +4,7 @@ import Animated from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import PanPinchView from "@/components/PanPinchView";
+import CloseBackButton from "@/components/ui/CloseBackButton";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import { decodeSafePicUri } from "@/utils/pictureprocessing";
 
@@ -31,12 +32,8 @@ const PictureViewer = () => {
           source={{ uri: picUri }}
         ></Animated.Image>
       </PanPinchView>
-      <SimpleIconButton
-        style={{ top: inset.top + 8 * ratio, left: inset.left + 8 * ratio }}
-        className="absolute bg-[#00000066] p-2"
-        onPress={() => router.back()}
-        icon={{ name: "close", color: "white" }}
-      />
+
+      <CloseBackButton />
     </View>
   );
 };

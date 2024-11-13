@@ -27,6 +27,8 @@
     "sendphoto-tags-placeholder": "optionele tags toevoegen",
     "sendphoto-sendbutton-title": "Deel Photo",
     "takepicture-error-title": "Fout tijdens maken van foto",
-    "takepicture-error-message": "Er is iets mis gegaan tijdens het maken van je foto"
+    "takepicture-error-message": "Er is iets mis gegaan tijdens het maken van je foto",
+    "camera-permission-statement": "Photobooth heeft je toestemming nodig om te camera te gebruiken",
+    "camera-permission-button-grant": "Toestemming verlenen"
   }
 }

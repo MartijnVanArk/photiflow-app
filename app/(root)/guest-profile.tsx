@@ -8,6 +8,7 @@ import { useSafeAreaInsets } from "react-native-safe-area-context";
 import { GuestActionTypes } from "@/actions/GuestActions";
 import ProfileAvatarSheet from "@/components/fragments/ProfileAvatarSheet";
 import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
+import CloseBackButton from "@/components/ui/CloseBackButton";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/InputControl";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
@@ -140,12 +141,8 @@ export default function GuestProfileScreen() {
           />
         </View>
 
-        <SimpleIconButton
-          onPress={() => router.back()}
-          style={{ top: inset.top + 8 * ratio, left: 8 * ratio }}
-          className="absolute"
-          icon={{ name: "close", color: "white" }}
-        />
+        <CloseBackButton backGround="transparent" />
+
         <ProfileAvatarSheet
           ref={sheetRef}
           children={undefined}

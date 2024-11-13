@@ -13,6 +13,7 @@ import Torch from "react-native-torch";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import CameraPermissionScreen from "@/components/fragments/CameraPermissionScreen";
+import CloseBackButton from "@/components/ui/CloseBackButton";
 import QRTargetOverlay from "@/components/ui/QRTargetOverlay";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/ThemeButton";
@@ -104,7 +105,7 @@ export default function ScanScreen() {
     setGotBarcode(true);
 
     CC.perform({
-      type: CCActionTypes.TRY_JOIN_Event,
+      type: CCActionTypes.TRY_JOIN_EVENT,
       payload: {
         EventId: scanningResult.data,
       },
@@ -131,11 +132,7 @@ export default function ScanScreen() {
           className="flex flex-row justify-between p-8"
           style={{ marginTop: insets.top, zIndex: 2, elevation: 2 }}
         >
-          <SimpleIconButton
-            backGround="p-2 bg-[#00000044]"
-            icon={{ name: "close", color: "white" }}
-            onPress={back}
-          />
+          <CloseBackButton noAbsolute={true} />
 
           <SimpleIconButton
             icon={{
