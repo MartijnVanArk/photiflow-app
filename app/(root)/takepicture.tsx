@@ -5,7 +5,7 @@ import {
   useCameraPermissions,
 } from "expo-camera";
 import { router, useLocalSearchParams } from "expo-router";
-import { useRef, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Alert, Dimensions, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
@@ -30,6 +30,15 @@ export default function TakePictureScreen() {
   const insets = useSafeAreaInsets();
 
   const { t } = useTranslation();
+
+  useEffect(() => {
+    console.log("inital entry : ", params);
+
+    //    const paramsObject = JSON.parse(params.toString() || "{}");
+
+    if (params.camfacing) setFacing(params.camfacing as CameraType);
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, []);
 
   if (!permission) {
     return <View />;
@@ -101,7 +110,7 @@ export default function TakePictureScreen() {
         >
           <SimpleIconButton
             icon={{ name: "close", color: "white" }}
-            backGround="p-2 bg-[#ffffff22]"
+            backGround="p-2 bg-[#00000044]"
             onPress={back}
           />
 
@@ -110,7 +119,7 @@ export default function TakePictureScreen() {
               name: flash === "on" ? "flash" : "flash-off",
               color: "white",
             }}
-            backGround="p-2 bg-[#ffffff22]"
+            backGround="p-2 bg-[#00000044]"
             onPress={toggleFlash}
           />
         </View>
@@ -126,11 +135,15 @@ export default function TakePictureScreen() {
                 color: "white",
                 size: 32,
               }}
-              backGround="p-3 bg-[#ffffff22]"
+              backGround="p-3 bg-[#00000044]"
               onPress={toggleCameraFacing}
             />
 
-            <ShutterTrigger onPress={takePicture} />
+            <ShutterTrigger
+              color="#ffffffcc"
+              ringColor="#ffffffcc"
+              onPress={takePicture}
+            />
             <View style={{ width: 56, height: 56 }}></View>
           </View>
         </View>

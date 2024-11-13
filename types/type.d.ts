@@ -32,6 +32,8 @@ export interface ButtonProps extends TouchableOpacityProps {
 
 export interface ShutterTriggerProps extends TouchableOpacityProps {
   className?: string;
+  color?: string;
+  ringColor?: string;
   onPress?: () => void;
 }
 

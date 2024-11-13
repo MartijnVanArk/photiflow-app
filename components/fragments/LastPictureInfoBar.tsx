@@ -3,7 +3,7 @@ import { View, Text } from "react-native";
 
 import { InternalImageData } from "@/types/pictureinfo";
 import { formatDate } from "@/utils/generic/datestuff";
-import { formatTagMap } from "@/utils/tagutils";
+import { formatTags } from "@/utils/tagutils";
 
 import DynamicAvatar from "../ui/DynamicAvatar";
 
@@ -14,6 +14,8 @@ export interface LastPictureInfoBarProps {
 export default function LastPictureInfoBar({
   picture,
 }: LastPictureInfoBarProps) {
+  console.log("info : ", JSON.stringify(picture));
+
   return (
     <View className="flex gap-4 flex-row w-full bg-overlaydark py-2 px-4 rounded-md">
       <DynamicAvatar
@@ -33,9 +35,9 @@ export default function LastPictureInfoBar({
         {picture.comment && (
           <Text className="font-Nunito text-white">{picture.comment}</Text>
         )}
-        {picture.tags.size > 0 && (
+        {picture.tags.length > 0 && (
           <Text className="font-Nunito text-white">
-            {formatTagMap(picture.tags)}
+            {formatTags(picture.tags)}
           </Text>
         )}
       </View>

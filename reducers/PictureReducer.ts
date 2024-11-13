@@ -1,7 +1,7 @@
 import { PictureActions, PictureActionTypes } from "@/actions/PictureActions";
 import { InternalImageData } from "@/types/pictureinfo";
 import { emptyImage } from "@/utils/pictureprocessing";
-import { addTagsToMap, mapFromTags } from "@/utils/tagutils";
+import { mergeTags } from "@/utils/tagutils";
 
 export type PictureState = {
   lastPicture: InternalImageData | null;
@@ -29,15 +29,12 @@ const PictureReducer = (
       break;
     case PictureActionTypes.SET_PRE_UPLOAD_INFO: {
       if (state.lastPicture) {
-        state.lastPicture.tags = addTagsToMap(
-          action.payload.tags,
-          state.lastPicture.tags,
-        );
-
         const newLp = { ...state.lastPicture };
+
+        newLp.tags = mergeTags(action.payload.tags, newLp.tags);
+
         newLp.comment = action.payload.comment;
         newLp.guest.name = action.payload.name;
-        newLp.tags = mapFromTags(action.payload.tags);
 
         return {
           ...state,

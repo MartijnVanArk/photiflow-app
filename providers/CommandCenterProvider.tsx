@@ -36,7 +36,7 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
       console.log("Command center ", action);
 
       switch (action.type) {
-        case CCActionTypes.TRY_JOIN_Event: {
+        case CCActionTypes.TRY_JOIN_EVENT: {
           EventStateDispatch({
             type: EventAuthActionTypes.TRYJOINSTART,
             payload: {
@@ -66,7 +66,8 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
           break;
         }
 
-        case CCActionTypes.LEAVE_Event: {
+        case CCActionTypes.LEAVE_EVENT: {
+          // call api logout stuff
           EventStateDispatch({
             type: EventAuthActionTypes.LEAVE,
           });

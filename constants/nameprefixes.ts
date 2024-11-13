@@ -167,4 +167,4 @@ export const NAME_PREFIXES: string[] = [
   "zu",
   "zum",
   "zur",
-];
+].sort((a, b) => b.length - a.length);

@@ -54,7 +54,7 @@ const ProfileAvatarSheet = forwardRef<BottomSheet, ProfileAvatarSheetProps>(
 
       router.navigate({
         pathname: "/(root)/takepicture",
-        params: { returnpath: "/(root)/guest-profile" },
+        params: { returnpath: "/(root)/guest-profile", camfacing: "front" },
       });
     };
 

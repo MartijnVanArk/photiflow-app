@@ -1,6 +1,7 @@
 import { EventInfo, SourceInfo } from "./eventinfo";
+import { DeviceInfoTagsDefaults } from "./systypes";
 
-export type ImageTags = Map<string, string>;
+export type ImageTags = string[];
 
 export type ImageExifData = Map<string, any>;
 
@@ -19,6 +20,7 @@ export type InternalImageData = {
     avatar: string;
     uid: string;
   };
+  deviceTags: DeviceInfoTagsDefaults;
   comment: string;
   tags: ImageTags;
   exif: ImageExifData;

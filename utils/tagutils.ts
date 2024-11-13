@@ -1,21 +1,17 @@
-export const mapFromTags = (tags: string[]) => {
-  const map = new Map<string, string>();
-  tags.forEach((t) => map.set(t, t));
-  return map;
+export const mergeTags = (newTags: string[], existingTags: string[]) => {
+  const merged = [...existingTags];
+
+  const checkTags = existingTags.map((t) => t.toLowerCase());
+
+  const refTags = newTags.map((t) => t.toLowerCase());
+
+  for (let i = 0; i < newTags.length; i++) {
+    if (checkTags.indexOf(refTags[i]) < 0) merged.push(existingTags[i]);
+  }
+
+  return merged;
 };
 
-export const formatTagMap = (tags: Map<string, string>): string => {
-  return tags.size > 0
-    ? "#" + Array.from(tags.values()).reduce((p, c) => p + " #" + c)
-    : "";
-};
-
-export const addTagsToMap = (
-  tags: string[],
-  map: Map<string, string>,
-): Map<string, string> => {
-  tags.forEach((t) => {
-    if (!map.has(t)) map.set(t, t);
-  });
-  return map;
+export const formatTags = (tags: string[]): string => {
+  return tags.length > 0 ? "#" + tags.reduce((p, c) => p + " #" + c) : "";
 };

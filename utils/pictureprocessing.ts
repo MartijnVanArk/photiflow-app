@@ -3,7 +3,10 @@ import { ImagePickerResult } from "expo-image-picker";
 import base64 from "react-native-base64";
 
 import { InternalImageData } from "@/types/pictureinfo";
+import { EmptyDeviceTagInfo } from "@/types/systypes";
 import { getMimeTypeFromExtension } from "@/utils/generic/mimetypes";
+
+import { getDeviceInfoTagsDefault } from "./system/system";
 
 export const encodeSafePicUri = (uri: string): string => {
   return base64.encode(uri);
@@ -23,13 +26,14 @@ export const emptyImage: InternalImageData = {
   wasUploaded: false,
   timeTaken: "",
   comment: "",
-  tags: new Map<string, string>(),
+  tags: [],
   guest: {
     avatar: "",
     email: "",
     name: "",
     uid: "",
   },
+  deviceTags: EmptyDeviceTagInfo,
 };
 
 export const makeDataUrl = (image: InternalImageData): string => {
@@ -64,13 +68,14 @@ export const processCameraPicture = async (
       wasUploaded: false,
       timeTaken: new Date().toISOString(),
       comment: "",
-      tags: new Map<string, string>(),
+      tags: [],
       guest: {
         avatar: "",
         email: "",
         name: "",
         uid: "",
       },
+      deviceTags: getDeviceInfoTagsDefault(),
     });
   });
 };
@@ -101,13 +106,14 @@ export const processGalleryPicture = (
         wasUploaded: false,
         timeTaken: new Date().toISOString(),
         comment: "",
-        tags: new Map<string, string>(),
+        tags: [],
         guest: {
           avatar: "",
           email: "",
           name: "",
           uid: "",
         },
+        deviceTags: getDeviceInfoTagsDefault(),
       });
     } else {
       resolve(emptyImage);

@@ -132,7 +132,7 @@ export default function ScanScreen() {
           style={{ marginTop: insets.top, zIndex: 2, elevation: 2 }}
         >
           <SimpleIconButton
-            backGround="p-2 bg-[#ffffff22]"
+            backGround="p-2 bg-[#00000044]"
             icon={{ name: "close", color: "white" }}
             onPress={back}
           />
@@ -142,7 +142,7 @@ export default function ScanScreen() {
               name: torch ? "flashlight-off" : "flashlight",
               color: "white",
             }}
-            backGround="p-2 bg-[#ffffff22]"
+            backGround="p-2 bg-[#00000044]"
             onPress={toggleTorch}
           />
         </View>

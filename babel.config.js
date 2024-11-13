@@ -4,12 +4,12 @@ module.exports = function (api) {
   api.cache(true);
   return {
     plugins: [
-      [
-        "babel-plugin-inline-import",
-        {
-          extensions: [".svg"],
-        },
-      ],
+      // [
+      //   // "babel-plugin-inline-import",
+      //   // {
+      //   //   extensions: [".svg"],
+      //   // },
+      // ],
       "react-native-reanimated/plugin",
     ],
     presets: [
