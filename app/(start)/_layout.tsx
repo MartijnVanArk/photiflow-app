@@ -4,7 +4,7 @@ const Layout = () => {
   return (
     <Stack
       initialRouteName="WelcomeScreen"
-      screenOptions={{ headerShown: false }}
+      screenOptions={{ headerShown: false, animation: "ios_from_right" }}
     >
       <Stack.Screen name="WelcomeScreen" options={{ headerShown: false }} />
       <Stack.Screen name="ScanScreen" options={{ headerShown: false }} />
