@@ -11,7 +11,7 @@ const Index = () => {
 
   if (EventState.isValidEventId) return <Redirect href="/(root)/EventScreen" />;
 
-  return <Redirect href="/(start)/WelcomeScreen" />;
+  return <Redirect href="/(root)/EventScreen" />;
 };
 
 export default Index;

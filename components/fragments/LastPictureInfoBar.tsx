@@ -26,9 +26,11 @@ export default function LastPictureInfoBar({
 
       <View className="flex-1 flex ">
         {picture.guest.name && (
-          <ThemeText className="text-white">{picture.guest.name}</ThemeText>
+          <ThemeText className="text-white text-md">
+            {picture.guest.name}
+          </ThemeText>
         )}
-        <ThemeText className="text-slate-400">
+        <ThemeText className="text-slate-400 text-sm">
           {formatDate(picture.timeTaken)}
         </ThemeText>
         {picture.comment && (
