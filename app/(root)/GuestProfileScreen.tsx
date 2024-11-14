@@ -1,8 +1,9 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import { router, useLocalSearchParams } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PixelRatio, StatusBar, View } from "react-native";
+import { PixelRatio, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
@@ -77,7 +78,7 @@ export default function GuestProfileScreen() {
         className="h-screen relative flex flex-1 bg-primary"
         style={{ paddingTop: inset.top }}
       >
-        <StatusBar barStyle="light-content" />
+        <StatusBar style="light" />
 
         <View className="flex gap-2 justify-between flex-1 bg-light h-full p-8 relative">
           <View

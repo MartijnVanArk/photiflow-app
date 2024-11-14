@@ -5,6 +5,7 @@ import {
   useCameraPermissions,
 } from "expo-camera";
 import { router } from "expo-router";
+import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
@@ -110,6 +111,7 @@ export default function ScanScreen() {
 
   return (
     <View className="flex-1 h-screen bg-black">
+      <StatusBar hidden={true} />
       <CameraView
         ref={cameraRef}
         style={{ width: winWidth, height: winHeight, zIndex: 0, elevation: 0 }}

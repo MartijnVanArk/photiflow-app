@@ -21,7 +21,7 @@ export default function EventLastPictureView({
   doUpload,
 }: EventLastPictureViewProps) {
   const imgClick = useCallback(() => {
-    router.navigate({
+    router.push({
       pathname: "/(root)/PictureViewerScreen",
       params: {
         picture: encodeSafePicUri(picture.uri || ""),

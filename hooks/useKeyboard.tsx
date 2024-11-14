@@ -2,13 +2,17 @@ import { useState, useEffect } from "react";
 import { Keyboard, KeyboardEvent, Platform } from "react-native";
 
 const isIOS = Platform.OS === "ios";
-const useKeyboardHeight = () => {
+
+const useKeyboard = () => {
   const [keyboardHeight, setKeyboardHeight] = useState(0);
+  const [keyboardVisible, setKeyboardVisible] = useState(false);
 
   const handleKeyboardDidShow = (e: KeyboardEvent) => {
+    setKeyboardVisible(true);
     setKeyboardHeight(e.endCoordinates.height);
   };
   const handleKeyboardDidHide = () => {
+    setKeyboardVisible(false);
     setKeyboardHeight(0);
   };
 
@@ -29,7 +33,7 @@ const useKeyboardHeight = () => {
     };
   }, []);
 
-  return { keyboardHeight };
+  return { keyboardHeight, keyboardVisible };
 };
 
-export default useKeyboardHeight;
+export default useKeyboard;

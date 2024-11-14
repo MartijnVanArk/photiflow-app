@@ -9,7 +9,9 @@ export default function NotFoundScreen() {
       <SafeAreaView className="flex-1 items-center justify-center bg-white">
         <Text className="">What are you doing this does not exist</Text>
 
-        <Link href={"/"}>Go Home</Link>
+        <Link href={"/"} replace={true}>
+          Go Home
+        </Link>
       </SafeAreaView>
     </>
   );

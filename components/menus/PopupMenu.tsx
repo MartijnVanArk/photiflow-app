@@ -16,7 +16,7 @@ import {
   View,
 } from "react-native";
 
-import useKeyboardHeight from "@/hooks/useKeyboardHeight";
+import useKeyboard from "@/hooks/useKeyboard";
 import useTheme from "@/hooks/useTheme";
 
 export interface PopupMenuProps extends PropsWithChildren {
@@ -52,7 +52,7 @@ export default function PopupMenu({
     height: 0,
   });
 
-  const { keyboardHeight } = useKeyboardHeight();
+  const { keyboardHeight } = useKeyboard();
 
   const styles = StyleSheet.create({
     modalWrapper: {
@@ -137,7 +137,7 @@ export default function PopupMenu({
       toValue: -25,
       duration: 200,
       useNativeDriver: true,
-    }).start((finished) => {
+    }).start((_finished) => {
       setMenuVisible(false);
       setModalDimensions({ width: 0, height: 0 });
       setTriggerDimensions({ top: 0, left: 0, width: 0, height: 0 });
