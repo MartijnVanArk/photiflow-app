@@ -7,6 +7,7 @@ import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ThemeButton from "@/components/ui/ThemeButton";
+import ThemeText from "@/components/ui/ThemeText";
 import { images } from "@/constants/images";
 import useTheme from "@/hooks/useTheme";
 
@@ -50,13 +51,13 @@ export default function WelcomeScreen() {
     >
       <SafeAreaView className="flex h-screen items-center justify-normal p-8">
         <View className="flex flex-row items-center justify-center w-full mt-10">
-          <Text className="text-5xl text-textmain font-NunitoBold mx-10 text-center">
+          <ThemeText className="text-5xl text-textmain font-NunitoBold mx-10 text-center">
             {t("welcome-welcome-title")}
-          </Text>
+          </ThemeText>
         </View>
-        <Text className="text-md  font-Nunito text-textmain text-2xl text-center  mx-10 mt-3">
+        <ThemeText className="text-md  text-2xl text-center  mx-10 mt-3">
           {t("welcome-welcome-tagline")}
-        </Text>
+        </ThemeText>
 
         <Image
           style={{ flexGrow: 1, width: "100%" }}
@@ -84,13 +85,11 @@ export default function WelcomeScreen() {
           iconLeft={{ name: "calendar-edit", size: 36 }}
         />
         <View className="flex flex-row my-4 py-4 ">
-          <Text className="font-Nunito text-textmain text-lg">
-            {t("welcome-dontknow-text")}{" "}
-          </Text>
+          <ThemeText>{t("welcome-dontknow-text")} </ThemeText>
           <TouchableOpacity onPress={openSite}>
-            <Text className="font-NunitoExtraBold text-primary underline text-lg ">
+            <ThemeText className="font-NunitoExtraBold text-primary underline">
               {t("welcome-dontknow-linktext")}
-            </Text>
+            </ThemeText>
           </TouchableOpacity>
         </View>
       </SafeAreaView>

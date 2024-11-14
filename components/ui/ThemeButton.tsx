@@ -5,6 +5,8 @@ import { TouchableOpacity, Text, View } from "react-native";
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps, ButtonProps } from "@/types/type";
 
+import ThemeText from "./ThemeText";
+
 const getBgVariantStyle = (variant: ButtonProps["variant"], _theme: string) => {
   switch (variant) {
     case "secondary":
@@ -118,19 +120,16 @@ const ThemeButton = ({
       {(title || subtitle) && (
         <View className="flex items-center">
           {title && (
-            <Text
+            <ThemeText
               className={`${textSize} font-NunitoSemiBold ${useTextVariant}`}
             >
               {title}
-            </Text>
+            </ThemeText>
           )}
           {subtitle && (
-            <Text
-              className={`font-Nunito text-lg ${useTextVariant}`}
-              style={{ opacity: 0.8 }}
-            >
+            <ThemeText className={useTextVariant} style={{ opacity: 0.8 }}>
               {subtitle}
-            </Text>
+            </ThemeText>
           )}
         </View>
       )}

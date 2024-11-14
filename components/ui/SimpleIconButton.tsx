@@ -4,6 +4,8 @@ import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 import { ButtonIconProps } from "@/types/type";
 
+import ThemeText from "./ThemeText";
+
 export interface SimpleIconButtonProps extends TouchableOpacityProps {
   icon: ButtonIconProps;
   backGround?: string;
@@ -40,9 +42,7 @@ export default function SimpleIconButton({
         color={icon.color}
       />
       {title && (
-        <Text className="font-NunitoSemiBold text-md text-textmain">
-          {title}
-        </Text>
+        <ThemeText className="font-NunitoSemiBold text-md">{title}</ThemeText>
       )}
     </TouchableOpacity>
   );

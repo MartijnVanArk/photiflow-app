@@ -11,6 +11,8 @@ import {
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps } from "@/types/type";
 
+import ThemeText from "../ui/ThemeText";
+
 export interface PopupMenuItemProps {
   title: string;
   icon?: ButtonIconProps;
@@ -65,9 +67,7 @@ const PopupMenuItem = ({
             color={ic}
           />
         )}
-        <Text className="flex px-2 font-Nunito text-lg text-textmedium">
-          {title}
-        </Text>
+        <ThemeText className="flex px-2 text-textmedium">{title}</ThemeText>
       </View>
     </TouchableOpacity>
   );

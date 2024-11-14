@@ -11,6 +11,8 @@ import {
 import useTheme from "@/hooks/useTheme";
 import { InputControlProps } from "@/types/type";
 
+import ThemeText from "./ThemeText";
+
 const InputControl = forwardRef<TextInput, InputControlProps>(
   (
     {
@@ -39,11 +41,11 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
       >
         <View className="my-2 w-full">
           {label && (
-            <Text
-              className={`text-lg text-textsecondary font-NunitoSemiBold mb-3 ${labelStyle}`}
+            <ThemeText
+              className={`text-textsecondary font-NunitoSemiBold mb-3 ${labelStyle}`}
             >
               {label}
-            </Text>
+            </ThemeText>
           )}
           <View
             className={`flex flex-row justify-start items-center relative bg-inputbg rounded-xl border border-overlay focus:border-overlay ${containerStyle}`}

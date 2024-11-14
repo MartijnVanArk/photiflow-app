@@ -20,6 +20,7 @@ import PopupMenu from "@/components/menus/PopupMenu";
 import PopupMenuItem from "@/components/menus/PopupMenuItem";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
+import ThemeText from "@/components/ui/ThemeText";
 import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
@@ -107,17 +108,14 @@ export default function EventScreen() {
           />
 
           <View className="flex items-center gap-4 pt-8">
-            <Text className="text-slate-300 font-Nunito text-xl">
+            <ThemeText className="text-slate-300 text-xl">
               {t("event-generic-welcome")}
-            </Text>
-            <Text className="text-white font-NunitoSemiBold text-4xl text-center">
+            </ThemeText>
+            <ThemeText className="text-white font-NunitoSemiBold text-4xl text-center">
               {EventState.EventInfo?.Name}
-            </Text>
+            </ThemeText>
           </View>
 
-          {/* <Text className="text-textmain font-Nunito text-xl">
-        {JSON.stringify(EventState)}
-      </Text> */}
           {!hasLastPicture && <EventInfoNoPicture />}
           {hasLastPicture && (
             <EventLastPictureView
@@ -126,7 +124,10 @@ export default function EventScreen() {
             />
           )}
 
-          <PopupMenu hostname="event-menu" trigger={<Text>Popup test</Text>}>
+          <PopupMenu
+            hostname="event-menu"
+            trigger={<ThemeText>Popup test</ThemeText>}
+          >
             <PopupMenuItem title="test item 1" icon={{ name: "cog" }} />
             <PopupMenuItem title="test item 1" icon={{ name: "cog" }} />
             <PopupMenuItem title="test item 1" icon={{ name: "cog" }} />

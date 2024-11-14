@@ -4,14 +4,16 @@ import { Text, View } from "react-native";
 import { images } from "@/constants/images";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 
+import ThemeText from "../ui/ThemeText";
+
 const EventInfoNoPicture = () => {
   const { EventState } = useEventAuthContext();
 
   return (
     <View className="flex-1 w-full items-center justify-center">
-      <Text className="text-3xl font-Nunito text-center text-white">
+      <ThemeText className="text-3xl text-center text-white">
         {EventState.EventInfo?.WelcomeTitle}
-      </Text>
+      </ThemeText>
       <Image
         style={{
           aspectRatio: "1/1",
@@ -23,9 +25,9 @@ const EventInfoNoPicture = () => {
         source={images.welcomedefault}
         contentFit="cover"
       />
-      <Text className="font-NunitoLight text-center text-white text-xl">
+      <ThemeText className="font-NunitoLight text-center text-white text-xl">
         {EventState.EventInfo?.WelcomeMessage}
-      </Text>
+      </ThemeText>
     </View>
   );
 };

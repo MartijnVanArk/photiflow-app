@@ -5,6 +5,7 @@ import useTheme from "@/hooks/useTheme";
 import { TagInputTagProps } from "@/types/type";
 
 import SimpleIconButton from "./SimpleIconButton";
+import ThemeText from "./ThemeText";
 
 export default function TagInputTag({ tag, onDelete }: TagInputTagProps) {
   const { getVarColor } = useTheme();
@@ -34,7 +35,7 @@ export default function TagInputTag({ tag, onDelete }: TagInputTagProps) {
       style={{ transform: [{ scale: scale }] }}
       className="flex-0 flex items-center flex-row bg-lightsec py-0 px-2 pl-3 border-primary border-2 rounded-full"
     >
-      <Text className="text-textmain font-NunitoSemiBold text-md">#{tag}</Text>
+      <ThemeText className="font-NunitoSemiBold text-md">#{tag}</ThemeText>
       <SimpleIconButton
         onPressWithTag={internalDelete}
         tag={tag}

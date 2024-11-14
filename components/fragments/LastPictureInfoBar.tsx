@@ -6,6 +6,7 @@ import { formatDate } from "@/utils/generic/datestuff";
 import { formatTags } from "@/utils/tagutils";
 
 import DynamicAvatar from "../ui/DynamicAvatar";
+import ThemeText from "../ui/ThemeText";
 
 export interface LastPictureInfoBarProps {
   picture: InternalImageData;
@@ -25,18 +26,18 @@ export default function LastPictureInfoBar({
 
       <View className="flex-1 flex ">
         {picture.guest.name && (
-          <Text className="font-Nunito text-white">{picture.guest.name}</Text>
+          <ThemeText className="text-white">{picture.guest.name}</ThemeText>
         )}
-        <Text className="font-Nunito text-slate-400">
+        <ThemeText className="text-slate-400">
           {formatDate(picture.timeTaken)}
-        </Text>
+        </ThemeText>
         {picture.comment && (
-          <Text className="font-Nunito text-white">{picture.comment}</Text>
+          <ThemeText className="text-white">{picture.comment}</ThemeText>
         )}
         {picture.tags.length > 0 && (
-          <Text className="font-Nunito text-white">
+          <ThemeText className="text-white">
             {formatTags(picture.tags)}
-          </Text>
+          </ThemeText>
         )}
       </View>
     </View>

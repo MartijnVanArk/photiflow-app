@@ -40,3 +40,11 @@ export const getNameAbbreviaton = (name: string, maxletters = 2): string => {
 
   return res.join("").toUpperCase() || "XX";
 };
+
+export const getNameInitials = (name: string): string => {
+  const info = parseNameParts(name);
+  return (
+    info.first.slice(0, 1).toUpperCase() +
+    (info.last.slice(0, 1).toUpperCase() || "")
+  );
+};
