@@ -1,6 +1,6 @@
+import { getLocales } from "expo-localization";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
-import { NativeModules, Platform } from "react-native";
 
 import en from "@/languages/en.json";
 import nl from "@/languages/nl.json";
@@ -18,20 +18,22 @@ const LangDetect = {
   init: () => {},
   cacheUserLanguage: () => {},
   detect: () => {
-    const locale =
-      Platform.OS === "ios"
-        ? NativeModules.SettingsManager?.settings?.AppleLocale ||
-          NativeModules.SettingsManager?.settings?.AppleLanguages[0] ||
-          ""
-        : NativeModules.I18nManager?.localeIdentifier || "";
+    const locales = getLocales();
 
-    const [lowerCaseLocale] = locale.split("_");
+    if (locales.length <= 0) {
+      return fallBackLang;
+    }
+
+    console.log(locales);
+
+    const lowerCaseLocale = locales[0].languageCode?.toLowerCase() || "";
 
     if (supportedLanguages.includes(lowerCaseLocale)) {
       return lowerCaseLocale;
     }
+
     console.warn(
-      `locale ${lowerCaseLocale} from ${locale} is not supported, defaulting to ${fallBackLang}`,
+      `locale ${lowerCaseLocale} from ${lowerCaseLocale} is not supported, defaulting to ${fallBackLang}`,
     );
     return fallBackLang;
   },
