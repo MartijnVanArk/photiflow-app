@@ -1,5 +1,5 @@
 import React, { useEffect, useRef } from "react";
-import { Animated, Text } from "react-native";
+import { Animated } from "react-native";
 
 import useTheme from "@/hooks/useTheme";
 import { TagInputTagProps } from "@/types/type";

@@ -1,12 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useMemo } from "react";
-import {
-  StyleProp,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewStyle,
-} from "react-native";
+import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native";
 
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps } from "@/types/type";

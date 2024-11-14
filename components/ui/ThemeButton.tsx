@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCallback, useMemo } from "react";
-import { TouchableOpacity, Text, View } from "react-native";
+import { TouchableOpacity, View } from "react-native";
 
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps, ButtonProps } from "@/types/type";

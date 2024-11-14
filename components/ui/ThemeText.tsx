@@ -1,5 +1,5 @@
 import React, { useMemo } from "react";
-import { View, Text, TextProps } from "react-native";
+import { Text, TextProps } from "react-native";
 import { twMerge } from "tailwind-merge";
 
 export interface ThemeTextProps extends TextProps {}

@@ -1,5 +1,5 @@
 import { Image } from "expo-image";
-import { Text, View } from "react-native";
+import { View } from "react-native";
 
 import { images } from "@/constants/images";
 import useEventAuthContext from "@/hooks/useEventAuthContext";

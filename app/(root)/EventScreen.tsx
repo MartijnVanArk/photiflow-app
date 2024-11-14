@@ -4,7 +4,7 @@ import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PixelRatio, Text, View } from "react-native";
+import { PixelRatio, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,

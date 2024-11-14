@@ -1,6 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useCallback } from "react";
-import { Text, TouchableOpacity, TouchableOpacityProps } from "react-native";
+import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 import { ButtonIconProps } from "@/types/type";
 

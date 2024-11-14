@@ -3,7 +3,7 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Linking, Text, TouchableOpacity, View } from "react-native";
+import { Alert, Linking, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ThemeButton from "@/components/ui/ThemeButton";

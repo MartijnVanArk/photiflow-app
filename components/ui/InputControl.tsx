@@ -1,12 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { forwardRef, useImperativeHandle, useRef } from "react";
-import {
-  KeyboardAvoidingView,
-  Platform,
-  Text,
-  TextInput,
-  View,
-} from "react-native";
+import { KeyboardAvoidingView, Platform, TextInput, View } from "react-native";
 
 import useTheme from "@/hooks/useTheme";
 import { InputControlProps } from "@/types/type";

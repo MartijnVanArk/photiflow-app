@@ -1,5 +1,5 @@
 import React from "react";
-import { View, Text } from "react-native";
+import { View } from "react-native";
 
 import { InternalImageData } from "@/types/pictureinfo";
 import { formatDate } from "@/utils/generic/datestuff";
