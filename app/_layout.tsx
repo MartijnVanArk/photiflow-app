@@ -29,7 +29,10 @@ export default function RootLayout() {
     <GestureHandlerRootView>
       <ProviderList>
         <Stack
-          screenOptions={{ headerShown: false, animation: "ios_from_right" }}
+          screenOptions={{
+            headerShown: false,
+            animation: "ios_from_right",
+          }}
         >
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" options={{ headerShown: false }} />

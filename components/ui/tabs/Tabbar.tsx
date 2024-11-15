@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { LayoutChangeEvent, PixelRatio } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -23,6 +23,8 @@ export default function Tabbar({
 }: BottomTabBarProps) {
   const [dim, setDim] = useState({ width: 0, height: 0 });
 
+  const barRef = useRef<Animated.View>(null);
+
   const buttonWidth = dim.width / state.routes.length;
   const buttonHeight = dim.height;
 
@@ -44,8 +46,15 @@ export default function Tabbar({
 
   const { getVarColor } = useTheme();
 
+  useEffect(() => {
+    if (barRef.current) {
+      console.log("barRef.current", barRef.current);
+    }
+  }, [barRef]);
+
   return (
     <Animated.View
+      ref={barRef}
       onLayout={onLayout}
       className="absolute bottom-6 py-4 justify-between items-center flex flex-row
       w-auto rounded-2xl overflow-hidden left-6 right-6"
