@@ -24,6 +24,7 @@ import ThemeText from "@/components/ui/ThemeText";
 import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
+import { useNavigationHelper } from "@/hooks/useNavigationHelper";
 import usePictureContext from "@/hooks/usePictureContext";
 import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
 
@@ -91,13 +92,25 @@ export default function EventScreen() {
     }, []),
   );
 
-  const enterPin = () => {
+  const navigationHelper = useNavigationHelper();
+
+  const enterPin = useCallback(() => {
     console.log("Enter Pin");
-    router.push({
+
+    navigationHelper.pushWithCallback({
       pathname: "/(management)/EnterPinScreen",
-      params: { returnpath: "/(root)/EventScreen" },
+      params: {
+        returnpath: "/(root)/EventScreen",
+      },
+      callback: async (pin: string): Promise<boolean> => {
+        return new Promise((resolve) => {
+          setTimeout(() => {
+            resolve(true);
+          }, 1000);
+        });
+      },
     });
-  };
+  }, [navigationHelper]);
 
   useEffect(() => {
     if (params.from && params.from === "enter-pin" && params.pin) {
