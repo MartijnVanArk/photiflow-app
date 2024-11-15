@@ -20,7 +20,8 @@ import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import PopupMenu from "@/components/menus/PopupMenu";
 import PopupMenuItem from "@/components/menus/PopupMenuItem";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
-import ThemeText from "@/components/ui/ThemeText";
+import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeText from "@/components/ui/themed/ThemeText";
 import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
@@ -95,8 +96,6 @@ export default function EventScreen() {
   const navigationHelper = useNavigationHelper();
 
   const enterPin = useCallback(() => {
-    console.log("Enter Pin");
-
     navigationHelper.pushWithCallback({
       pathname: "/(management)/EnterPinScreen",
       params: {
@@ -113,10 +112,16 @@ export default function EventScreen() {
   }, [navigationHelper]);
 
   useEffect(() => {
-    if (params.from && params.from === "enter-pin" && params.pin) {
-      console.log("params.pin", params.pin);
+    if (
+      params.from &&
+      params.from === "enter-pin" &&
+      params.pin &&
+      params.pinValid
+    ) {
+      //      router.replace()
+      console.log("params", params);
     }
-  }, [params.pin, params.from]);
+  }, [params]);
 
   return (
     <KeyboardDismisWrappable>
@@ -153,6 +158,13 @@ export default function EventScreen() {
               />
             </PopupMenu>
           </View>
+
+          <ThemeButton
+            title="manage"
+            onPress={() =>
+              router.push("/(management)/(Tabs)/EventSettingsScreen")
+            }
+          />
 
           <View className="flex items-center gap-4 pt-8">
             <ThemeText className="text-slate-300 text-xl">

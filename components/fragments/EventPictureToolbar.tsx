@@ -7,7 +7,7 @@ import { View, Alert } from "react-native";
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import useCommandCenter from "@/hooks/useCommandCenter";
 
-import ThemeButton from "../ui/ThemeButton";
+import ThemeButton from "../ui/themed/ThemeButton";
 
 export interface EventPictureToolbarProps {
   params: UnknownOutputParams;

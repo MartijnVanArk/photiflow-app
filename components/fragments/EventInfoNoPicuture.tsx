@@ -4,7 +4,7 @@ import { View } from "react-native";
 import { images } from "@/constants/images";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 
-import ThemeText from "../ui/ThemeText";
+import ThemeText from "../ui/themed/ThemeText";
 
 const EventInfoNoPicture = () => {
   const { EventState } = useEventAuthContext();

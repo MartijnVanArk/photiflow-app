@@ -5,7 +5,7 @@ import { KeyboardAvoidingView, Platform, TextInput, View } from "react-native";
 import useTheme from "@/hooks/useTheme";
 import { InputControlProps } from "@/types/type";
 
-import ThemeText from "./ThemeText";
+import ThemeText from "../themed/ThemeText";
 
 const InputControl = forwardRef<TextInput, InputControlProps>(
   (

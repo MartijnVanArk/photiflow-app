@@ -21,9 +21,9 @@ import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import useTheme from "@/hooks/useTheme";
 
-import InputControl from "../ui/InputControl";
-import TagInput from "../ui/TagInput";
-import ThemeButton from "../ui/ThemeButton";
+import InputControl from "../ui/input/InputControl";
+import TagInput from "../ui/input/TagInput";
+import ThemeButton from "../ui/themed/ThemeButton";
 
 export interface SendPhotoSheetProps
   extends Omit<BottomSheetViewProps, "children"> {

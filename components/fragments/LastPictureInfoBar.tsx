@@ -6,7 +6,7 @@ import { formatDate } from "@/utils/generic/datestuff";
 import { formatTags } from "@/utils/tagutils";
 
 import DynamicAvatar from "../ui/DynamicAvatar";
-import ThemeText from "../ui/ThemeText";
+import ThemeText from "../ui/themed/ThemeText";
 
 export interface LastPictureInfoBarProps {
   picture: InternalImageData;

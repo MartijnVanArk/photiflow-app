@@ -1,5 +1,5 @@
 import { useColorScheme } from "nativewind";
-import React, { createContext } from "react";
+import React, { createContext, useEffect } from "react";
 import { View } from "react-native";
 
 import { baseThemeVars, themes } from "@/constants/color-theme";
@@ -27,6 +27,16 @@ export const ThemeContext = createContext<{
   },
 });
 
+// export let globalTheme: ThemeType = "light";
+
+// export const getVarColorGlobal = (cssvar: string): string => {
+//   //@ts-expect-error forced var typing
+//   const theTheme = baseThemeVars[globalTheme as string];
+//   const c = theTheme[cssvar] ?? "";
+
+//   return c;
+// };
+
 export const ThemeProvider = ({ children }: ThemeProviderProps) => {
   const { colorScheme, setColorScheme, toggleColorScheme } = useColorScheme();
 
@@ -42,6 +52,10 @@ export const ThemeProvider = ({ children }: ThemeProviderProps) => {
 
     return c;
   };
+
+  // useEffect(() => {
+  //   globalTheme = ensureTheme(colorScheme);
+  // }, [colorScheme]);
 
   return (
     <ThemeContext.Provider

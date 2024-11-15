@@ -7,7 +7,7 @@ import {
   ViewProps,
 } from "react-native";
 
-import ThemeText from "./ThemeText";
+import ThemeText from "../themed/ThemeText";
 
 const NumPadButtons = [1, 2, 3, 4, 5, 6, 7, 8, 9, "", 0, "<"];
 

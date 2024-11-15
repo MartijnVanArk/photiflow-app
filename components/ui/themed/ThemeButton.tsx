@@ -104,7 +104,7 @@ const ThemeButton = ({
       style={[style, { opacity: disabled ? 0.4 : 1 }]}
       disabled={disabled}
       onPress={onPress}
-      className={`${rounded}  p-3 flex flex-row gap-2 justify-center items-center  ${useBgVariant} ${className}`}
+      className={`${rounded} p-3 flex flex-row gap-2 justify-center items-center  ${useBgVariant} ${className}`}
       {...props}
     >
       {iconLeft && iconLeft.name && (

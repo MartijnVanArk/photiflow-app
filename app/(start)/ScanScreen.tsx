@@ -15,9 +15,9 @@ import Torch from "react-native-torch";
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import CameraPermissionScreen from "@/components/fragments/CameraPermissionScreen";
 import CloseBackButton from "@/components/ui/CloseBackButton";
-import QRTargetOverlay from "@/components/ui/QRTargetOverlay";
+import QRTargetOverlay from "@/components/ui/qr/QRTargetOverlay";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
-import ThemeButton from "@/components/ui/ThemeButton";
+import ThemeButton from "@/components/ui/themed/ThemeButton";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 

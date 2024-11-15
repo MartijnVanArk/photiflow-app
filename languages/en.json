@@ -29,6 +29,8 @@
     "takepicture-error-title": "Error taking picture",
     "takepicture-error-message": "Somethinig went wrong while taking your picture",
     "camera-permission-statement": "Photobooth needs your permission to acces the camera",
-    "camera-permission-button-grant": "Grant Permission"
+    "camera-permission-button-grant": "Grant Permission",
+    "management-tab-settings": "Event",
+    "management-tab-moderation": "Moderation"
   }
 }

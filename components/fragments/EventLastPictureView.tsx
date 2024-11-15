@@ -7,7 +7,7 @@ import { View, ImageBackground, TouchableOpacity } from "react-native";
 import { InternalImageData } from "@/types/pictureinfo";
 import { encodeSafePicUri } from "@/utils/pictureprocessing";
 
-import ThemeButton from "../ui/ThemeButton";
+import ThemeButton from "../ui/themed/ThemeButton";
 
 import LastPictureInfoBar from "./LastPictureInfoBar";
 

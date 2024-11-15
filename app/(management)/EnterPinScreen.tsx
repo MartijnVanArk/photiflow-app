@@ -6,9 +6,9 @@ import { Animated, Dimensions, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CloseBackButton from "@/components/ui/CloseBackButton";
-import PinIndicatorView from "@/components/ui/PinIndicatorView";
-import PinNumPad from "@/components/ui/PinNumPad";
-import ThemeText from "@/components/ui/ThemeText";
+import PinIndicatorView from "@/components/ui/pin/PinIndicatorView";
+import PinNumPad from "@/components/ui/pin/PinNumPad";
+import ThemeText from "@/components/ui/themed/ThemeText";
 import { useNavigationCallback } from "@/hooks/useNavigationHelper";
 
 const { width: winWidth } = Dimensions.get("window");
@@ -23,7 +23,7 @@ const EnterPinScreen = () => {
   const params = useLocalSearchParams();
   const { returnpath, callbackHandle } = params;
   const { callback: pinValidator, cleanUpCallback } = useNavigationCallback(
-    callbackHandle.toString(),
+    callbackHandle ? callbackHandle.toString() : "",
     false,
   );
 
@@ -53,6 +53,7 @@ const EnterPinScreen = () => {
               params: {
                 from: "enter-pin",
                 pin: pinCode,
+                pinValid: pinValid,
               },
             });
           } else {

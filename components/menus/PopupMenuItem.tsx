@@ -6,7 +6,7 @@ import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native";
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps } from "@/types/type";
 
-import ThemeText from "../ui/ThemeText";
+import ThemeText from "../ui/themed/ThemeText";
 
 export interface PopupMenuItemProps {
   title?: string;

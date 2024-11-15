@@ -4,7 +4,7 @@ import { TouchableOpacity, TouchableOpacityProps } from "react-native";
 
 import { ButtonIconProps } from "@/types/type";
 
-import ThemeText from "./ThemeText";
+import ThemeText from "./themed/ThemeText";
 
 export interface SimpleIconButtonProps extends TouchableOpacityProps {
   icon: ButtonIconProps;

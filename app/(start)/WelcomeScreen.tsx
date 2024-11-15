@@ -7,8 +7,8 @@ import { useTranslation } from "react-i18next";
 import { Alert, Linking, TouchableOpacity, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import ThemeButton from "@/components/ui/ThemeButton";
-import ThemeText from "@/components/ui/ThemeText";
+import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeText from "@/components/ui/themed/ThemeText";
 import { images } from "@/constants/images";
 import useTheme from "@/hooks/useTheme";
 

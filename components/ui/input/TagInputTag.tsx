@@ -4,8 +4,8 @@ import { Animated } from "react-native";
 import useTheme from "@/hooks/useTheme";
 import { TagInputTagProps } from "@/types/type";
 
-import SimpleIconButton from "./SimpleIconButton";
-import ThemeText from "./ThemeText";
+import SimpleIconButton from "../SimpleIconButton";
+import ThemeText from "../themed/ThemeText";
 
 export default function TagInputTag({ tag, onDelete }: TagInputTagProps) {
   const { getVarColor } = useTheme();
