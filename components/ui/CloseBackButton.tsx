@@ -15,7 +15,7 @@ export interface CloseBackButtonProps extends SimpleIconButtonProps {
 const CloseBackButton = ({
   color = "white",
   backGround = "#00000066",
-  iconName = "close",
+  iconName = "arrow-left",
   noAbsolute = false,
   ...props
 }) => {

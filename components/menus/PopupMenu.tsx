@@ -34,6 +34,7 @@ export default function PopupMenu({
   children,
   ...props
 }: PopupMenuProps) {
+  //@ts-ignore
   const triggerWrapperRef = useRef<TouchableOpacity>(null);
   const itemsWrapperRef = useRef<View>(null);
   const [menuVisible, setMenuVisible] = useState(false);
@@ -103,14 +104,16 @@ export default function PopupMenu({
   const slideAnim = useRef(new Animated.Value(0)).current;
 
   const calculateDimensions = () => {
-    triggerWrapperRef?.current?.measureInWindow((x, y, width, height) => {
-      setTriggerDimensions({
-        top: Math.max(y, 0),
-        left: x,
-        width,
-        height,
-      });
-    });
+    triggerWrapperRef?.current?.measureInWindow(
+      (x: number, y: number, width: number, height: number) => {
+        setTriggerDimensions({
+          top: Math.max(y, 0),
+          left: x,
+          width,
+          height,
+        });
+      },
+    );
 
     setTimeout(() => {
       itemsWrapperRef?.current?.measureInWindow((x, y, width, height) => {

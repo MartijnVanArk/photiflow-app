@@ -1,5 +1,6 @@
 import { MaterialCommunityIcons } from "@expo/vector-icons";
 import { useMemo } from "react";
+import { useTranslation } from "react-i18next";
 import { StyleProp, TouchableOpacity, View, ViewStyle } from "react-native";
 
 import useTheme from "@/hooks/useTheme";
@@ -8,7 +9,8 @@ import { ButtonIconProps } from "@/types/type";
 import ThemeText from "../ui/ThemeText";
 
 export interface PopupMenuItemProps {
-  title: string;
+  title?: string;
+  titlei18n?: string;
   icon?: ButtonIconProps;
   onPress?: () => void;
   closeModal?: () => void;
@@ -18,6 +20,7 @@ export interface PopupMenuItemProps {
 
 const PopupMenuItem = ({
   title,
+  titlei18n,
   icon,
   onPress,
   closeModal,
@@ -46,6 +49,8 @@ const PopupMenuItem = ({
     };
   }, [getVarColor, index, total]);
 
+  const { t } = useTranslation();
+
   return (
     <TouchableOpacity onPress={click}>
       <View
@@ -61,7 +66,9 @@ const PopupMenuItem = ({
             color={ic}
           />
         )}
-        <ThemeText className="flex px-2 text-textmedium">{title}</ThemeText>
+        <ThemeText className="flex px-2 text-textmedium">
+          {titlei18n ? t(titlei18n) : title}
+        </ThemeText>
       </View>
     </TouchableOpacity>
   );
