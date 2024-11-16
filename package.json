@@ -13,7 +13,8 @@
     "lint": "eslint .",
     "lint-fix": "eslint --fix .",
     "ad": "adb shell \"cmd uimode night yes\"",
-    "al": "adb shell \"cmd uimode night no\""
+    "al": "adb shell \"cmd uimode night no\"",
+    "alng": "adb shell am start -a android.settings.LOCALE_SETTINGS"
   },
   "jest": {
     "preset": "jest-expo"

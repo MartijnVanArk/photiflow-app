@@ -15,6 +15,10 @@
     "event-leave-title": "Evenement verlaten?",
     "event-leave-message": "Weet je zeker dat je wilt stoppen met plezier hebben?",
     "event-generic-upload": "Upload",
+    "event-menu-profile": "Profiel",
+    "event-menu-management": "Beheer",
+    "event-enter-management-pin-title": "Geef beheerder pin",
+    "event-enter-management-pin-message": "De beheerder pin is nodig om verder te gaan",
     "profile-name-placeholder": "je naam",
     "profile-email-placeholder": "je email",
     "profile-button-save-title": "Opslaan",
@@ -31,6 +35,10 @@
     "camera-permission-statement": "Photobooth heeft je toestemming nodig om te camera te gebruiken",
     "camera-permission-button-grant": "Toestemming verlenen",
     "management-tab-settings": "Evenement",
-    "management-tab-moderation": "Moderatie"
+    "management-tab-moderation": "Moderatie",
+    "management-tab-feed": "Feed",
+    "enter-pin-title": "Geef uw pin",
+    "enter-pin-message": "Uw pincode is nodig om verder te gaan",
+    "enter-pin-enter-pin": "pin invoeren"
   }
 }

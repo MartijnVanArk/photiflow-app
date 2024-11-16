@@ -79,9 +79,9 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="EventGalleryScreen"
+        name="EventFeedScreen"
         options={{
-          title: t("management-tab-gallery"),
+          title: t("management-tab-feed"),
         }}
       />
     </Tabs>

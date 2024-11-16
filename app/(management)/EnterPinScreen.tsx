@@ -21,7 +21,7 @@ const EnterPinScreen = () => {
   const { t } = useTranslation();
 
   const params = useLocalSearchParams();
-  const { returnpath, callbackHandle } = params;
+  const { returnpath, callbackHandle, title, message } = params;
   const { callback: pinValidator, cleanUpCallback } = useNavigationCallback(
     callbackHandle ? callbackHandle.toString() : "",
     false,
@@ -41,7 +41,6 @@ const EnterPinScreen = () => {
     if (pinCode.length === pinLength) {
       const checkPin = async () => {
         setPadEnabled(false);
-        console.log("code op length af handelen en checken ", params);
 
         const pinValid = pinValidator ? await pinValidator(pinCode) : false;
 
@@ -129,17 +128,17 @@ const EnterPinScreen = () => {
         >
           <View className=" flex-1 gap-4 items-center justify-center">
             <ThemeText className="text-3xl text-white">
-              {t("enter-pin-title")}
+              {title ? title : t("enter-pin-title")}
             </ThemeText>
             <ThemeText className=" text-white">
-              {t("exter-pin-message")}
+              {message ? message : t("enter-pin-message")}
             </ThemeText>
             <PinIndicatorView
               style={{ transform: [{ translateX: shakeX }] }}
               code={pinCode}
             />
             <ThemeText className=" text-white">
-              {t("exter-pin-enter-pin")}
+              {t("enter-pin-enter-pin")}
             </ThemeText>
           </View>
           <PinNumPad

@@ -100,6 +100,8 @@ export default function EventScreen() {
       pathname: "/(management)/EnterPinScreen",
       params: {
         returnpath: "/(root)/EventScreen",
+        title: t("event-enter-management-pin-title"),
+        message: t("event-enter-management-pin-message"),
       },
       callback: async (pin: string): Promise<boolean> => {
         return new Promise((resolve) => {
@@ -109,7 +111,7 @@ export default function EventScreen() {
         });
       },
     });
-  }, [navigationHelper]);
+  }, [navigationHelper, t]);
 
   useEffect(() => {
     if (

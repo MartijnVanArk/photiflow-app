@@ -27,6 +27,7 @@ export default function PinIndicatorView({
         .map((_, idx) => {
           return (
             <View
+              key={idx}
               style={{
                 display: "flex",
                 alignItems: "center",

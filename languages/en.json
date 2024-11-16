@@ -15,6 +15,10 @@
     "event-leave-title": "Leave Event?",
     "event-leave-message": "Are you sure you want to miss out on the fun?",
     "event-generic-upload": "Upload",
+    "event-menu-profile": "Profile",
+    "event-menu-management": "Management",
+    "event-enter-management-pin-title": "Enter Management Pin",
+    "event-enter-management-pin-message": "The management pin is needed to continue",
     "profile-name-placeholder": "your name",
     "profile-email-placeholder": "your email",
     "profile-button-save-title": "Save",
@@ -31,6 +35,10 @@
     "camera-permission-statement": "Photobooth needs your permission to acces the camera",
     "camera-permission-button-grant": "Grant Permission",
     "management-tab-settings": "Event",
-    "management-tab-moderation": "Moderation"
+    "management-tab-moderation": "Moderation",
+    "management-tab-feed": "Feed",
+    "enter-pin-title": "Provide your pin",
+    "enter-pin-message": "Yout pin is needed to continue",
+    "enter-pin-enter-pin": "enter pin"
   }
 }
