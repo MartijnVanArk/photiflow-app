@@ -19,8 +19,6 @@ export default function TabbarButton({
   navigation,
   ...props
 }: any) {
-  console.log("TabbarButton: ", route.name);
-
   const scale = useSharedValue(0);
 
   const buttonPath = useMemo(() => {
@@ -35,8 +33,6 @@ export default function TabbarButton({
   useEffect(() => {
     const toValue =
       typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused;
-
-    console.log("TabbarButton: ", isFocused, toValue);
 
     scale.value = withSpring(
       typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused,

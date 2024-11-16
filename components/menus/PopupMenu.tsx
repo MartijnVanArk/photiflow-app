@@ -123,9 +123,9 @@ export default function PopupMenu({
   };
 
   useEffect(() => {
-    if (menuVisible) {
-      if (triggerWrapperRef?.current) calculateDimensions();
-    }
+    //  if (menuVisible) {
+    if (triggerWrapperRef?.current) calculateDimensions();
+    //   }
     // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [menuVisible, itemsWrapperRef, setModalDimensions]);
 
@@ -147,7 +147,7 @@ export default function PopupMenu({
     });
   };
 
-  const { top, left } = useMemo(() => {
+  const menuPos = useMemo(() => {
     let left = 0;
     let top = 0;
 
@@ -182,33 +182,39 @@ export default function PopupMenu({
           : initialTriggerTop;
     }
 
+    console.log("did top left ", top, left, modalDimensions, triggerDimensions);
+
     return { top, left };
   }, [modalDimensions, triggerDimensions, keyboardHeight]);
 
-  const menuPositionStyles = { left, top };
+  const menuPositionStyles = { left: menuPos.left, top: menuPos.top };
 
   useEffect(() => {
     if (modalDimensions.width !== 0 && triggerDimensions.left !== 0) {
-      fadeAnim.setValue(0);
-      slideAnim.setValue(-25);
-      Animated.spring(fadeAnim, {
-        toValue: 1,
-        bounciness: 2,
-        useNativeDriver: true,
-      }).start(({ finished }) => {});
-      Animated.spring(slideAnim, {
-        toValue: 0,
-        useNativeDriver: true,
-      }).start();
+      setTimeout(() => {
+        console.log("do anim");
+        fadeAnim.setValue(0);
+        slideAnim.setValue(-25);
+        Animated.spring(fadeAnim, {
+          toValue: 1,
+          bounciness: 2,
+          useNativeDriver: true,
+        }).start(({ finished }) => {});
+        Animated.spring(slideAnim, {
+          toValue: 0,
+          useNativeDriver: true,
+        }).start();
+      }, 10);
     }
   }, [fadeAnim, modalDimensions, slideAnim, triggerDimensions]);
 
+  const showMenu = () => {
+    setMenuVisible(true);
+  };
+
   return (
     <>
-      <TouchableOpacity
-        onPress={() => setMenuVisible(true)}
-        ref={triggerWrapperRef}
-      >
+      <TouchableOpacity onPress={() => showMenu()} ref={triggerWrapperRef}>
         {trigger}
       </TouchableOpacity>
       <Portal hostName={hostname}>
@@ -224,8 +230,8 @@ export default function PopupMenu({
               style={[
                 {
                   opacity: fadeAnim,
-                  transform: [{ translateY: slideAnim }],
-                  transformOrigin: "top",
+                  // transform: [{ translateY: slideAnim }],
+                  // transformOrigin: "top",
                 },
                 styles.activeSection,
                 menuPositionStyles,

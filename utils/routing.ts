@@ -24,7 +24,5 @@ export const tryGetNavPath = (
 
   proc(nav);
 
-  console.log("Try Get Nav Path : ", nav.getState());
-
   return "/" + path.reverse().join("/");
 };

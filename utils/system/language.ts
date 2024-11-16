@@ -24,8 +24,6 @@ const LangDetect = {
       return fallBackLang;
     }
 
-    console.log(locales);
-
     const lowerCaseLocale = locales[0].languageCode?.toLowerCase() || "";
 
     if (supportedLanguages.includes(lowerCaseLocale)) {

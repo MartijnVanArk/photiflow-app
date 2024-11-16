@@ -119,7 +119,7 @@ export default function EventScreen() {
       params.pinValid
     ) {
       //      router.replace()
-      console.log("params", params);
+      console.log("got pin params", params);
     }
   }, [params]);
 

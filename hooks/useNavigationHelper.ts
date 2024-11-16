@@ -36,8 +36,6 @@ function randomStringId() {
 }
 
 export function useNavigationHelper(): NavigationHelper {
-  //  const navigation = useNavigation() as any;
-  //  console.log(navigation.getParent());
   const callbackMap = useContext(contextRef);
   return {
     navigateWithCallback(options) {
