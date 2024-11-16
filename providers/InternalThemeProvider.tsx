@@ -27,7 +27,7 @@ export const ThemeContext = createContext<{
   },
 });
 
-export const ThemeProvider = ({ children }: ThemeProviderProps) => {
+export const InternalThemeProvider = ({ children }: ThemeProviderProps) => {
   const { colorScheme, setColorScheme, toggleColorScheme } = useColorScheme();
 
   const ensureTheme = (theme: ThemeType): EnsuredThemeType => {
