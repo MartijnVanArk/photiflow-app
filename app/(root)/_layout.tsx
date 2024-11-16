@@ -24,6 +24,7 @@ const Layout = () => {
         name="PictureViewerScreen"
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="TestScreen" options={{ headerShown: false }} />
     </Stack>
   );
 };

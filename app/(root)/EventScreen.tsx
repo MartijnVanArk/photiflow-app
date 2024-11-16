@@ -167,6 +167,10 @@ export default function EventScreen() {
               router.push("/(management)/(Tabs)/EventSettingsScreen")
             }
           />
+          <ThemeButton
+            title="test"
+            onPress={() => router.push("/(root)/TestScreen")}
+          />
 
           <View className="flex items-center gap-4 pt-8">
             <ThemeText className="text-slate-300 text-xl">
