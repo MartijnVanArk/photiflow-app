@@ -2,7 +2,6 @@ import { router } from "expo-router";
 import React from "react";
 import { useTranslation } from "react-i18next";
 import { View, ViewProps } from "react-native";
-import Animated from "react-native-reanimated";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import SimpleIconButton from "../ui/SimpleIconButton";
@@ -12,6 +11,7 @@ export interface PageHeaderProps extends ViewProps {
   handleInset?: boolean;
   left?: React.ReactNode;
   right?: React.ReactNode;
+  height?: number;
 }
 
 export default function PageHeader({
@@ -19,16 +19,20 @@ export default function PageHeader({
   style,
   left,
   right,
+  height,
   ...props
 }: PageHeaderProps) {
   const { t } = useTranslation();
   const insets = useSafeAreaInsets();
 
+  const useHeight = height !== undefined ? height : "auto";
+
   return (
-    <Animated.View
+    <View
       className="bg-primary overflow-hidden flex flex-row justify- items-center"
       style={[
         {
+          height: useHeight,
           marginTop: handleInset ? insets.top : 0,
         },
         style,
@@ -51,6 +55,6 @@ export default function PageHeader({
         </ThemeText>
       </View>
       <View className="w-16  items-center">{right ? right : null}</View>
-    </Animated.View>
+    </View>
   );
 }
