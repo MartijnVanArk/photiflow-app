@@ -1,24 +1,15 @@
-import React, { useCallback, useEffect, useMemo } from "react";
-import {
-  PixelRatio,
-  Text,
-  TouchableOpacity,
-  View,
-  ViewProps,
-} from "react-native";
+import React, { useEffect, useMemo } from "react";
+import { PixelRatio, View, ViewProps } from "react-native";
 import Animated, {
   useAnimatedProps,
   useDerivedValue,
   useSharedValue,
   withTiming,
 } from "react-native-reanimated";
-import { opacity } from "react-native-reanimated/lib/typescript/Colors";
 import { ReText } from "react-native-redash";
 import Svg, { Circle } from "react-native-svg";
 
 import useTheme from "@/hooks/useTheme";
-
-import ThemeText from "../ui/themed/ThemeText";
 
 export interface CircularProgressProps extends ViewProps {
   size?: number;
@@ -76,13 +67,32 @@ const CircularProgress = ({
 
   return (
     <View
-      className="flex items-center justify-center m-4 relative "
-      style={[style, { width: size * ratio, height: size * ratio }]}
+      style={[
+        style,
+        {
+          width: size * ratio,
+          height: size * ratio,
+          display: "flex",
+          alignItems: "center",
+          justifyContent: "center",
+          position: "relative",
+          margin: 4 * ratio,
+        },
+      ]}
       {...props}
     >
       <ReText
         text={progressText}
-        className="absolute top-1/2 left-1/2 translate-x-[-50%] translate-y-[-50%] font-NunitoSemiBold text-3xl text-textmain"
+        style={{
+          color: getVarColor("--color-text-secondary"),
+          fontFamily: "Nunito-SemiBold",
+          fontSize: 10 * ratio,
+          lineHeight: 16 * ratio,
+          position: "absolute",
+          top: "50%",
+          left: "50%",
+          transform: [{ translateX: "-50%" }, { translateY: "-50%" }],
+        }}
       ></ReText>
       <Svg
         style={{
