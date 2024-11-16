@@ -25,7 +25,7 @@ const CircularProgress = ({
   size = 80,
   thickness = 8,
   style,
-  progress,
+  progress = 0,
   ...props
 }: CircularProgressProps) => {
   const { getVarColor } = useTheme();
@@ -37,13 +37,14 @@ const CircularProgress = ({
     };
   }, [getVarColor]);
 
-  const animatedProgress = useSharedValue(progress ?? 0);
+  const animatedProgress = useSharedValue(progress);
 
   useEffect(() => {
     animatedProgress.value = withTiming(progress ?? 0, {
       duration: 1000,
     });
-  }, [animatedProgress, progress]);
+    //    eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [progress]);
 
   const sizes = useMemo(() => {
     const nR = ((size - thickness) * ratio) / 2;
@@ -57,8 +58,8 @@ const CircularProgress = ({
   }, [size, thickness]);
 
   const animatedProps = useAnimatedProps(() => ({
-    strokeDashoffset: sizes.ArrL * (1 - animatedProgress.value),
-    opacity: animatedProgress.value === 0 ? 0 : 1,
+    strokeDashoffset: sizes.ArrL * (1 - animatedProgress.get()),
+    opacity: animatedProgress.get() === 0 ? 0 : 1,
   }));
 
   const progressText = useDerivedValue(() => {

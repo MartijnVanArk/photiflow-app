@@ -1,4 +1,4 @@
-import { useEffect, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import { LayoutChangeEvent, PixelRatio } from "react-native";
 import Animated, {
   useAnimatedStyle,
@@ -33,7 +33,6 @@ export default function Tabbar({
       width: e.nativeEvent.layout.width,
       height: e.nativeEvent.layout.height,
     });
-    console.log("onLayout : ", e.nativeEvent.layout);
   };
 
   const slidePos = useSharedValue(0);
@@ -45,12 +44,6 @@ export default function Tabbar({
   });
 
   const { getVarColor } = useTheme();
-
-  useEffect(() => {
-    if (barRef.current) {
-      console.log("barRef.current", barRef.current);
-    }
-  }, [barRef]);
 
   return (
     <Animated.View

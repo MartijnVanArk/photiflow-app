@@ -27,6 +27,7 @@ const PictureViewerScreen = () => {
         containerDimensions={{ width: winWitdh, height: winHeight }}
       >
         <Animated.Image
+          sharedTransitionTag="previewimage"
           resizeMode="contain"
           style={{ width: "100%", height: "100%" }}
           source={{ uri: picUri }}

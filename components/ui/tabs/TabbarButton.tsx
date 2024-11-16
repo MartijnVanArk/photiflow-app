@@ -31,9 +31,6 @@ export default function TabbarButton({
   }, [navigation, route.name]);
 
   useEffect(() => {
-    const toValue =
-      typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused;
-
     scale.value = withSpring(
       typeof isFocused === "boolean" ? (isFocused ? 1 : 0) : isFocused,
       { duration: 350 },
@@ -45,7 +42,6 @@ export default function TabbarButton({
     const top = interpolate(scale.value, [0, 1], [0, 8]);
 
     return {
-      // styles
       transform: [{ scale: scaleValue }],
       top,
     };
@@ -54,7 +50,6 @@ export default function TabbarButton({
     const opacity = interpolate(scale.value, [0, 1], [1, 0]);
 
     return {
-      // styles
       opacity,
     };
   });

@@ -46,6 +46,7 @@ module.exports = {
           DEFAULT: "var(--color-light-sec-default)",
         },
         overlay: "var(--color-overlay)",
+        overlay2: "var(--color-overlay2)",
         overlayinv: "var(--color-overlay-inv)",
         overlaydark: "var(--color-overlay-dark)",
         overlaylight: "var(--color-overlay-light)",

@@ -9,6 +9,10 @@ const Layout = () => {
     <Stack
       initialRouteName="EventScreen"
       screenOptions={{
+        headerShadowVisible: false,
+        headerStyle: {
+          backgroundColor: getVarColor("--color-primary-default"),
+        },
         headerShown: false,
         animation: "ios_from_right",
         contentStyle: { backgroundColor: getVarColor("--color-light-default") },
@@ -24,6 +28,7 @@ const Layout = () => {
         name="PictureViewerScreen"
         options={{ headerShown: false }}
       />
+      <Stack.Screen name="MyPicturesScreen" options={{ headerShown: false }} />
       <Stack.Screen name="TestScreen" options={{ headerShown: false }} />
     </Stack>
   );

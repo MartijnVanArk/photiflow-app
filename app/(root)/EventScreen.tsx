@@ -57,6 +57,10 @@ export default function EventScreen() {
     router.push("/(root)/GuestProfileScreen");
   }, []);
 
+  const openMyPictures = useCallback(() => {
+    router.push("/(root)/MyPicturesScreen");
+  }, []);
+
   const CC = useCommandCenter();
 
   useEffect(() => {
@@ -152,6 +156,11 @@ export default function EventScreen() {
                 titlei18n="event-menu-profile"
                 icon={{ name: "account" }}
                 onPress={openProfile}
+              />
+              <PopupMenuItem
+                titlei18n="event-menu-mypictures"
+                icon={{ name: "image-multiple-outline" }}
+                onPress={openMyPictures}
               />
               <PopupMenuItem
                 titlei18n="event-menu-management"

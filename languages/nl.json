@@ -17,6 +17,7 @@
     "event-generic-upload": "Upload",
     "event-menu-profile": "Profiel",
     "event-menu-management": "Beheer",
+    "event-menu-mypictures": "Mijn foto's",
     "event-enter-management-pin-title": "Geef beheerder pin",
     "event-enter-management-pin-message": "De beheerder pin is nodig om verder te gaan",
     "profile-name-placeholder": "je naam",
@@ -39,6 +40,7 @@
     "management-tab-feed": "Feed",
     "enter-pin-title": "Geef uw pin",
     "enter-pin-message": "Uw pincode is nodig om verder te gaan",
-    "enter-pin-enter-pin": "pin invoeren"
+    "enter-pin-enter-pin": "pin invoeren",
+    "screen-event-my-pictures": "Jouw foto's"
   }
 }
