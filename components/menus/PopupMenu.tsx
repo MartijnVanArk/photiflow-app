@@ -182,8 +182,6 @@ export default function PopupMenu({
           : initialTriggerTop;
     }
 
-    console.log("did top left ", top, left, modalDimensions, triggerDimensions);
-
     return { top, left };
   }, [modalDimensions, triggerDimensions, keyboardHeight]);
 
@@ -192,7 +190,6 @@ export default function PopupMenu({
   useEffect(() => {
     if (modalDimensions.width !== 0 && triggerDimensions.left !== 0) {
       setTimeout(() => {
-        console.log("do anim");
         fadeAnim.setValue(0);
         slideAnim.setValue(-25);
         Animated.spring(fadeAnim, {

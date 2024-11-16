@@ -19,7 +19,7 @@ const PictureViewerScreen = () => {
 
   return (
     <View className="relative w-screen h-screen bg-black">
-      <StatusBar hidden={true} />
+      <StatusBar hidden={false} style="light" />
       <PanPinchView
         minScale={1}
         initialScale={1}

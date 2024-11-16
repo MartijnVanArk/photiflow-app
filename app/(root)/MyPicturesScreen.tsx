@@ -1,6 +1,6 @@
 import { StatusBar } from "expo-status-bar";
-import React, { useRef } from "react";
-import { Animated, LayoutChangeEvent } from "react-native";
+import React, { useEffect, useRef } from "react";
+import { Animated, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import MyPictureListItem from "@/components/fragments/ListItems/MyPictureListItem";
@@ -13,24 +13,15 @@ import useTheme from "@/hooks/useTheme";
 export default function MyPicturesScreen() {
   const { getVarColor } = useTheme();
 
+  const [headerVisible, setHeaderVisible] = React.useState(false);
+
   const { guestInfo } = useGuestContext();
+  const barRef = useRef<View>(null);
 
   const scrollY = useRef(new Animated.Value(0)).current;
   const measureHeight = useRef(0);
 
   const scrollYClamped = Animated.diffClamp(scrollY, 0, measureHeight.current);
-
-  const translateY = scrollYClamped.interpolate({
-    inputRange: [0, measureHeight.current],
-    outputRange: [0, -measureHeight.current],
-  });
-
-  const onLayout = (e: LayoutChangeEvent) => {
-    if (measureHeight.current === 0) {
-      console.log("measureHeight", e.nativeEvent.layout.height);
-      measureHeight.current = e.nativeEvent.layout.height;
-    }
-  };
 
   const handleScroll = Animated.event(
     [
@@ -45,6 +36,22 @@ export default function MyPicturesScreen() {
     },
   );
 
+  useEffect(() => {
+    barRef.current?.measureInWindow(
+      (x: number, y: number, width: number, height: number) => {
+        measureHeight.current = height;
+      },
+    );
+    if (!headerVisible) setHeaderVisible(true);
+  }, [barRef, headerVisible]);
+
+  const translateY = scrollYClamped.interpolate({
+    inputRange: [0, measureHeight.current],
+    outputRange: [0, -measureHeight.current],
+  });
+
+  console.log("rerender", measureHeight.current);
+
   return (
     <SafeAreaView className="h-full flex items-center justify-center">
       <Animated.View
@@ -52,7 +59,8 @@ export default function MyPicturesScreen() {
         style={{ zIndex: 1, transform: [{ translateY }] }}
       >
         <PageHeader
-          onLayout={onLayout}
+          ref={barRef}
+          //          onLayout={onLayout}
           right={
             <DynamicAvatar
               size={14}
