@@ -6,8 +6,8 @@ import { SafeAreaView } from "react-native-safe-area-context";
 
 import PageHeader from "@/components/header/PageHeader";
 import InputControl from "@/components/ui/input/InputControl";
+import ThemeIconTitle from "@/components/ui/themed/ThemeIconTitle";
 import ThemeText from "@/components/ui/themed/ThemeText";
-import ThemeIconTitle from "@/components/ui/ThemeIconTitle";
 import useTheme from "@/hooks/useTheme";
 
 const ratio = PixelRatio.get();

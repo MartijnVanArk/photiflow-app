@@ -32,7 +32,7 @@ export default function DynamicAvatar({
   styleExtra,
 }: DynamicAvatarProps) {
   const [imageError, setImageError] = useState(false);
-  const [imageLoading, setImageLoading] = useState(false);
+  const [imageLoading, setImageLoading] = useState(true);
 
   const { nameAbrev, colorInfo } = useMemo(() => {
     return {
@@ -74,13 +74,11 @@ export default function DynamicAvatar({
           </Text>
         </View>
       )}
-      {(imageUri || fallback) && (
+      {(imageUri || fallback) && !imageError && (
         <Image
           //          cachePolicy="none"
           onLoadStart={() => {
             console.log("load start");
-            setImageError(false);
-            setImageLoading(true);
           }}
           style={[
             {

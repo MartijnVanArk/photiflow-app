@@ -7,7 +7,7 @@ import { twMerge } from "tailwind-merge";
 import useTheme from "@/hooks/useTheme";
 import { ButtonIconProps } from "@/types/type";
 
-import ThemeText from "./themed/ThemeText";
+import ThemeText from "./ThemeText";
 
 export interface ThemeIconTitleProps extends ViewProps {
   icon?: ButtonIconProps;

@@ -46,15 +46,25 @@ const EnterPinScreen = () => {
 
         if (pinValid) {
           if (returnpath) {
-            router.navigate({
-              //@ts-expect-error we have a variable route with types routing enabled
-              pathname: params.returnpath,
-              params: {
+            router.back();
+            setTimeout(() => {
+              router.setParams({
                 from: "enter-pin",
                 pin: pinCode,
-                pinValid: pinValid,
-              },
-            });
+                pinValid: pinValid ? 1 : 0,
+              });
+            }, 10);
+
+            // router.navigate({
+            //   //@ts-expect-error we have a variable route with types routing enabled
+
+            //   pathname: params.returnpath,
+            //   params: {
+            //     from: "enter-pin",
+            //     pin: pinCode,
+            //     pinValid: pinValid,
+            //   },
+            // });
           } else {
             router.back();
           }

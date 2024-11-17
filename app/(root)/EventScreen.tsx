@@ -110,23 +110,30 @@ export default function EventScreen() {
       callback: async (pin: string): Promise<boolean> => {
         return new Promise((resolve) => {
           setTimeout(() => {
-            resolve(true);
+            resolve(pin === "123456");
           }, 1000);
         });
       },
     });
   }, [navigationHelper, t]);
 
-  useEffect(() => {
-    if (
-      params.from &&
-      params.from === "enter-pin" &&
-      params.pin &&
-      params.pinValid
-    ) {
-      console.log("got pin params", params);
-    }
-  }, [params]);
+  useFocusEffect(
+    useCallback(() => {
+      if (
+        params.from &&
+        params.from === "enter-pin" &&
+        params.pin &&
+        params.pinValid
+      ) {
+        console.log("got pin params", params);
+        router.setParams({ pin: "", pinValid: 0, from: "" });
+
+        setTimeout(() => {
+          router.push("/(management)/(Tabs)/EventSettingsScreen");
+        }, 10);
+      }
+    }, [params]),
+  );
 
   return (
     <KeyboardDismisWrappable>
