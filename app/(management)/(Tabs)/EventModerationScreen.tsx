@@ -22,6 +22,7 @@ export default function EventModerationScreen() {
         titlei18n="management-tab-moderation"
       />
       <StatusBar
+        hidden={false}
         style="light"
         backgroundColor={getVarColor("--color-primary-default")}
       />

@@ -1,11 +1,12 @@
 import { router } from "expo-router";
 import { StatusBar } from "expo-status-bar";
 import React from "react";
-import { PixelRatio, View } from "react-native";
+import { Animated, PixelRatio, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import MyPictureListItem from "@/components/fragments/ListItems/MyPictureListItem";
 import PageHeader from "@/components/header/PageHeader";
-import ThemeText from "@/components/ui/themed/ThemeText";
+import SampleImageList from "@/data/imagelistsample";
 import useTheme from "@/hooks/useTheme";
 
 const ratio = PixelRatio.get();
@@ -21,15 +22,20 @@ export default function EventFeedScreen() {
         titlei18n="management-tab-feed"
       />
       <StatusBar
+        hidden={false}
         style="light"
         backgroundColor={getVarColor("--color-primary-default")}
       />
-      <View
-        className="flex-1 p-8 flex items-center justify-center"
-        style={{ marginBottom: 48 * ratio }}
-      >
-        <ThemeText className="text-center">EventFeedScreen</ThemeText>
-      </View>
+
+      <Animated.FlatList
+        ListFooterComponent={() => <View style={{ height: 42 * ratio }} />}
+        //        onScroll={handleScroll}
+        scrollEventThrottle={16}
+        className="flex-1 w-full h-full "
+        data={SampleImageList}
+        keyExtractor={(item) => item.id}
+        renderItem={({ item, index }) => <MyPictureListItem item={item} />}
+      />
     </SafeAreaView>
   );
 }

@@ -25,6 +25,7 @@ export default function EventSettingsScreen() {
         titlei18n="management-tab-settings"
       />
       <StatusBar
+        hidden={false}
         style="light"
         backgroundColor={getVarColor("--color-primary-default")}
       />
