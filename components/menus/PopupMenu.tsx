@@ -227,8 +227,8 @@ export default function PopupMenu({
               style={[
                 {
                   opacity: fadeAnim,
-                  // transform: [{ translateY: slideAnim }],
-                  // transformOrigin: "top",
+                  transform: [{ translateY: slideAnim }],
+                  transformOrigin: "top",
                 },
                 styles.activeSection,
                 menuPositionStyles,

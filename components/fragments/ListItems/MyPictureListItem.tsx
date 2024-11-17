@@ -32,8 +32,6 @@ export default function MyPictureListItem({
 
   const AnimatedPreviewImage = Animated.createAnimatedComponent(Image);
 
-  const blurhash = "blurhash:/LIIEeLwc1jRiP;X8ayR+crWBIpt7";
-
   return (
     <View className="py-4">
       <View className="flex-row items-center gap-4 py-2 px-4 ">
@@ -61,9 +59,9 @@ export default function MyPictureListItem({
         >
           <AnimatedPreviewImage
             sharedTransitionTag="previewimage"
-            placeholder={blurhash}
+            placeholder={item.blurhash}
             source={{
-              uri: item.uri,
+              uri: item.uri + "?" + item.id,
               width: 3000,
               height: 2000,
             }}

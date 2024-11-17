@@ -124,7 +124,6 @@ export default function EventScreen() {
       params.pin &&
       params.pinValid
     ) {
-      //      router.replace()
       console.log("got pin params", params);
     }
   }, [params]);
@@ -132,7 +131,7 @@ export default function EventScreen() {
   return (
     <KeyboardDismisWrappable>
       <MutedBGPhoto overlayOpacity={0.6} source={images.weddingbackground}>
-        <StatusBar style="light" />
+        <StatusBar style="light" backgroundColor="transparent" />
         <SafeAreaView className="flex flex-1 justify-between p-8 h-screen gap-8 items-center relative">
           <View
             style={{

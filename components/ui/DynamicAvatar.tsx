@@ -32,6 +32,7 @@ export default function DynamicAvatar({
   styleExtra,
 }: DynamicAvatarProps) {
   const [imageError, setImageError] = useState(false);
+  const [imageLoading, setImageLoading] = useState(false);
 
   const { nameAbrev, colorInfo } = useMemo(() => {
     return {
@@ -51,7 +52,7 @@ export default function DynamicAvatar({
         height: size * ratio,
       }}
     >
-      {(!imageUri || imageError) && !fallback && (
+      {(!imageUri || imageError || imageLoading) && !fallback && (
         <View
           style={{
             display: "flex",
@@ -73,11 +74,25 @@ export default function DynamicAvatar({
           </Text>
         </View>
       )}
-      {((imageUri && !imageError) || fallback) && (
+      {(imageUri || fallback) && (
         <Image
-          cachePolicy="none"
-          onLoadStart={() => setImageError(false)}
-          style={[{ width: "100%", height: "100%" }, styleExtra]}
+          //          cachePolicy="none"
+          onLoadStart={() => {
+            console.log("load start");
+            setImageError(false);
+            setImageLoading(true);
+          }}
+          style={[
+            {
+              opacity: !imageError && !imageLoading ? 1 : 0,
+              width: "100%",
+              height: "100%",
+            },
+            styleExtra,
+          ]}
+          onLoadEnd={() => {
+            setImageLoading(false);
+          }}
           source={imageUri || fallback}
           onError={() => setImageError(true)}
         />

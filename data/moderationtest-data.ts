@@ -1,7 +1,7 @@
-const SampleImageList = [
+const ModerationImageList = [
   {
     id: "1",
-    uri: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
+    uri: "https://picsum.photos/300/200",
     blurhash: "blurhash:/LIIEeLwc1jRiP;X8ayR+crWBIpt7",
     guest: {
       name: "Martijn van Ark",
@@ -10,20 +10,20 @@ const SampleImageList = [
     },
     comment: "wat een gezellig feestje",
     timeTaken: "2024-11-08 13:12:14",
-    tags: ["party", "fun", "social"],
+    tags: ["rude gesture"],
   },
   {
     id: "2",
-    uri: "https://www.scanid.nl/test.jpg",
+    uri: "https://picsum.photos/300/200",
     blurhash: "blurhash:/LIIEeLwc1jRiP;X8ayR+crWBIpt7",
     guest: {
-      name: "Kees Klootviool",
-      image: "https://avatar.iran.liara.run/public",
+      name: "Martijn van Ark",
+      image: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
       id: "O54321",
     },
     comment: "wat een gezellig feestje",
     timeTaken: "2024-11-08 13:12:14",
-    tags: ["party", "fun", "social"],
+    tags: ["rude gesture"],
   },
   {
     id: "3",
@@ -36,7 +36,7 @@ const SampleImageList = [
     },
     comment: "wat een gezellig feestje",
     timeTaken: "2024-11-08 13:12:14",
-    tags: ["party", "fun", "social"],
+    tags: ["rude gesture"],
   },
   {
     id: "4",
@@ -49,7 +49,7 @@ const SampleImageList = [
     },
     comment: "wat een gezellig feestje",
     timeTaken: "2024-11-08 13:12:14",
-    tags: ["party", "fun", "social"],
+    tags: ["rude gesture"],
   },
   {
     id: "5",
@@ -62,8 +62,8 @@ const SampleImageList = [
     },
     comment: "wat een gezellig feestje",
     timeTaken: "2024-11-08 13:12:14",
-    tags: ["party", "fun", "social"],
+    tags: ["rude gesture"],
   },
 ];
 
-export default SampleImageList;
+export default ModerationImageList;

@@ -60,6 +60,7 @@ export default function MyPicturesScreen() {
       >
         <PageHeader
           ref={barRef}
+          titlei18n="screen-event-my-pictures"
           //          onLayout={onLayout}
           right={
             <DynamicAvatar

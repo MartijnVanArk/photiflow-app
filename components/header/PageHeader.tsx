@@ -12,14 +12,32 @@ export interface PageHeaderProps extends ViewProps {
   left?: React.ReactNode;
   right?: React.ReactNode;
   height?: number;
+  title?: string;
+  titlei18n?: string;
+  leftClick?: () => void;
 }
 
 const PageHeader = forwardRef<View, PageHeaderProps>(
-  ({ handleInset = true, style, left, right, height, ...props }, ref) => {
+  (
+    {
+      handleInset = true,
+      style,
+      left,
+      right,
+      height,
+      title,
+      titlei18n,
+      leftClick,
+      ...props
+    },
+    ref,
+  ) => {
     const { t } = useTranslation();
     const insets = useSafeAreaInsets();
 
     const useHeight = height !== undefined ? height : "auto";
+
+    console.log("Header got LC : ", leftClick);
 
     return (
       <View
@@ -40,13 +58,13 @@ const PageHeader = forwardRef<View, PageHeaderProps>(
           ) : (
             <SimpleIconButton
               icon={{ name: "arrow-left", color: "white" }}
-              onPress={() => router.back()}
+              onPress={() => (leftClick ? leftClick() : router.back())}
             />
           )}
         </View>
         <View className="flex-1 items-center">
           <ThemeText className="font-NunitoSemiBold text-2xl text-white">
-            {t("screen-event-my-pictures")}
+            {titlei18n ? t(titlei18n) : title}
           </ThemeText>
         </View>
         <View className="w-16  items-center">{right ? right : null}</View>
