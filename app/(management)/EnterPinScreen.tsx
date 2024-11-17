@@ -1,5 +1,4 @@
 import { router, useLocalSearchParams } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React, { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { Animated, Dimensions, View } from "react-native";
@@ -8,6 +7,7 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import CloseBackButton from "@/components/ui/CloseBackButton";
 import PinIndicatorView from "@/components/ui/pin/PinIndicatorView";
 import PinNumPad from "@/components/ui/pin/PinNumPad";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
 import { useNavigationCallback } from "@/hooks/useNavigationHelper";
 
@@ -54,17 +54,6 @@ const EnterPinScreen = () => {
                 pinValid: pinValid ? 1 : 0,
               });
             }, 10);
-
-            // router.navigate({
-            //   //@ts-expect-error we have a variable route with types routing enabled
-
-            //   pathname: params.returnpath,
-            //   params: {
-            //     from: "enter-pin",
-            //     pin: pinCode,
-            //     pinValid: pinValid,
-            //   },
-            // });
           } else {
             router.back();
           }
@@ -131,7 +120,7 @@ const EnterPinScreen = () => {
         }}
       />
       <SafeAreaView style={{ flex: 1 }}>
-        <StatusBar style="light" />
+        <ThemeStatusBar />
         <View
           className=" h-full
           flex justify-between"

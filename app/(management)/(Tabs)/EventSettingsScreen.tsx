@@ -1,5 +1,4 @@
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { PixelRatio, ScrollView, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -7,14 +6,12 @@ import { SafeAreaView } from "react-native-safe-area-context";
 import PageHeader from "@/components/header/PageHeader";
 import InputControl from "@/components/ui/input/InputControl";
 import ThemeIconTitle from "@/components/ui/themed/ThemeIconTitle";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
-import useTheme from "@/hooks/useTheme";
 
 const ratio = PixelRatio.get();
 
 export default function EventSettingsScreen() {
-  const { getVarColor } = useTheme();
-
   return (
     <SafeAreaView className="bg-light h-full">
       <PageHeader
@@ -24,11 +21,7 @@ export default function EventSettingsScreen() {
         }}
         titlei18n="management-tab-settings"
       />
-      <StatusBar
-        hidden={false}
-        style="light"
-        backgroundColor={getVarColor("--color-primary-default")}
-      />
+      <ThemeStatusBar />
       <ScrollView className="flex-1  p-4 ">
         <View className="flex-col items-center gap-4">
           <View className="bg-lightsec p-4 flex w-full rounded-2xl">

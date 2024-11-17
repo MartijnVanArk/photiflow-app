@@ -1,11 +1,11 @@
 import { useLocalSearchParams } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useMemo } from "react";
 import { Dimensions, View } from "react-native";
 import Animated from "react-native-reanimated";
 
 import PanPinchView from "@/components/PanPinchView";
 import CloseBackButton from "@/components/ui/CloseBackButton";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { decodeSafePicUri } from "@/utils/pictureprocessing";
 
 const PictureViewerScreen = () => {
@@ -19,7 +19,8 @@ const PictureViewerScreen = () => {
 
   return (
     <View className="relative w-screen h-screen bg-black">
-      <StatusBar hidden={true} style="light" />
+      <ThemeStatusBar backgroundColor="transparent" />
+
       <PanPinchView
         minScale={1}
         initialScale={1}

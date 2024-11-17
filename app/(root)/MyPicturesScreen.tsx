@@ -1,13 +1,12 @@
-import { StatusBar } from "expo-status-bar";
 import { Animated, Dimensions } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import GalleryListImage from "@/components/fragments/ListItems/GalleryListImage";
 import PageHeader from "@/components/header/PageHeader";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { generateExtraImageSampleData } from "@/data/imagelistsample";
 import useGuestContext from "@/hooks/useGuestContext";
-import useTheme from "@/hooks/useTheme";
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
@@ -15,8 +14,6 @@ const NUM_COLS = 3;
 const tDim = Math.min(windowWidth, windowHeight) / NUM_COLS;
 
 export default function MyPicturesScreen() {
-  const { getVarColor } = useTheme();
-
   // const [headerVisible, setHeaderVisible] = React.useState(false);
 
   const { guestInfo } = useGuestContext();
@@ -54,8 +51,6 @@ export default function MyPicturesScreen() {
   //   outputRange: [0, -measureHeight.current],
   // });
 
-  // console.log("rerender", measureHeight.current);
-
   return (
     <SafeAreaView className="h-full flex items-center justify-center">
       <Animated.View
@@ -77,10 +72,7 @@ export default function MyPicturesScreen() {
         />
       </Animated.View>
 
-      <StatusBar
-        style="light"
-        backgroundColor={getVarColor("--color-primary-default")}
-      />
+      <ThemeStatusBar />
 
       <Animated.FlatList
         className=" w-full flex-1"
@@ -96,6 +88,7 @@ export default function MyPicturesScreen() {
             targetHeight={tDim}
             targetWidth={tDim}
             item={item}
+            index={index}
           />
         )}
       />

@@ -1,6 +1,5 @@
 import BottomSheet from "@gorhom/bottom-sheet";
 import { router, useLocalSearchParams } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PixelRatio, View } from "react-native";
@@ -13,6 +12,7 @@ import CloseBackButton from "@/components/ui/CloseBackButton";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/input/InputControl";
 import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { images } from "@/constants/images";
 import useGuestContext from "@/hooks/useGuestContext";
 import { GuestInfoState } from "@/reducers/GuestReducer";
@@ -78,7 +78,7 @@ export default function GuestProfileScreen() {
         className="h-screen relative flex flex-1 bg-primary"
         style={{ paddingTop: inset.top }}
       >
-        <StatusBar style="light" />
+        <ThemeStatusBar />
 
         <View className="flex gap-2 justify-between flex-1 bg-light h-full p-8 relative">
           <View

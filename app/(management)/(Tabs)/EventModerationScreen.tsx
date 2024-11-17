@@ -1,17 +1,14 @@
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { FlatList } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import ModerationListItem from "@/components/fragments/ListItems/ModerationListItem";
 import PageHeader from "@/components/header/PageHeader";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ModerationImageList from "@/data/moderationtest-data";
-import useTheme from "@/hooks/useTheme";
 
 export default function EventModerationScreen() {
-  const { getVarColor } = useTheme();
-
   return (
     <SafeAreaView className="bg-light h-full ">
       <PageHeader
@@ -21,11 +18,9 @@ export default function EventModerationScreen() {
         }}
         titlei18n="management-tab-moderation"
       />
-      <StatusBar
-        hidden={false}
-        style="light"
-        backgroundColor={getVarColor("--color-primary-default")}
-      />
+
+      <ThemeStatusBar />
+
       <FlatList
         className="flex-1"
         data={ModerationImageList}

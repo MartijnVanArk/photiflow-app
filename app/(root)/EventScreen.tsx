@@ -2,7 +2,6 @@ import { MaterialCommunityIcons } from "@expo/vector-icons";
 import BottomSheet from "@gorhom/bottom-sheet";
 import { PortalHost } from "@gorhom/portal";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PixelRatio, View } from "react-native";
@@ -21,6 +20,7 @@ import PopupMenu from "@/components/menus/PopupMenu";
 import PopupMenuItem from "@/components/menus/PopupMenuItem";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
 import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
 import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
@@ -125,7 +125,6 @@ export default function EventScreen() {
         params.pin &&
         params.pinValid
       ) {
-        console.log("got pin params", params);
         router.setParams({ pin: "", pinValid: 0, from: "" });
 
         setTimeout(() => {
@@ -138,7 +137,7 @@ export default function EventScreen() {
   return (
     <KeyboardDismisWrappable>
       <MutedBGPhoto overlayOpacity={0.6} source={images.weddingbackground}>
-        <StatusBar style="light" backgroundColor="transparent" />
+        <ThemeStatusBar backgroundColor="transparent" />
         <SafeAreaView className="flex flex-1 justify-between p-8 h-screen gap-8 items-center relative">
           <View
             style={{

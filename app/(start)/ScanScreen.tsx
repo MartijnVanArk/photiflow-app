@@ -5,7 +5,6 @@ import {
   useCameraPermissions,
 } from "expo-camera";
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
@@ -18,6 +17,7 @@ import CloseBackButton from "@/components/ui/CloseBackButton";
 import QRTargetOverlay from "@/components/ui/qr/QRTargetOverlay";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
 import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 
@@ -111,7 +111,7 @@ export default function ScanScreen() {
 
   return (
     <View className="flex-1 h-screen bg-black">
-      <StatusBar hidden={true} />
+      <ThemeStatusBar hidden={false} backgroundColor="transparent" />
       <CameraView
         ref={cameraRef}
         style={{ width: winWidth, height: winHeight, zIndex: 0, elevation: 0 }}

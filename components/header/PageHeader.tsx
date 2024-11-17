@@ -37,8 +37,6 @@ const PageHeader = forwardRef<View, PageHeaderProps>(
 
     const useHeight = height !== undefined ? height : "auto";
 
-    console.log("Header got LC : ", leftClick);
-
     return (
       <View
         ref={ref}

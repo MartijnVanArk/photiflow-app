@@ -1,17 +1,15 @@
 import { router } from "expo-router";
-import { StatusBar } from "expo-status-bar";
 import React from "react";
 import { Animated, PixelRatio, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import MyPictureListItem from "@/components/fragments/ListItems/MyPictureListItem";
 import PageHeader from "@/components/header/PageHeader";
+import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import SampleImageList from "@/data/imagelistsample";
-import useTheme from "@/hooks/useTheme";
 
 const ratio = PixelRatio.get();
 export default function EventFeedScreen() {
-  const { getVarColor } = useTheme();
   return (
     <SafeAreaView className="bg-light h-full ">
       <PageHeader
@@ -21,11 +19,7 @@ export default function EventFeedScreen() {
         }}
         titlei18n="management-tab-feed"
       />
-      <StatusBar
-        hidden={false}
-        style="light"
-        backgroundColor={getVarColor("--color-primary-default")}
-      />
+      <ThemeStatusBar />
 
       <Animated.FlatList
         ListFooterComponent={() => <View style={{ height: 42 * ratio }} />}
