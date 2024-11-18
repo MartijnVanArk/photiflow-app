@@ -3,10 +3,10 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { Alert, Linking, TouchableOpacity, View } from "react-native";
+import { Alert, Linking, Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
 import { images } from "@/constants/images";
@@ -69,7 +69,7 @@ export default function WelcomeScreen() {
             source={images.eventintro}
           />
 
-          <ThemeButton
+          <ThemeBasicButton
             onPress={goScan}
             className="py-8 w-full text-xl"
             variant="primary"
@@ -78,7 +78,7 @@ export default function WelcomeScreen() {
             textSize="text-2xl"
             iconLeft={{ name: "qrcode-scan", size: 36 }}
           />
-          <ThemeButton
+          <ThemeBasicButton
             onPress={goCreate}
             className="py-8 w-full text-xl mt-4"
             variant="outline"
@@ -89,11 +89,11 @@ export default function WelcomeScreen() {
           />
           <View className="flex flex-row my-4 py-4 ">
             <ThemeText>{t("welcome-dontknow-text")} </ThemeText>
-            <TouchableOpacity onPress={openSite}>
+            <Pressable onPress={openSite}>
               <ThemeText className="font-NunitoExtraBold text-primary underline">
                 {t("welcome-dontknow-linktext")}
               </ThemeText>
-            </TouchableOpacity>
+            </Pressable>
           </View>
         </SafeAreaView>
       </LinearGradient>

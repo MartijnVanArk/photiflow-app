@@ -4,7 +4,7 @@ import React from "react";
 import { View, ViewProps, PixelRatio } from "react-native";
 
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
-import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeText from "@/components/ui/themed/ThemeText";
 
 export interface ModerationListItemProps extends ViewProps {
@@ -48,12 +48,12 @@ const ModerationListItem = ({ item, ...props }: ModerationListItemProps) => {
         <ThemeText className="text-red-400">{item.tags.join(", ")}</ThemeText>
       </View>
       <View className="flex-col  gap-2">
-        <ThemeButton
+        <ThemeBasicButton
           iconLeft={{ name: "check" }}
           variant="success"
           className="py-2"
         />
-        <ThemeButton
+        <ThemeBasicButton
           iconLeft={{ name: "close" }}
           variant="danger"
           className="py-2"

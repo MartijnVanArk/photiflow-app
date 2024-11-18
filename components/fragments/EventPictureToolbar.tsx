@@ -7,7 +7,7 @@ import { View, Alert } from "react-native";
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import useCommandCenter from "@/hooks/useCommandCenter";
 
-import ThemeButton from "../ui/themed/ThemeButton";
+import ThemeBasicButton from "../ui/themed/ThemeBasicButton";
 
 export interface EventPictureToolbarProps {
   params: UnknownOutputParams;
@@ -62,20 +62,20 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
 
   return (
     <View className="flex w-full items-center justify-between flex-row gap-4">
-      <ThemeButton
+      <ThemeBasicButton
         onPress={pickImage}
         title=""
         variant="secondary"
         iconLeft={{ name: "view-gallery-outline" }}
       />
-      <ThemeButton
+      <ThemeBasicButton
         onPress={goTakePicture}
         title=""
         iconLeft={{ name: "camera", size: 36 }}
         className="p-8"
         rounded="rounded-full"
       />
-      <ThemeButton
+      <ThemeBasicButton
         onPress={leave}
         variant="secondary"
         title=""

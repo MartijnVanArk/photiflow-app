@@ -2,7 +2,7 @@ import { Image } from "expo-image";
 import { router } from "expo-router";
 import moment from "moment";
 import React from "react";
-import { View, ViewProps, TouchableOpacity } from "react-native";
+import { View, ViewProps, Pressable } from "react-native";
 import Animated from "react-native-reanimated";
 
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
@@ -54,9 +54,7 @@ export default function MyPictureListItem({
       </View>
 
       <View className="flex rounded-xl overflow-hidden mx-4">
-        <TouchableOpacity
-          onPress={() => openImageViewer(encodeSafePicUri(item.uri))}
-        >
+        <Pressable onPress={() => openImageViewer(encodeSafePicUri(item.uri))}>
           <AnimatedPreviewImage
             sharedTransitionTag="previewimage"
             placeholder={item.blurhash}
@@ -69,7 +67,7 @@ export default function MyPictureListItem({
             //    transition={500}
             contentFit="cover"
           />
-        </TouchableOpacity>
+        </Pressable>
 
         <View className="px-4 py-2 bg-overlay2">
           <ThemeText>{item.comment}</ThemeText>

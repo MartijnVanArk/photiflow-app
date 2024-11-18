@@ -23,7 +23,7 @@ import useTheme from "@/hooks/useTheme";
 
 import InputControl from "../ui/input/InputControl";
 import TagInput from "../ui/input/TagInput";
-import ThemeButton from "../ui/themed/ThemeButton";
+import ThemeBasicButton from "../ui/themed/ThemeBasicButton";
 
 export interface SendPhotoSheetProps
   extends Omit<BottomSheetViewProps, "children"> {
@@ -137,14 +137,14 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
             />
           </View>
 
-          <ThemeButton
+          <ThemeBasicButton
             onPress={sendClick}
             className="w-full py-8"
             variant="primary"
             title={t("sendphoto-sendbutton-title")}
             textSize="text-2xl"
             iconRight={{ name: "image-move", size: 36 }}
-          ></ThemeButton>
+          />
         </BottomSheetView>
       </BottomSheet>
     );

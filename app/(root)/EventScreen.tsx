@@ -19,7 +19,7 @@ import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import PopupMenu from "@/components/menus/PopupMenu";
 import PopupMenuItem from "@/components/menus/PopupMenuItem";
 import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
-import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
 import { images } from "@/constants/images";
@@ -175,13 +175,13 @@ export default function EventScreen() {
             </PopupMenu>
           </View>
 
-          <ThemeButton
+          <ThemeBasicButton
             title="manage"
             onPress={() =>
               router.push("/(management)/(Tabs)/EventSettingsScreen")
             }
           />
-          <ThemeButton
+          <ThemeBasicButton
             title="test"
             onPress={() => router.push("/(root)/TestScreen")}
           />

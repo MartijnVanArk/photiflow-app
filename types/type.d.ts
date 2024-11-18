@@ -1,4 +1,9 @@
-import { StyleProp, TextInputProps, ViewStyle } from "react-native";
+import {
+  PressableProps,
+  StyleProp,
+  TextInputProps,
+  ViewStyle,
+} from "react-native";
 
 export interface ButtonIconProps {
   name?: string;
@@ -8,6 +13,29 @@ export interface ButtonIconProps {
 }
 
 export interface ButtonProps extends TouchableOpacityProps {
+  title?: string;
+  subtitle?: string;
+  variant?:
+    | "primary"
+    | "secondary"
+    | "danger"
+    | "outline"
+    | "success"
+    | "accent"
+    | "tertiary";
+  iconLeft?: ButtonIconProps;
+  iconRight?: ButtonIconProps;
+  className?: string;
+  textSize?: string;
+  rounding?: string;
+  style?: StyleProp<ViewStyle>;
+  disabled?: boolean;
+  rounded?: string;
+  tag?: string;
+  onPress?: () => void;
+}
+
+export interface ButtonBasicProps extends PressableProps {
   title?: string;
   subtitle?: string;
   variant?:

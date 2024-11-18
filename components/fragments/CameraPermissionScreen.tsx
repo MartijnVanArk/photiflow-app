@@ -2,9 +2,8 @@ import { PermissionResponse } from "expo-camera";
 import { useTranslation } from "react-i18next";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import ThemeButton from "@/components/ui/themed/ThemeButton";
-
 import CloseBackButton from "../ui/CloseBackButton";
+import ThemeBasicButton from "../ui/themed/ThemeBasicButton";
 import ThemeText from "../ui/themed/ThemeText";
 
 export interface CameraPermissionScreenProps {
@@ -21,7 +20,7 @@ const CameraPermissionScreen = ({
       <ThemeText className="text-xl text-center ">
         {t("camera-permission-statement")}
       </ThemeText>
-      <ThemeButton
+      <ThemeBasicButton
         onPress={requestPermission}
         title={t("camera-permission-button-grant")}
       />

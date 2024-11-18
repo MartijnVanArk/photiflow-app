@@ -15,7 +15,7 @@ import CameraPermissionScreen from "@/components/fragments/CameraPermissionScree
 import CloseBackButton from "@/components/ui/CloseBackButton";
 import QRTargetOverlay from "@/components/ui/qr/QRTargetOverlay";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
-import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
@@ -147,12 +147,12 @@ export default function ScanScreen() {
           style={{ marginBottom: insets.bottom }}
           className="p-8 flex-1 h-full justify-end"
         >
-          <ThemeButton
+          <ThemeBasicButton
             style={{ zIndex: 2, elevation: 2 }}
             title="Debug with Fake Test Code"
             onPress={fakeCode}
             className="mb-4"
-          ></ThemeButton>
+          />
         </View>
       </CameraView>
     </View>

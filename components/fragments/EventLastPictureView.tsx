@@ -2,12 +2,12 @@ import { LinearGradient } from "expo-linear-gradient";
 import { router } from "expo-router";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
-import { View, ImageBackground, TouchableOpacity } from "react-native";
+import { View, ImageBackground, Pressable } from "react-native";
 
 import { InternalImageData } from "@/types/pictureinfo";
 import { encodeSafePicUri } from "@/utils/pictureprocessing";
 
-import ThemeButton from "../ui/themed/ThemeButton";
+import ThemeBasicButton from "../ui/themed/ThemeBasicButton";
 
 import LastPictureInfoBar from "./LastPictureInfoBar";
 
@@ -39,26 +39,22 @@ export default function EventLastPictureView({
       imageStyle={{ borderRadius: 14 }}
       source={{ uri: picture.uri }}
     >
-      <TouchableOpacity
-        activeOpacity={1}
-        className="flex flex-1 justify-end"
-        onPress={imgClick}
-      >
+      <Pressable className="flex flex-1 justify-end" onPress={imgClick}>
         <LinearGradient colors={["rgba(0,0,0,0)", "rgba(0,0,0,0.9)"]}>
           <View className="p-4 flex items-center justify-center">
             {!picture.wasUploaded && (
-              <ThemeButton
+              <ThemeBasicButton
                 onPress={() => {
                   doUpload(10);
                 }}
                 title={t("event-generic-upload")}
                 iconLeft={{ name: "cloud-upload-outline" }}
-              ></ThemeButton>
+              />
             )}
             {picture.wasUploaded && <LastPictureInfoBar picture={picture} />}
           </View>
         </LinearGradient>
-      </TouchableOpacity>
+      </Pressable>
     </ImageBackground>
   );
 }

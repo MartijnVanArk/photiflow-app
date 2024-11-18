@@ -1,12 +1,7 @@
 import { Image } from "expo-image";
 import { router } from "expo-router";
 import React, { useRef } from "react";
-import {
-  ViewProps,
-  PixelRatio,
-  TouchableOpacity,
-  Animated,
-} from "react-native";
+import { ViewProps, PixelRatio, Animated, Pressable } from "react-native";
 
 import { encodeSafePicUri } from "@/utils/pictureprocessing";
 
@@ -46,7 +41,7 @@ export default function GalleryListImage({
       ]}
       {...props}
     >
-      <TouchableOpacity
+      <Pressable
         onPress={() => {
           router.push({
             pathname: "/(root)/PictureViewerScreen",
@@ -71,7 +66,7 @@ export default function GalleryListImage({
             borderRadius: 4 * ratio,
           }}
         />
-      </TouchableOpacity>
+      </Pressable>
     </Animated.View>
   );
 }

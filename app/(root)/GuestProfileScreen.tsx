@@ -11,7 +11,7 @@ import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import CloseBackButton from "@/components/ui/CloseBackButton";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/input/InputControl";
-import ThemeButton from "@/components/ui/themed/ThemeButton";
+import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { images } from "@/constants/images";
 import useGuestContext from "@/hooks/useGuestContext";
@@ -99,7 +99,7 @@ export default function GuestProfileScreen() {
               name={guestProfile.name}
               fallback={images.userplaceholder}
             />
-            <ThemeButton
+            <ThemeBasicButton
               className="absolute z-10 border-4 border-light bottom-[-24]"
               title={t("profile-avatar-change")}
               onPress={openSourceSel}
@@ -129,17 +129,17 @@ export default function GuestProfileScreen() {
             />
           </View>
 
-          <ThemeButton
+          <ThemeBasicButton
             title={t("profile-button-save-title")}
             className="py-4"
             onPress={saveProfile}
           />
-          <ThemeButton
+          <ThemeBasicButton
             title="AV INFO"
             className="py-4"
             onPress={() => getSavedAvatarURI(guestProfile.avatar)}
           />
-          <ThemeButton
+          <ThemeBasicButton
             title="del"
             className="py-4"
             onPress={() => deleteAvatar(guestProfile.avatar)}
