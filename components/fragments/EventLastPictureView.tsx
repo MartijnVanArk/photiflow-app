@@ -1,11 +1,9 @@
 import { LinearGradient } from "expo-linear-gradient";
-import { router } from "expo-router";
 import React, { useCallback } from "react";
 import { useTranslation } from "react-i18next";
 import { View, ImageBackground, Pressable } from "react-native";
 
 import { InternalImageData } from "@/types/pictureinfo";
-import { encodeSafePicUri } from "@/utils/pictureprocessing";
 
 import ThemeBasicButton from "../ui/themed/ThemeBasicButton";
 
@@ -14,22 +12,19 @@ import LastPictureInfoBar from "./LastPictureInfoBar";
 export interface EventLastPictureViewProps {
   picture: InternalImageData;
   doUpload: (delay: number) => void;
+  onPictureClick?: (uri: string) => void;
 }
 
 export default function EventLastPictureView({
   picture,
   doUpload,
+  onPictureClick,
 }: EventLastPictureViewProps) {
   const imgClick = useCallback(() => {
-    router.push({
-      pathname: "/(root)/PictureViewerScreen",
-      params: {
-        picture: encodeSafePicUri(picture.uri || ""),
-        width: picture.width,
-        height: picture.height,
-      },
-    });
-  }, [picture]);
+    if (onPictureClick) {
+      onPictureClick(picture.uri || "");
+    }
+  }, [onPictureClick, picture.uri]);
 
   const { t } = useTranslation();
 

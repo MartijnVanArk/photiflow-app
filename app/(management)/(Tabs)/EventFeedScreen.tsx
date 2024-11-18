@@ -7,29 +7,40 @@ import MyPictureListItem from "@/components/fragments/ListItems/MyPictureListIte
 import PageHeader from "@/components/header/PageHeader";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import SampleImageList from "@/data/imagelistsample";
+import useImageViewer from "@/hooks/useImageViewer";
 
 const ratio = PixelRatio.get();
 export default function EventFeedScreen() {
-  return (
-    <SafeAreaView className="bg-light h-full ">
-      <PageHeader
-        handleInset={false}
-        leftClick={() => {
-          router.dismissAll();
-        }}
-        titlei18n="management-tab-feed"
-      />
-      <ThemeStatusBar />
+  const { viewerVisible, showImageViewer, ImageModal } = useImageViewer();
 
-      <Animated.FlatList
-        ListFooterComponent={() => <View style={{ height: 42 * ratio }} />}
-        //        onScroll={handleScroll}
-        scrollEventThrottle={16}
-        className="flex-1 w-full h-full "
-        data={SampleImageList}
-        keyExtractor={(item) => item.id}
-        renderItem={({ item, index }) => <MyPictureListItem item={item} />}
-      />
-    </SafeAreaView>
+  return (
+    <>
+      <SafeAreaView className="bg-light h-full ">
+        <PageHeader
+          handleInset={false}
+          leftClick={() => {
+            router.dismissAll();
+          }}
+          titlei18n="management-tab-feed"
+        />
+        <ThemeStatusBar backgroundColor={viewerVisible ? "transparent" : ""} />
+
+        <Animated.FlatList
+          ListFooterComponent={() => <View style={{ height: 42 * ratio }} />}
+          //        onScroll={handleScroll}
+          scrollEventThrottle={16}
+          className="flex-1 w-full h-full "
+          data={SampleImageList}
+          keyExtractor={(item) => item.id}
+          renderItem={({ item, index }) => (
+            <MyPictureListItem
+              onPictureClick={() => showImageViewer(item.uri)}
+              item={item}
+            />
+          )}
+        />
+      </SafeAreaView>
+      <ImageModal />
+    </>
   );
 }

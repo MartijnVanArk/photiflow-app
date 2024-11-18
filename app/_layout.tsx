@@ -1,4 +1,5 @@
 import "@/css/global.css";
+import { PortalHost } from "@gorhom/portal";
 import { Stack } from "expo-router";
 import * as SplashScreen from "expo-splash-screen";
 import { useEffect } from "react";
@@ -37,6 +38,7 @@ export default function RootLayout() {
           <Stack.Screen name="index" options={{ headerShown: false }} />
           <Stack.Screen name="+not-found" options={{ headerShown: false }} />
         </Stack>
+        <PortalHost name="picture-viewer" />
       </ProviderList>
     </GestureHandlerRootView>
   );

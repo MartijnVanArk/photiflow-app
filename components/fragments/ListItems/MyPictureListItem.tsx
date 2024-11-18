@@ -1,5 +1,4 @@
 import { Image } from "expo-image";
-import { router } from "expo-router";
 import moment from "moment";
 import React from "react";
 import { View, ViewProps, Pressable } from "react-native";
@@ -13,21 +12,20 @@ import { encodeSafePicUri } from "@/utils/pictureprocessing";
 
 export interface MyPictureListItemProps extends ViewProps {
   item?: any;
+  onPictureClick?: (uri: string) => void;
 }
 
 export default function MyPictureListItem({
   item,
+  onPictureClick,
   ...props
 }: MyPictureListItemProps) {
   const { getVarColor } = useTheme();
 
   const openImageViewer = (uri: string) => {
-    router.push({
-      pathname: "/(root)/PictureViewerScreen",
-      params: {
-        picture: uri,
-      },
-    });
+    if (onPictureClick) {
+      onPictureClick(uri);
+    }
   };
 
   const AnimatedPreviewImage = Animated.createAnimatedComponent(Image);

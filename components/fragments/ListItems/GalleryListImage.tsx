@@ -1,15 +1,13 @@
 import { Image } from "expo-image";
-import { router } from "expo-router";
 import React, { useRef } from "react";
 import { ViewProps, PixelRatio, Animated, Pressable } from "react-native";
-
-import { encodeSafePicUri } from "@/utils/pictureprocessing";
 
 export interface GalleryListImageProps extends ViewProps {
   item: any;
   index: number;
   targetWidth: number;
   targetHeight: number;
+  onPictureClick?: (uri: string) => void;
 }
 
 const AnimatedExpoImage = Animated.createAnimatedComponent(Image);
@@ -21,6 +19,7 @@ export default function GalleryListImage({
   targetHeight,
   targetWidth,
   style,
+  onPictureClick,
   ...props
 }: GalleryListImageProps) {
   const scale = useRef(new Animated.Value(0)).current;
@@ -43,12 +42,9 @@ export default function GalleryListImage({
     >
       <Pressable
         onPress={() => {
-          router.push({
-            pathname: "/(root)/PictureViewerScreen",
-            params: {
-              picture: encodeSafePicUri(item.uri + "?" + item.id),
-            },
-          });
+          if (onPictureClick) {
+            onPictureClick(item.uri);
+          }
         }}
       >
         <AnimatedExpoImage

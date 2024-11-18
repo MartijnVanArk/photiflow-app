@@ -3,14 +3,14 @@ import React from "react";
 
 import useTheme from "@/hooks/useTheme";
 
-export default function ThemeStatusBar({
+const ThemeStatusBar = ({
   animated = true,
   hidden = false,
   style,
   hideTransitionAnimation = "fade",
   backgroundColor,
   ...props
-}: StatusBarProps) {
+}: StatusBarProps) => {
   const { getVarColor } = useTheme();
 
   return (
@@ -26,4 +26,6 @@ export default function ThemeStatusBar({
       {...props}
     />
   );
-}
+};
+
+export default ThemeStatusBar;

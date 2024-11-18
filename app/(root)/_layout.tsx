@@ -24,14 +24,6 @@ const Layout = () => {
         name="GuestProfileScreen"
         options={{ headerShown: false }}
       />
-      <Stack.Screen
-        name="PictureViewerScreen"
-        options={{
-          headerShown: false,
-          presentation: "modal",
-          animation: "fade",
-        }}
-      />
       <Stack.Screen name="MyPicturesScreen" options={{ headerShown: false }} />
       <Stack.Screen name="TestScreen" options={{ headerShown: false }} />
     </Stack>

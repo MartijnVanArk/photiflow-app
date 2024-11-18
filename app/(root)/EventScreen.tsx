@@ -25,6 +25,7 @@ import ThemeText from "@/components/ui/themed/ThemeText";
 import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
+import useImageViewer from "@/hooks/useImageViewer";
 import { useNavigationHelper } from "@/hooks/useNavigationHelper";
 import usePictureContext from "@/hooks/usePictureContext";
 import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
@@ -96,6 +97,8 @@ export default function EventScreen() {
       };
     }, []),
   );
+
+  const { showImageViewer, ImageModal } = useImageViewer();
 
   const navigationHelper = useNavigationHelper();
 
@@ -198,6 +201,9 @@ export default function EventScreen() {
           {!hasLastPicture && <EventInfoNoPicture />}
           {hasLastPicture && (
             <EventLastPictureView
+              onPictureClick={(uri: string) => {
+                showImageViewer(uri);
+              }}
               doUpload={doUpload}
               picture={pictureState.lastPicture!}
             />
@@ -211,6 +217,7 @@ export default function EventScreen() {
         </SafeAreaView>
         <PortalHost name="event-menu" />
       </MutedBGPhoto>
+      <ImageModal />
     </KeyboardDismisWrappable>
   );
 }

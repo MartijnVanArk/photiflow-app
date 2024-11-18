@@ -10,6 +10,7 @@ export interface CloseBackButtonProps extends SimpleIconButtonProps {
   background?: string;
   iconName?: string;
   noAbsolute?: boolean;
+  onPress?: () => void;
 }
 
 const CloseBackButton = ({
@@ -22,6 +23,14 @@ const CloseBackButton = ({
   const inset = useSafeAreaInsets();
   const ratio = PixelRatio.get();
 
+  const doClose = () => {
+    if (props.onPress) {
+      props.onPress();
+    } else {
+      router.back();
+    }
+  };
+
   return (
     <SimpleIconButton
       style={{
@@ -30,7 +39,7 @@ const CloseBackButton = ({
         top: noAbsolute ? undefined : inset.top + 8 * ratio,
         left: noAbsolute ? undefined : inset.left + 8 * ratio,
       }}
-      onPress={() => router.back()}
+      onPress={doClose}
       className="p-2"
       icon={{ name: iconName, color: color }}
     />
