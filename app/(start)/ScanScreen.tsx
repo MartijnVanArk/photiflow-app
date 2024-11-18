@@ -9,7 +9,6 @@ import { useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { View, Dimensions, ActivityIndicator, Alert } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
-import Torch from "react-native-torch";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import CameraPermissionScreen from "@/components/fragments/CameraPermissionScreen";
@@ -65,18 +64,7 @@ export default function ScanScreen() {
   }
 
   const toggleTorch = () => {
-    const newTorch = !torch;
-
-    const setTorchState = async () => {
-      try {
-        await Torch.switchState(newTorch);
-        setTorch(newTorch);
-      } catch {
-        Alert.alert(t("scan-torch-error"));
-      }
-    };
-
-    setTorchState();
+    setTorch((torch) => !torch);
   };
 
   const fakeCode = async () => {
@@ -113,6 +101,7 @@ export default function ScanScreen() {
     <View className="flex-1 h-screen bg-black">
       <ThemeStatusBar hidden={false} backgroundColor="transparent" />
       <CameraView
+        enableTorch={torch}
         ref={cameraRef}
         style={{ width: winWidth, height: winHeight, zIndex: 0, elevation: 0 }}
         barcodeScannerSettings={{
