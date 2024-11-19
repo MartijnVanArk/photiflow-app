@@ -8,6 +8,7 @@ import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { generateExtraImageSampleData } from "@/data/imagelistsample";
 import useGuestContext from "@/hooks/useGuestContext";
 import useImageViewer from "@/hooks/useImageViewer";
+import useTheme from "@/hooks/useTheme";
 
 const { width: windowWidth, height: windowHeight } = Dimensions.get("window");
 
@@ -17,7 +18,7 @@ const tDim = Math.min(windowWidth, windowHeight) / NUM_COLS;
 export default function MyPicturesScreen() {
   // const [headerVisible, setHeaderVisible] = React.useState(false);
 
-  const { viewerVisible, showImageViewer, ImageModal } = useImageViewer();
+  const { viewerVisibleFast, showImageViewer, ImageModal } = useImageViewer();
 
   const onPiClick = (uri: string) => {
     showImageViewer(uri);
@@ -58,9 +59,14 @@ export default function MyPicturesScreen() {
   //   outputRange: [0, -measureHeight.current],
   // });
 
+  const { getVarColor } = useTheme();
+
   return (
     <>
-      <SafeAreaView className="h-full flex items-center justify-center">
+      <SafeAreaView
+        className=" h-full flex items-center justify-center"
+        style={{ backgroundColor: getVarColor("--color-primary-default") }}
+      >
         <Animated.View
           className=" w-full left-0 top-0"
           // style={{ zIndex: 1, transform: [{ translateY }] }}
@@ -81,11 +87,11 @@ export default function MyPicturesScreen() {
         </Animated.View>
 
         <ThemeStatusBar
-          backgroundColor={viewerVisible ? "transparent" : undefined}
+          backgroundColor={viewerVisibleFast ? "transparent" : undefined}
         />
 
         <Animated.FlatList
-          className=" w-full flex-1"
+          className="bg-light w-full flex-1"
           horizontal={false}
           numColumns={NUM_COLS}
           // style={{ paddingTop: measureHeight.current }}

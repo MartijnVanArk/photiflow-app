@@ -12,21 +12,26 @@ export type ImageViewerProps = {
   startVisible?: boolean;
   uri?: string;
   isSafeUri?: boolean;
+  //  refComponent?: any;
 };
 const useImageViewer = (
   opts: ImageViewerProps = { startVisible: false, uri: "", isSafeUri: false },
 ) => {
   const [visible, setVisible] = useState(false);
+  const [visibleFast, setVisibleFast] = useState(false);
+
   const visibility = useRef(new Animated.Value(0)).current;
   const [useUri, setUseUri] = useState<string>("");
 
   const showImageViewer = useCallback(
-    (uri: string, isSafeUri: boolean = false) => {
+    (
+      uri: string,
+      isSafeUri: boolean = false, // refComponent?: any
+    ) => {
       setUseUri(isSafeUri ? decodeSafePicUri(uri) : uri);
 
-      console.log("PVUri : ", isSafeUri, uri);
-
       setVisible(true);
+      setVisibleFast(true);
       Animated.timing(visibility, {
         toValue: 1,
         duration: 300,
@@ -37,6 +42,7 @@ const useImageViewer = (
   );
 
   const hideImageViewer = useCallback(() => {
+    setVisibleFast(false);
     Animated.timing(visibility, {
       toValue: 0,
       duration: 300,
@@ -83,7 +89,7 @@ const useImageViewer = (
               >
                 <AnimatedExpoImage
                   sharedTransitionTag="previewimage"
-                  resizeMode="contain"
+                  contentFit="contain"
                   style={{ width: "100%", height: "100%" }}
                   source={{ uri: useUri }}
                 ></AnimatedExpoImage>
@@ -98,6 +104,7 @@ const useImageViewer = (
 
   return {
     viewerVisible: visible,
+    viewerVisibleFast: visibleFast,
     showImageViewer,
     hideImageViewer,
     ImageModal,

@@ -76,10 +76,6 @@ export default function DynamicAvatar({
       )}
       {(imageUri || fallback) && !imageError && (
         <Image
-          //          cachePolicy="none"
-          onLoadStart={() => {
-            console.log("load start");
-          }}
           style={[
             {
               opacity: !imageError && !imageLoading ? 1 : 0,

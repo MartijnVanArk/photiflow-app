@@ -1,4 +1,6 @@
+import { Image } from "expo-image";
 import React, { useState } from "react";
+import { Animated, Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
 import CircularProgress from "@/components/circleprogress/CircularProgress";
@@ -14,6 +16,10 @@ export default function TestScreen() {
 
   const { viewerVisible, showImageViewer, ImageModal } = useImageViewer();
 
+  const picRef = React.useRef<View>(null);
+
+  const AnimatedImage = Animated.createAnimatedComponent(Image);
+
   return (
     <>
       <SafeAreaView className="bg-light h-full flex items-center gap-4 justify-center">
@@ -22,7 +28,7 @@ export default function TestScreen() {
           backgroundColor="transparent"
         />
         <ThemeText>Progress Animator</ThemeText>
-        <CircularProgress progress={progress} />
+        {/* <CircularProgress progress={progress} /> */}
         <ThemeBasicButton
           title="random progress"
           onPress={() => setProgress(Math.random())}
@@ -30,14 +36,22 @@ export default function TestScreen() {
 
         <WorkingIndicator />
 
-        <ThemeBasicButton
-          title="test"
+        <Pressable
           onPress={() =>
             showImageViewer(
               "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
             )
           }
-        />
+        >
+          <Animated.View ref={picRef}>
+            <AnimatedImage
+              source={{
+                uri: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
+              }}
+              style={{ width: 100, height: 100 }}
+            />
+          </Animated.View>
+        </Pressable>
 
         <CloseBackButton />
       </SafeAreaView>
