@@ -1,5 +1,6 @@
 import { Platform } from "react-native";
 
+import { basicJWTChecks } from "@/utils/jwtutils";
 import { AppMainStorage } from "@/utils/system/storage";
 import { getDeviceID } from "@/utils/system/system";
 
@@ -20,6 +21,12 @@ export default class BaseApiHandler {
     this.JWT_TOKEN_KEY = tokenKey;
 
     getDeviceID().then((id) => (this.DEV_ID = id));
+
+    AppMainStorage.getItem(this.JWT_TOKEN_KEY).then((token) => {
+      if (token && basicJWTChecks(token)) {
+        this.BEARER_TOKEN = token;
+      }
+    });
   }
 
   setBearerToken(token: string) {

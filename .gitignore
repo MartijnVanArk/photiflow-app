@@ -23,3 +23,11 @@ expo-env.d.ts
 .env
 site.todo
 site.todo.md
+
+.yarn/*
+!.yarn/patches
+!.yarn/plugins
+!.yarn/releases
+!.yarn/sdks
+!.yarn/versions
+.pnp.*

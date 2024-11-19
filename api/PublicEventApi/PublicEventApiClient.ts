@@ -15,8 +15,8 @@ export class PublicEventsApiClient extends BaseApiHandler {
     });
   }
 
-  async registerDevice(sourceID: string): Promise<string> {
-    return new Promise<string>((resolve, reject) => {
+  async registerDevice(sourceID: string): Promise<boolean> {
+    return new Promise<boolean>((resolve, reject) => {
       const command = new ConnectAppDeviceCommand({
         DeviceId: this.DEV_ID,
         ClientSecret: this.SECRET_ID || "",
@@ -26,11 +26,12 @@ export class PublicEventsApiClient extends BaseApiHandler {
       this.authClient
         .send(command)
         .then((result) => {
-          resolve(result.EventToken);
+          this.setBearerToken(result.EventToken);
+          resolve(true);
         })
         .catch((err) => {
           console.log("Error : ", err);
-          resolve("");
+          resolve(false);
         });
     });
   }
