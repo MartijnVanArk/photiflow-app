@@ -1,12 +1,15 @@
 import { Platform } from "react-native";
 
+import { AppMainStorage } from "@/utils/system/storage";
 import { getDeviceID } from "@/utils/system/system";
 
 export default class BaseApiHandler {
   SECRET_ID: string | undefined = "";
   DEV_ID = "";
+  BEARER_TOKEN = "";
 
-  constructor(testMode: boolean = false) {
+  JWT_TOKEN_KEY = "jwt-token";
+  constructor(tokenKey: string, testMode: boolean = false) {
     this.SECRET_ID = testMode
       ? process.env.EXPO_PUBLIC_CLIENT_TESTING
       : Platform.select({
@@ -14,6 +17,13 @@ export default class BaseApiHandler {
           android: process.env.EXPO_PUBLIC_CLIENT_ANDROID,
         });
 
+    this.JWT_TOKEN_KEY = tokenKey;
+
     getDeviceID().then((id) => (this.DEV_ID = id));
+  }
+
+  setBearerToken(token: string) {
+    this.BEARER_TOKEN = token;
+    AppMainStorage.saveItem(this.JWT_TOKEN_KEY, token);
   }
 }

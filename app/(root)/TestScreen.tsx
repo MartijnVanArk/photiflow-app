@@ -13,6 +13,7 @@ import WorkingIndicator from "@/components/ui/WorkingIndicator";
 import useImageViewer from "@/hooks/useImageViewer";
 import { parseCodeUrl } from "@/utils/codeurls";
 
+import { jwtDecode, JwtPayload } from "jwt-decode";
 export default function TestScreen() {
   const [progress, setProgress] = useState(0.3);
 
@@ -22,13 +23,28 @@ export default function TestScreen() {
 
   const AnimatedImage = Animated.createAnimatedComponent(Image);
 
-  const test = () => {
+  const test = async () => {
     console.log(
       parseCodeUrl("https://code.photobooth.com/src-2lXirrvabfIf4FK"),
     );
 
-    publicEventsApi.registerDevice("test1234");
+    // const token = await publicEventsApi.registerDevice("src-2lXirrvabfIf4FK");
     //    public
+
+    //    console.log(token);
+
+    const token =
+      "eyJhbGciOiJSUzI1NiIsImtpZCI6Imt5LTEyMzQ1IiwidHlwIjoiSldUIn0.eyJhdWQiOlsiaHR0cHM6Ly96a3Z6ZHcweDliLmV4ZWN1dGUtYXBpLmV1LXdlc3QtMS5hbWF6b25hd3MuY29tIl0sImV2ZW50LWlkIjoiZXZ0LU9LNzdZWlBZdzJtcVpGQiIsImV4cCI6MTczMjIzMzYwMCwiaWF0IjoxNzMyMDQ1NDI0LCJpc3MiOiJodHRwczovL3prdnpkdzB4OWIuZXhlY3V0ZS1hcGkuZXUtd2VzdC0xLmFtYXpvbmF3cy5jb20vIiwibmJmIjoxNzMxODg4MDAwLCJvd25lci1pZCI6ImF1dGgwfDY3MWViNjZiMDMwMGM5NjhhM2U0YjY5YyIsInNjb3BlIjoib3BlbmlkIiwic291cmNlLWlkIjoic3JjLTJsWGlycnZhYmZJZjRGSyIsInN1YiI6ImR2aS1KcjA1NWl1SFo4WGNpUmNQR2Y0WFMifQ.K1WauMz1yFMYmM9UTWkYpKdChNUHZEdTjQrvx_2Rm1hO9hc3YaBZH3V7DhiAEVZPEISefnNh84-Xr5b5TuYrqt3qW7eP9x9VJIEYRDoJlK1nW0bI9ulEIsXwz58XlRWeBsXIk3p48CHln1tmPZW4fPbKg7lPSD96CELAaWCfu4E";
+
+    if (token) {
+      console.log("token dec");
+
+      const decoded = jwtDecode<JwtPayload>(token);
+
+      console.log(decoded);
+    }
+
+    console.log("token end");
 
     // publicEventsApi.registerDevice("test1234");
   };

@@ -9,7 +9,7 @@ export class PublicEventsApiClient extends BaseApiHandler {
   authClient: AuthServiceClient;
 
   constructor() {
-    super();
+    super("PublicEventsApiClientToken");
     this.authClient = new AuthServiceClient({
       endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
     });
@@ -23,22 +23,14 @@ export class PublicEventsApiClient extends BaseApiHandler {
         SourceId: sourceID,
       });
 
-      //     console.log("Register Device : ", command);
-
       this.authClient
         .send(command)
         .then((result) => {
-          console.log("Result : ", result);
-
-          // if (result.Success) {
-          //   //            resolve(result.DeviceId);
-          // } else {
-          //   //          reject(result.Message); // TODO : better error handling
-          //}
+          resolve(result.EventToken);
         })
         .catch((err) => {
           console.log("Error : ", err);
-          //      reject(err);
+          resolve("");
         });
     });
   }
