@@ -70,6 +70,7 @@ export default function WelcomeScreen() {
           />
 
           <ThemeBasicButton
+            outerClassName="w-full"
             onPress={goScan}
             className="py-8 w-full text-xl"
             variant="primary"
@@ -79,6 +80,7 @@ export default function WelcomeScreen() {
             iconLeft={{ name: "qrcode-scan", size: 36 }}
           />
           <ThemeBasicButton
+            outerClassName="w-full"
             onPress={goCreate}
             className="py-8 w-full text-xl mt-4"
             variant="outline"

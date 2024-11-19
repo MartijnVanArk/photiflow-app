@@ -56,6 +56,7 @@ export interface ButtonBasicProps extends PressableProps {
   rounded?: string;
   tag?: string;
   onPress?: () => void;
+  outerClassName?: string;
 }
 
 export interface ShutterTriggerProps extends TouchableOpacityProps {

@@ -19,6 +19,7 @@ import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
+import { parseCodeUrl } from "@/utils/codeurls";
 
 const { width: winWidth, height: winHeight } = Dimensions.get("window");
 
@@ -40,6 +41,8 @@ export default function ScanScreen() {
 
   useEffect(() => {
     if (gotBarcode && !EventState.isTryingToJoin) {
+      setGotBarcode(false);
+
       if (EventState.isValidEventId) {
         router.replace("/(root)/EventScreen");
       } else {
@@ -48,8 +51,6 @@ export default function ScanScreen() {
           t("scan-invalidevent-message"),
         );
       }
-
-      setGotBarcode(false);
     }
   }, [EventState, gotBarcode, t]);
 
@@ -72,8 +73,8 @@ export default function ScanScreen() {
 
     const fake: BarcodeScanningResult = {
       type: "qr",
-      data: "P1234567890",
-      raw: "P1234567890",
+      data: "https://code.photobooth.com/src-2lXirrvabfIf4FK",
+      raw: "https://code.photobooth.com/src-2lXirrvabfIf4FK",
       bounds: {
         origin: { x: 0, y: 0 },
         size: { width: 10, height: 10 },
@@ -86,6 +87,13 @@ export default function ScanScreen() {
 
   const scannedBarcode = (scanningResult: BarcodeScanningResult) => {
     if (EventState.isTryingToJoin) return;
+
+    const code = parseCodeUrl(scanningResult.data);
+
+    if (!code) {
+      Alert.alert(t("scan-invalidcode-title"), t("scan-invalidcode-message"));
+      return;
+    }
 
     setGotBarcode(true);
 
@@ -111,9 +119,7 @@ export default function ScanScreen() {
         className="flex-1 h-screen relative"
         facing={facing}
       >
-        <QRTargetOverlay
-          animated={!EventState.isTryingToJoin}
-        ></QRTargetOverlay>
+        <QRTargetOverlay animated={!gotBarcode}></QRTargetOverlay>
 
         <View
           className="flex flex-row justify-between p-8"

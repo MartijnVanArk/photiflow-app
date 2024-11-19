@@ -88,6 +88,7 @@ const ThemeBasicButton = ({
   style,
   disabled,
   rounded = "rounded-xl",
+  outerClassName,
   ...props
 }: ButtonBasicProps) => {
   const { theme, getVarColor } = useTheme();
@@ -162,7 +163,10 @@ const ThemeBasicButton = ({
   );
 
   return (
-    <Animated.View style={{ transform: [{ scale: scale }] }}>
+    <Animated.View
+      className={`${outerClassName}`}
+      style={{ transform: [{ scale: scale }] }}
+    >
       <Pressable
         style={[style, { opacity: disabled ? 0.4 : 1 }]}
         disabled={disabled}

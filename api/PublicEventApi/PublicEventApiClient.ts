@@ -1,55 +1,47 @@
-import axios, { AxiosInstance } from "axios";
-import { nativeApplicationVersion } from "expo-application";
-import { Platform } from "react-native";
+import {
+  AuthServiceClient,
+  ConnectAppDeviceCommand,
+} from "@partystream/client-device-auth";
 
-import { EventInfo } from "@/types/eventinfo";
+import BaseApiHandler from "../BaseApiHandler";
 
-export class PublicEventsApi {
-  public readonly EventsClient: AxiosInstance;
-
-  private abortController = new AbortController();
+export class PublicEventsApiClient extends BaseApiHandler {
+  authClient: AuthServiceClient;
 
   constructor() {
-    this.EventsClient = axios.create({
-      baseURL: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL,
+    super();
+    this.authClient = new AuthServiceClient({
+      endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
     });
-
-    this.EventsClient.interceptors.request.use(
-      (config) => {
-        config.signal = this.abortController.signal;
-        config.headers["X-Photobooth-version"] = nativeApplicationVersion;
-        config.headers["X-Photobooth-os"] = Platform.OS;
-        return config;
-      },
-      (error) => {
-        return Promise.reject(error);
-      },
-    );
   }
 
-  tryJoinEvent(withId: string): Promise<EventInfo> {
-    return new Promise<EventInfo>((resolve, reject) => {
-      this.EventsClient.post("/event/tryjoin", {
-        EventId: withId,
-      })
-        .then((response) => {
-          resolve(response.data);
+  async registerDevice(sourceID: string): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const command = new ConnectAppDeviceCommand({
+        DeviceId: this.DEV_ID,
+        ClientSecret: this.SECRET_ID || "",
+        SourceId: sourceID,
+      });
+
+      //     console.log("Register Device : ", command);
+
+      this.authClient
+        .send(command)
+        .then((result) => {
+          console.log("Result : ", result);
+
+          // if (result.Success) {
+          //   //            resolve(result.DeviceId);
+          // } else {
+          //   //          reject(result.Message); // TODO : better error handling
+          //}
         })
-        .catch((error) => {
-          reject(error);
+        .catch((err) => {
+          console.log("Error : ", err);
+          //      reject(err);
         });
     });
   }
-
-  leaveEvent(withId: string): Promise<string> {
-    return new Promise<string>((resolve, reject) => {});
-  }
-
-  getEvent(withId: string): Promise<EventInfo> {
-    return new Promise<EventInfo>((resolve, reject) => {});
-  }
 }
 
-const publicEventsApi = new PublicEventsApi();
-
-export default publicEventsApi;
+export const publicEventsApi = new PublicEventsApiClient();

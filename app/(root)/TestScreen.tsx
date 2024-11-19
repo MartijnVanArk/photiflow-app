@@ -3,6 +3,7 @@ import React, { useState } from "react";
 import { Animated, Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
+import { publicEventsApi } from "@/api/PublicEventApi/PublicEventApiClient";
 import CircularProgress from "@/components/circleprogress/CircularProgress";
 import CloseBackButton from "@/components/ui/CloseBackButton";
 import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
@@ -10,6 +11,7 @@ import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
 import WorkingIndicator from "@/components/ui/WorkingIndicator";
 import useImageViewer from "@/hooks/useImageViewer";
+import { parseCodeUrl } from "@/utils/codeurls";
 
 export default function TestScreen() {
   const [progress, setProgress] = useState(0.3);
@@ -19,6 +21,17 @@ export default function TestScreen() {
   const picRef = React.useRef<View>(null);
 
   const AnimatedImage = Animated.createAnimatedComponent(Image);
+
+  const test = () => {
+    console.log(
+      parseCodeUrl("https://code.photobooth.com/src-2lXirrvabfIf4FK"),
+    );
+
+    publicEventsApi.registerDevice("test1234");
+    //    public
+
+    // publicEventsApi.registerDevice("test1234");
+  };
 
   return (
     <>
@@ -52,6 +65,8 @@ export default function TestScreen() {
             />
           </Animated.View>
         </Pressable>
+
+        <ThemeBasicButton title="testcode" onPress={test} />
 
         <CloseBackButton />
       </SafeAreaView>

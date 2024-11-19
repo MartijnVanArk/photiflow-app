@@ -33,5 +33,5 @@ export const AppMainStorage = {
 
 export const validateEventId = (EventId: string): boolean => {
   console.log("Check Valid : ", EventId);
-  return EventId === "P1234567890";
+  return true; // EventId === "P1234567890";
 };

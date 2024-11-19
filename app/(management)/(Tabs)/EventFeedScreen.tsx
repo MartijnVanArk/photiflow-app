@@ -1,5 +1,3 @@
-import { get } from "http";
-
 import { router } from "expo-router";
 import React from "react";
 import { Animated, PixelRatio, View } from "react-native";
@@ -13,6 +11,7 @@ import useImageViewer from "@/hooks/useImageViewer";
 import useTheme from "@/hooks/useTheme";
 
 const ratio = PixelRatio.get();
+
 export default function EventFeedScreen() {
   const { viewerVisibleFast, showImageViewer, ImageModal } = useImageViewer();
 
