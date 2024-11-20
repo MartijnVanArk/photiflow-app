@@ -1,4 +1,6 @@
-export const TestEventResponse = {
+import { GetInfoCommandOutput } from "@partystream/client-app";
+
+export const TestEventResponse: GetInfoCommandOutput = {
   $metadata: { httpStatusCode: 200, attempts: 1, totalRetryDelay: 0 },
   Event: {
     BackgroundImage: {
@@ -9,8 +11,8 @@ export const TestEventResponse = {
       Preview: "L9Nm.*~qof?bxuWBD%t7M{Rj%MRj",
       Width: 752,
     },
-    CreationDate: "2024-11-18T09:04:05.000Z",
-    EventDate: "2024-11-20T00:00:00.000Z",
+    CreationDate: new Date("2024-11-18T09:04:05.000Z"),
+    EventDate: new Date("2024-11-20T00:00:00.000Z"),
     EventId: "evt-OK77YZPYw2mqZFB",
     IntroImage: {
       Height: 750,
@@ -20,7 +22,7 @@ export const TestEventResponse = {
       Preview: "L9Nm.*~qof?bxuWBD%t7M{Rj%MRj",
       Width: 752,
     },
-    LastUpdateDate: "2024-11-18T18:48:21.463Z",
+    LastUpdateDate: new Date("2024-11-18T18:48:21.463Z"),
     Name: "Party from httpyak",
     OwnerId: "auth0|671eb66b0300c968a3e4b69c",
     State: "active",
@@ -29,10 +31,10 @@ export const TestEventResponse = {
   },
   MetaData: { CdnUrl: "https://d1q5xw87zbwn28.cloudfront.net/" },
   Source: {
-    CreationDate: "2024-11-18T09:04:05.000Z",
+    CreationDate: new Date("2024-11-18T09:04:05.000Z"),
     EventId: "evt-OK77YZPYw2mqZFB",
-    LastUpdateDate: "2024-11-18T09:04:05.000Z",
-    Name: "default",
+    LastUpdateDate: new Date("2024-11-18T09:04:05.000Z"),
+    Name: "",
     OwnerId: "auth0|671eb66b0300c968a3e4b69c",
     SourceId: "src-2lXirrvabfIf4FK",
     WelcomeMessage: "",

@@ -1,7 +1,7 @@
 import * as SecureStore from "expo-secure-store";
 
-export const EVENT_ID_KEY = "event-id";
 export const GUEST_INFO_KEY = "guest-info";
+export const AUTH_TOKEN_KEY = "auth-token";
 
 export const AppMainStorage = {
   async getItem(key: string) {
@@ -29,9 +29,4 @@ export const AppMainStorage = {
       return null;
     }
   },
-};
-
-export const validateEventId = (EventId: string): boolean => {
-  console.log("Check Valid : ", EventId);
-  return true; // EventId === "P1234567890";
 };

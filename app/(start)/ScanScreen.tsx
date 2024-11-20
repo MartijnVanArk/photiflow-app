@@ -100,7 +100,7 @@ export default function ScanScreen() {
     CC.perform({
       type: CCActionTypes.TRY_JOIN_EVENT,
       payload: {
-        EventId: scanningResult.data,
+        EventId: code,
       },
     });
   };

@@ -28,6 +28,8 @@ export class PublicEventsApiClient extends BaseApiHandler {
         SourceId: sourceID,
       });
 
+      console.log("Command : ", command);
+
       this.authClient
         .send(command)
         .then((result) => {
@@ -41,7 +43,7 @@ export class PublicEventsApiClient extends BaseApiHandler {
     });
   }
 
-  async getEventInf(): Promise<GetInfoCommandOutput | null> {
+  async getEventInfo(): Promise<GetInfoCommandOutput | null> {
     return new Promise<GetInfoCommandOutput | null>((resolve, reject) => {
       const appService = new AppService({
         endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",

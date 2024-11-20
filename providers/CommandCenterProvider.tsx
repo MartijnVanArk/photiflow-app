@@ -3,17 +3,16 @@ import { PropsWithChildren, useCallback } from "react";
 import { CCActions, CCActionTypes } from "@/actions/CommandCenterActions";
 import { EventAuthActionTypes } from "@/actions/EventAuthActions";
 import { PictureActionTypes } from "@/actions/PictureActions";
+import { publicEventsApi } from "@/api/PublicEventApi/PublicEventApiClient";
 import { CommandCenterContext } from "@/context/base/CommandCenterContext";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
-import { fakeTestEvent } from "@/reducers/EventAuthReducer";
 import { InternalImageData } from "@/types/pictureinfo";
 import {
   processCameraPicture,
   processGalleryPicture,
 } from "@/utils/pictureprocessing";
-import { validateEventId } from "@/utils/system/storage";
 
 const CommandCenterProvider = ({ children }: PropsWithChildren) => {
   const { EventStateDispatch } = useEventAuthContext();
@@ -44,24 +43,57 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
             },
           });
 
-          //todo call api, for now we fake a timeout
-          setTimeout(() => {
-            if (validateEventId(action.payload.EventId)) {
-              EventStateDispatch({
-                type: EventAuthActionTypes.TRYJOINRESULT,
-                payload: {
-                  Event: fakeTestEvent,
-                },
-              });
-            } else {
-              EventStateDispatch({
-                type: EventAuthActionTypes.TRYJOINRESULT,
-                payload: {
-                  Event: null,
-                },
-              });
+          const tryJoin = async () => {
+            const didRegister = await publicEventsApi.registerDevice(
+              action.payload.EventId,
+            );
+
+            if (didRegister) {
+              const eventInfo = await publicEventsApi.getEventInfo();
+
+              if (eventInfo) {
+                EventStateDispatch({
+                  type: EventAuthActionTypes.TRYJOINRESULT,
+                  payload: {
+                    lastToken: publicEventsApi.BEARER_TOKEN,
+                    Event: eventInfo,
+                  },
+                });
+
+                return true;
+              }
             }
-          }, 2000);
+
+            EventStateDispatch({
+              type: EventAuthActionTypes.TRYJOINRESULT,
+              payload: {
+                lastToken: "",
+                Event: null,
+              },
+            });
+
+            return false;
+          };
+
+          tryJoin();
+          // //todo call api, for now we fake a timeout
+          // setTimeout(() => {
+          //   if (validateEventId(action.payload.EventId)) {
+          //     EventStateDispatch({
+          //       type: EventAuthActionTypes.TRYJOINRESULT,
+          //       payload: {
+          //         Event: fakeTestEvent,
+          //       },
+          //     });
+          //   } else {
+          //     EventStateDispatch({
+          //       type: EventAuthActionTypes.TRYJOINRESULT,
+          //       payload: {
+          //         Event: null,
+          //       },
+          //     });
+          //   }
+          // }, 2000);
 
           break;
         }

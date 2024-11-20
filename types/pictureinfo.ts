@@ -1,4 +1,4 @@
-import { EventInfo, SourceInfo } from "./eventinfo";
+//import { EventInfo, SourceInfo } from "./eventinfo";
 import { DeviceInfoTagsDefaults } from "./systypes";
 
 export type ImageTags = string[];
@@ -25,17 +25,3 @@ export type InternalImageData = {
   tags: ImageTags;
   exif: ImageExifData;
 };
-
-export interface ImageInfo {
-  EventId: string;
-  Event?: EventInfo;
-  SourceId: string;
-  Source?: SourceInfo;
-  CreateDate: string;
-  DateTime: string;
-  Width: number;
-  Height: number;
-  Message: string;
-  Preview: string;
-  Tags: ImageTags;
-}

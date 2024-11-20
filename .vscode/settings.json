@@ -13,5 +13,5 @@
   "[typescript]": {
     "editor.defaultFormatter": "esbenp.prettier-vscode"
   },
-  "cSpell.words": ["Pressable"]
+  "cSpell.words": ["blurhash", "pictureinfo", "pictureprocessing", "Pressable"]
 }

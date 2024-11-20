@@ -4,7 +4,7 @@ import { PortalHost } from "@gorhom/portal";
 import { router, useFocusEffect, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useMemo, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PixelRatio, View } from "react-native";
+import { PixelRatio, useWindowDimensions, View } from "react-native";
 import {
   SafeAreaView,
   useSafeAreaInsets,
@@ -22,12 +22,15 @@ import MutedBGPhoto from "@/components/ui/MutedBGPhoto";
 import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
-import { images } from "@/constants/images";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 import useImageViewer from "@/hooks/useImageViewer";
 import { useNavigationHelper } from "@/hooks/useNavigationHelper";
 import usePictureContext from "@/hooks/usePictureContext";
+import {
+  getPreferredEventSourceInfo,
+  makeEventImageUri,
+} from "@/utils/eventinfoutils";
 import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
 
 export default function EventScreen() {
@@ -137,9 +140,27 @@ export default function EventScreen() {
     }, [params]),
   );
 
+  const preferredInfo = getPreferredEventSourceInfo(EventState.EventInfo);
+
+  const { width, height } = useWindowDimensions();
+
+  const backGroundImage = makeEventImageUri(
+    EventState.EventInfo?.MetaData?.CdnUrl || "",
+    preferredInfo?.BackgroundImage,
+    Math.max(width, height),
+  );
+
   return (
     <KeyboardDismisWrappable>
-      <MutedBGPhoto overlayOpacity={0.6} source={images.weddingbackground}>
+      <MutedBGPhoto
+        placeholder={backGroundImage.blurhash}
+        overlayOpacity={0.75}
+        source={{
+          uri: backGroundImage.uri,
+          width: backGroundImage.width,
+          height: backGroundImage.height,
+        }}
+      >
         <ThemeStatusBar backgroundColor="transparent" />
         <SafeAreaView className="flex flex-1 justify-between p-8 h-screen gap-8 items-center relative">
           <View
@@ -194,7 +215,7 @@ export default function EventScreen() {
               {t("event-generic-welcome")}
             </ThemeText>
             <ThemeText className="text-white font-NunitoSemiBold text-4xl text-center">
-              {EventState.EventInfo?.Name}
+              {preferredInfo?.Name}
             </ThemeText>
           </View>
 

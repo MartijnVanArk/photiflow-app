@@ -35,7 +35,7 @@ export default function TestScreen() {
 
       console.log("token recived");
 
-      const data = await publicEventsApi.getEventInf();
+      const data = await publicEventsApi.getEventInfo();
 
       console.log(JSON.stringify(data));
     } else {
