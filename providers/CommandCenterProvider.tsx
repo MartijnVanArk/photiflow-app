@@ -1,4 +1,3 @@
-import axios from "axios";
 import { PropsWithChildren, useCallback } from "react";
 
 import { CCActions, CCActionTypes } from "@/actions/CommandCenterActions";
@@ -11,7 +10,6 @@ import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import { InternalImageData } from "@/types/pictureinfo";
 import {
-  loadAsJpeg,
   processCameraPicture,
   processGalleryPicture,
 } from "@/utils/pictureprocessing";
@@ -124,19 +122,15 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
           });
 
           const upload = async () => {
-            let uploadOK = false;
+            let uploadOK = true;
 
-            await new Promise((resolve) => setTimeout(resolve, 2000));
-
-            // console.log("uploading photo: ", action.payload.uri);
+            await new Promise((resolve) => setTimeout(resolve, 1000));
 
             // const url = await publicEventsApi.makeUploadUrl(
             //   action.payload.guestName,
             //   action.payload.comment,
             //   action.payload.tags,
             // );
-
-            // console.log("upload url: ", url);
 
             // if (url) {
             //   const jpeg = await loadAsJpeg(action.payload.uri);
@@ -146,8 +140,6 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
             //   if (result && result.status === 200) {
             //     uploadOK = true;
             //   }
-
-            //   console.log("upload result: ", result);
             // }
 
             pictureStateDispatch({
@@ -166,8 +158,6 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
     },
     [EventStateDispatch, addGuestInfoToImage, pictureStateDispatch],
   );
-
-  // const {pictureState, pictureState}
 
   return (
     <CommandCenterContext.Provider value={{ perform }}>

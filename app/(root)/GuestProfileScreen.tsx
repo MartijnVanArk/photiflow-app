@@ -17,12 +17,7 @@ import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { images } from "@/constants/images";
 import useGuestContext from "@/hooks/useGuestContext";
 import { GuestInfoState } from "@/reducers/GuestReducer";
-import {
-  avatarSaveURI,
-  deleteAvatar,
-  getSavedAvatarURI,
-  saveAvatar,
-} from "@/utils/avatar-utils";
+import { avatarSaveURI, deleteAvatar, saveAvatar } from "@/utils/avatar-utils";
 import { revertTransferSafeCCP } from "@/utils/pictureprocessing";
 
 export default function GuestProfileScreen() {
@@ -133,7 +128,6 @@ export default function GuestProfileScreen() {
               date={new Date(guestProfile.birthDate)}
               placeholder={t("profile-birthday-placeholder")}
               onDateChange={(date) => {
-                console.log("Got Date Update : ", date.toISOString());
                 setGuestProfile({
                   ...guestProfile,
                   birthDate: date.toISOString(),

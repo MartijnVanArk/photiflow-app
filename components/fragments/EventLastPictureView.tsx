@@ -9,7 +9,6 @@ import {
   Alert,
 } from "react-native";
 
-import usePictureContext from "@/hooks/usePictureContext";
 import { InternalImageData } from "@/types/pictureinfo";
 
 import ThemeBasicButton from "../ui/themed/ThemeBasicButton";
@@ -46,7 +45,6 @@ export default function EventLastPictureView({
     }
 
     if (!isUploading && uploadWaiting) {
-      console.log("Uploading state : ", picture.wasUploaded);
       setUploadWaiting(false);
 
       if (!picture.wasUploaded) {

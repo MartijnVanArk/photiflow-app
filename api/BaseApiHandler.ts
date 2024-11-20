@@ -1,5 +1,3 @@
-import { Platform } from "react-native";
-
 import { basicJWTChecks } from "@/utils/jwtutils";
 import { AppMainStorage } from "@/utils/system/storage";
 import { getDeviceID } from "@/utils/system/system";

@@ -32,7 +32,7 @@ export default function DateInputControl({
   const [useDate, setUseDate] = useState<Date>(date);
 
   const [tmpDate, setTmpDate] = useState<Date>(
-    !isNaN(date) ? date : new Date(),
+    !isNaN(date.getTime()) ? date : new Date(),
   );
   const [pickerVisible, setPickerVisible] = useState<boolean>(false);
 
@@ -41,7 +41,7 @@ export default function DateInputControl({
     if (onDateChange) onDateChange(date);
   };
 
-  const displayDate = !isNaN(useDate) ? useDate.toDateString() : "";
+  const displayDate = !isNaN(useDate.getTime()) ? useDate.toDateString() : "";
 
   const togglePicker = () => {
     setPickerVisible(!pickerVisible);
@@ -89,7 +89,7 @@ export default function DateInputControl({
               <RNDateTimePicker
                 maximumDate={new Date()}
                 minimumDate={new Date(1900, 0, 1)}
-                value={!isNaN(useDate) ? useDate : new Date()}
+                value={!isNaN(useDate.getTime()) ? useDate : new Date()}
                 mode="date"
                 display="spinner"
                 onChange={(event, date) => {
@@ -134,7 +134,7 @@ export default function DateInputControl({
         <RNDateTimePicker
           maximumDate={new Date()}
           minimumDate={new Date(1900, 0, 1)}
-          value={!isNaN(useDate) ? useDate : new Date()}
+          value={!isNaN(useDate.getTime()) ? useDate : new Date()}
           mode="date"
           display="spinner"
           onChange={(event, date) => {

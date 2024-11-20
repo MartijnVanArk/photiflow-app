@@ -17,7 +17,6 @@ import { View } from "react-native";
 
 import { CCActionTypes } from "@/actions/CommandCenterActions";
 import { GuestActionTypes } from "@/actions/GuestActions";
-import { PictureActionTypes } from "@/actions/PictureActions";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
@@ -34,11 +33,8 @@ export interface SendPhotoSheetProps
 
 const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
   ({ children, ...props }, sheetRef) => {
-    // const handleSheetChanges = useCallback((index: number) => {
-    // }, []);
-
     const { getVarColor } = useTheme();
-    const { pictureState, pictureStateDispatch } = usePictureContext();
+    const { pictureState } = usePictureContext();
 
     const { guestInfo, guestInfoDispatch } = useGuestContext();
 
@@ -74,7 +70,6 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
           payload: payload,
         });
 
-        //TODO: PAS CLOSEN als upload action af is ondertussen progress tonen
         internalSheetRef.current.close();
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps
@@ -101,6 +96,7 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
 
     return (
       <BottomSheet
+        {...props}
         backdropComponent={renderBackdrop}
         ref={internalSheetRef}
         enablePanDownToClose={true}

@@ -56,7 +56,6 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
               />
             )}
             <TextInput
-              editable={false}
               ref={inputRef}
               cursorColor="black"
               placeholder={placeholder}

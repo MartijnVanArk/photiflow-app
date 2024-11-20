@@ -1,35 +1,19 @@
 import { Image } from "expo-image";
-import React, { useState } from "react";
+import { useRef } from "react";
 import { Animated, Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
 
-import { publicEventsApi } from "@/api/PublicEventApi/PublicEventApiClient";
-import CircularProgress from "@/components/circleprogress/CircularProgress";
 import CloseBackButton from "@/components/ui/CloseBackButton";
-import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
-import ThemeText from "@/components/ui/themed/ThemeText";
 import WorkingIndicator from "@/components/ui/WorkingIndicator";
 import useImageViewer from "@/hooks/useImageViewer";
 
 export default function TestScreen() {
-  const [progress, setProgress] = useState(0.3);
-
   const { viewerVisible, showImageViewer, ImageModal } = useImageViewer();
 
-  const picRef = React.useRef<View>(null);
+  const picRef = useRef<View>(null);
 
   const AnimatedImage = Animated.createAnimatedComponent(Image);
-
-  const test = async () => {
-    const url = await publicEventsApi.makeUploadUrl(
-      "Martijn van Ark",
-      "Dit is weer ouderwets nachtwerk!",
-      ["gezellig", "biertje", "koppijn"],
-    );
-
-    console.log("Url : ", url);
-  };
 
   return (
     <>
@@ -37,12 +21,6 @@ export default function TestScreen() {
         <ThemeStatusBar
           style={viewerVisible ? "light" : "auto"}
           backgroundColor="transparent"
-        />
-        <ThemeText>Progress Animator</ThemeText>
-        {/* <CircularProgress progress={progress} /> */}
-        <ThemeBasicButton
-          title="random progress"
-          onPress={() => setProgress(Math.random())}
         />
 
         <WorkingIndicator />
@@ -63,8 +41,6 @@ export default function TestScreen() {
             />
           </Animated.View>
         </Pressable>
-
-        <ThemeBasicButton title="testcode" onPress={test} />
 
         <CloseBackButton />
       </SafeAreaView>

@@ -8,7 +8,7 @@ import {
   AuthServiceClient,
   ConnectAppDeviceCommand,
 } from "@partystream/client-device-auth";
-import axios, { Axios, AxiosInstance, AxiosResponse } from "axios";
+import axios, { AxiosInstance, AxiosResponse } from "axios";
 
 import BaseApiHandler from "../BaseApiHandler";
 
@@ -118,7 +118,6 @@ export class PublicEventsApiClient extends BaseApiHandler {
           },
         })
         .then((result) => {
-          console.log("upload result: ", result);
           resolve(result);
         })
         .catch((err) => {
