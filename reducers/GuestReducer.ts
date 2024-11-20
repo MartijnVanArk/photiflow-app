@@ -6,6 +6,7 @@ export type GuestInfoState = {
   email: string;
   avatar: string;
   uid: string;
+  birthDate: string;
 };
 
 export const GuestReducer = (

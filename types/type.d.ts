@@ -75,6 +75,7 @@ export interface InputControlProps extends TextInputProps {
   inputStyle?: string;
   iconStyle?: string;
   className?: string;
+  staticMode?: boolean;
 }
 
 export interface TagInputProps extends InputControlProps {

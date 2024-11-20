@@ -11,8 +11,6 @@ export const basicJWTChecks = (jwt: string): boolean => {
   const decoded = jwtDecode<JwtPayload>(jwt);
   const now = new Date().getTime() / 1000;
 
-  console.log("Decoded : ", decoded.exp, " - ", decoded.nbf, " - ", now);
-
   return (decoded.exp || 0) > now && (decoded.iat || 0) < now;
 };
 

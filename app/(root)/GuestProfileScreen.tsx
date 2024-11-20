@@ -9,6 +9,7 @@ import { GuestActionTypes } from "@/actions/GuestActions";
 import ProfileAvatarSheet from "@/components/fragments/ProfileAvatarSheet";
 import KeyboardDismisWrappable from "@/components/KeyboardDismisWrappable";
 import CloseBackButton from "@/components/ui/CloseBackButton";
+import DateInputControl from "@/components/ui/DateInputControl";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/input/InputControl";
 import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
@@ -94,18 +95,18 @@ export default function GuestProfileScreen() {
           <View className="relative flex items-center  gap-4">
             <DynamicAvatar
               size={64}
-              className="rounded-full border-8 border-primary"
+              className="rounded-full border-8 border-light"
               imageUri={guestProfile.avatar}
               name={guestProfile.name}
               fallback={images.userplaceholder}
             />
             <ThemeBasicButton
-              className="absolute z-10 border-4 border-light bottom-[-24]"
+              className="absolute z-10 border-4 border-light bottom-[32]"
               title={t("profile-avatar-change")}
               onPress={openSourceSel}
             />
           </View>
-          <View className=" flex-1 flex gap-4 justify-center">
+          <View className="flex-1 flex gap-4 ">
             <InputControl
               inputMode="text"
               autoComplete="name"
@@ -127,14 +128,25 @@ export default function GuestProfileScreen() {
               placeholder={t("profile-email-placeholder")}
               icon={{ name: "email-outline" }}
             />
-          </View>
 
+            <DateInputControl
+              date={new Date(guestProfile.birthDate)}
+              placeholder={t("profile-birthday-placeholder")}
+              onDateChange={(date) => {
+                console.log("Got Date Update : ", date.toISOString());
+                setGuestProfile({
+                  ...guestProfile,
+                  birthDate: date.toISOString(),
+                });
+              }}
+            />
+          </View>
           <ThemeBasicButton
             title={t("profile-button-save-title")}
             className="py-4"
             onPress={saveProfile}
           />
-          <ThemeBasicButton
+          {/* <ThemeBasicButton
             title="AV INFO"
             className="py-4"
             onPress={() => getSavedAvatarURI(guestProfile.avatar)}
@@ -143,7 +155,7 @@ export default function GuestProfileScreen() {
             title="del"
             className="py-4"
             onPress={() => deleteAvatar(guestProfile.avatar)}
-          />
+          /> */}
         </View>
 
         <CloseBackButton backGround="transparent" />

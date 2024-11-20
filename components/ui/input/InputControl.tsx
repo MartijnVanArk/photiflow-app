@@ -19,6 +19,7 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
       iconStyle,
       className,
       placeholder,
+      staticMode,
       ...props
     },
     ref,
@@ -33,7 +34,7 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
         behavior={Platform.OS === "ios" ? "padding" : "height"}
         keyboardVerticalOffset={100}
       >
-        <View className="my-2 w-full">
+        <View className="my-2 w-full" accessible={false}>
           {label && (
             <ThemeText
               className={`text-textsecondary font-NunitoSemiBold mb-3 ${labelStyle}`}
@@ -42,6 +43,7 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
             </ThemeText>
           )}
           <View
+            accessible={false}
             className={`flex flex-row justify-start items-center relative bg-inputbg rounded-xl border border-overlay focus:border-overlay ${containerStyle}`}
           >
             {icon && icon.name && (
@@ -54,6 +56,7 @@ const InputControl = forwardRef<TextInput, InputControlProps>(
               />
             )}
             <TextInput
+              editable={false}
               ref={inputRef}
               cursorColor="black"
               placeholder={placeholder}
