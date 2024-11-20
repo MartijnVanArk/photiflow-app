@@ -41,6 +41,9 @@
     "enter-pin-title": "Geef uw pin",
     "enter-pin-message": "Uw pincode is nodig om verder te gaan",
     "enter-pin-enter-pin": "pin invoeren",
-    "screen-event-my-pictures": "Jouw foto's"
+    "screen-event-my-pictures": "Jouw foto's",
+    "event-picture-uploading": "Uploaden...",
+    "event-picture-upload-error-title": "Fout tijdens uploaden",
+    "event-picture-upload-error-message": "Er is iets mis gegaan tijdens het uploaden van je foto"
   }
 }

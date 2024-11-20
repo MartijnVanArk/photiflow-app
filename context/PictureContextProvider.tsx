@@ -7,6 +7,7 @@ import { PictureContext } from "./base/BasePictureContext";
 export const PictureContextProvider = ({ children }: PropsWithChildren) => {
   const [pictureState, pictureStateDispatch] = useReducer(PictureReducer, {
     lastPicture: null,
+    isUploading: false,
   });
 
   return (

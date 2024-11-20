@@ -21,7 +21,7 @@ const EventPictureToolbar = ({ params }: EventPictureToolbarProps) => {
     let result = await ImagePicker.launchImageLibraryAsync({
       base64: false,
       exif: true,
-      mediaTypes: ImagePicker.MediaTypeOptions.Images,
+      mediaTypes: ["images"],
       legacy: true,
       allowsEditing: false,
       aspect: [16, 9],

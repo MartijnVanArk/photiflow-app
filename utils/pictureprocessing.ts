@@ -1,12 +1,27 @@
 import { CameraCapturedPicture } from "expo-camera";
+import * as FileSystem from "expo-file-system";
 import { ImagePickerResult } from "expo-image-picker";
 import base64 from "react-native-base64";
 
 import { ImageExifData, InternalImageData } from "@/types/pictureinfo";
 import { EmptyDeviceTagInfo } from "@/types/systypes";
+import { Base64Binary } from "@/utils/base64bin";
 import { getMimeTypeFromExtension } from "@/utils/generic/mimetypes";
 
 import { getDeviceInfoTagsDefault } from "./system/system";
+
+export const loadAsJpeg = async (uri: string): Promise<any> => {
+  return new Promise((resolve, reject) => {
+    const prepFile = async () => {
+      const data = await FileSystem.readAsStringAsync(uri, {
+        encoding: FileSystem.EncodingType.Base64,
+      });
+
+      resolve(Base64Binary.decode(data));
+    };
+    prepFile();
+  });
+};
 
 export const encodeSafePicUri = (uri: string): string => {
   return base64.encode(uri);

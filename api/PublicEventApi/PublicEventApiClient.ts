@@ -1,5 +1,6 @@
 import {
   AppService,
+  CreateFileUploadUrlCommand,
   GetInfoCommand,
   GetInfoCommandOutput,
 } from "@partystream/client-app";
@@ -7,17 +8,22 @@ import {
   AuthServiceClient,
   ConnectAppDeviceCommand,
 } from "@partystream/client-device-auth";
+import axios, { Axios, AxiosInstance, AxiosResponse } from "axios";
 
 import BaseApiHandler from "../BaseApiHandler";
 
 export class PublicEventsApiClient extends BaseApiHandler {
   authClient: AuthServiceClient;
 
+  public readonly uploadClient: AxiosInstance;
+
   constructor() {
     super("PublicEventsApiClientToken");
     this.authClient = new AuthServiceClient({
       endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
     });
+
+    this.uploadClient = axios.create();
   }
 
   async registerDevice(sourceID: string): Promise<boolean> {
@@ -27,8 +33,6 @@ export class PublicEventsApiClient extends BaseApiHandler {
         ClientSecret: this.SECRET_ID || "",
         SourceId: sourceID,
       });
-
-      console.log("Command : ", command);
 
       this.authClient
         .send(command)
@@ -57,7 +61,64 @@ export class PublicEventsApiClient extends BaseApiHandler {
       appService
         .send(cmd)
         .then((result) => {
-          console.log("Result : ", result);
+          resolve(result);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+          resolve(null);
+        });
+    });
+  }
+
+  async makeUploadUrl(
+    guestName: string,
+    guestComment: string,
+    guestTags: string[],
+  ): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const tags: Record<string, string> = {};
+
+      guestTags.forEach((tag) => {
+        tags[tag] = "true";
+      });
+
+      const cmd = new CreateFileUploadUrlCommand({
+        Message: guestComment,
+        Tags: tags,
+      });
+
+      const appService = new AppService({
+        endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
+        token: async () => {
+          return { token: this.BEARER_TOKEN };
+        },
+      });
+
+      appService
+        .send(cmd)
+        .then((result) => {
+          resolve(result.Url);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+          resolve("");
+        });
+    });
+  }
+
+  async uploadJpegPhoto(
+    url: string,
+    file: any,
+  ): Promise<AxiosResponse<any, any> | null> {
+    return new Promise<AxiosResponse<any, any> | null>((resolve, reject) => {
+      this.uploadClient
+        .put(url, file, {
+          headers: {
+            "Content-Type": "image/jpeg",
+          },
+        })
+        .then((result) => {
+          console.log("upload result: ", result);
           resolve(result);
         })
         .catch((err) => {

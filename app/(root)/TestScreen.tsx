@@ -1,5 +1,4 @@
 import { Image } from "expo-image";
-import { jwtDecode, JwtPayload } from "jwt-decode";
 import React, { useState } from "react";
 import { Animated, Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -12,7 +11,6 @@ import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import ThemeText from "@/components/ui/themed/ThemeText";
 import WorkingIndicator from "@/components/ui/WorkingIndicator";
 import useImageViewer from "@/hooks/useImageViewer";
-import { parseCodeUrl } from "@/utils/codeurls";
 
 export default function TestScreen() {
   const [progress, setProgress] = useState(0.3);
@@ -24,25 +22,13 @@ export default function TestScreen() {
   const AnimatedImage = Animated.createAnimatedComponent(Image);
 
   const test = async () => {
-    console.log(
-      parseCodeUrl("https://code.photobooth.com/src-2lXirrvabfIf4FK"),
+    const url = await publicEventsApi.makeUploadUrl(
+      "Martijn van Ark",
+      "Dit is weer ouderwets nachtwerk!",
+      ["gezellig", "biertje", "koppijn"],
     );
 
-    const token = await publicEventsApi.registerDevice("src-2lXirrvabfIf4FK");
-
-    if (token) {
-      console.log(publicEventsApi.BEARER_TOKEN);
-
-      console.log("token recived");
-
-      const data = await publicEventsApi.getEventInfo();
-
-      console.log(JSON.stringify(data));
-    } else {
-      console.log("no token");
-    }
-
-    // publicEventsApi.registerDevice("test1234");
+    console.log("Url : ", url);
   };
 
   return (

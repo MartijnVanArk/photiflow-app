@@ -20,14 +20,18 @@ export type ClearPictureAction = {
 
 export type PictureWasUploadedAction = {
   type: PictureActionTypes.WAS_UPLOADED;
+  payload: {
+    success: boolean;
+  };
 };
 
 export type SetNameAndCommentAction = {
   type: PictureActionTypes.SET_PRE_UPLOAD_INFO;
   payload: {
-    name: string;
+    guestName: string;
     comment: string;
     tags: string[];
+    uri: string;
   };
 };
 

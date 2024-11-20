@@ -1,4 +1,3 @@
-//import { EventInfo, SourceInfo } from "./eventinfo";
 import { DeviceInfoTagsDefaults } from "./systypes";
 
 export type ImageTags = string[];

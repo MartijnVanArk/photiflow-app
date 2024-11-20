@@ -15,8 +15,10 @@ import {
 import { useTranslation } from "react-i18next";
 import { View } from "react-native";
 
+import { CCActionTypes } from "@/actions/CommandCenterActions";
 import { GuestActionTypes } from "@/actions/GuestActions";
 import { PictureActionTypes } from "@/actions/PictureActions";
+import useCommandCenter from "@/hooks/useCommandCenter";
 import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import useTheme from "@/hooks/useTheme";
@@ -51,6 +53,8 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
       () => internalSheetRef.current as BottomSheet,
     );
 
+    const CC = useCommandCenter();
+
     const sendClick = useCallback(() => {
       if (sheetRef && internalSheetRef.current) {
         guestInfoDispatch({
@@ -58,16 +62,19 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
           payload: { name: guestName },
         });
 
-        const payload = { name: guestName, comment: comment, tags: tags };
+        const payload = {
+          guestName: guestName,
+          comment: comment,
+          tags: tags,
+          uri: pictureState.lastPicture?.uri || "",
+        };
 
-        pictureStateDispatch({
-          type: PictureActionTypes.SET_PRE_UPLOAD_INFO,
+        CC.perform({
+          type: CCActionTypes.UPLOAD_PHOTO,
           payload: payload,
         });
 
-        //todo: make bae64 ?? and upload ? via commandcenter wich should set the final WAS_UPLOADED .. als o popup a modal waiting screen
-
-        pictureStateDispatch({ type: PictureActionTypes.WAS_UPLOADED });
+        //TODO: PAS CLOSEN als upload action af is ondertussen progress tonen
         internalSheetRef.current.close();
       }
       // eslint-disable-next-line react-hooks/exhaustive-deps

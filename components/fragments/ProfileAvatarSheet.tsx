@@ -70,7 +70,7 @@ const ProfileAvatarSheet = forwardRef<BottomSheet, ProfileAvatarSheetProps>(
       let result = await ImagePicker.launchImageLibraryAsync({
         base64: false,
         exif: true,
-        mediaTypes: ImagePicker.MediaTypeOptions.Images,
+        mediaTypes: ["images"],
         legacy: true,
         allowsEditing: true,
         aspect: [1, 1],

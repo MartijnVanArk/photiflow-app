@@ -38,7 +38,10 @@
     "management-tab-moderation": "Moderation",
     "management-tab-feed": "Feed",
     "enter-pin-title": "Provide your pin",
-    "enter-pin-message": "Yout pin is needed to continue",
-    "enter-pin-enter-pin": "enter pin"
+    "enter-pin-message": "Your pin is needed to continue",
+    "enter-pin-enter-pin": "enter pin",
+    "event-picture-uploading": "Uploading...",
+    "event-picture-upload-error-title": "Error during upload",
+    "event-picture-upload-error-message": "Something went wrong while uploading your picture"
   }
 }

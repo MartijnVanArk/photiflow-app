@@ -2283,9 +2283,9 @@ __metadata:
   languageName: node
   linkType: hard
 
-"@partystream/client-app@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "@partystream/client-app@npm:0.0.4"
+"@partystream/client-app@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@partystream/client-app@npm:0.0.5"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -2321,13 +2321,13 @@ __metadata:
     "@smithy/util-retry": "npm:^3.0.10"
     "@smithy/util-utf8": "npm:^3.0.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/d785812cbafc3cea4d870d21c1bb88e401975b1b2fda43e1eca0f0bfade1d609cf3b60b01a7c9b88177de8b530d63546c6e3b7b42bb32fb923985daa2bcba16b
+  checksum: 10c0/de63e6b875eae52f4a782ee85433e2c3a76a58b5a8e25bad54d26767693528a32cd8af319767b17e90959df8c9134ce4e326134582a1d8aba903f77e6b328be5
   languageName: node
   linkType: hard
 
-"@partystream/client-device-auth@npm:^0.0.4":
-  version: 0.0.4
-  resolution: "@partystream/client-device-auth@npm:0.0.4"
+"@partystream/client-device-auth@npm:^0.0.5":
+  version: 0.0.5
+  resolution: "@partystream/client-device-auth@npm:0.0.5"
   dependencies:
     "@aws-crypto/sha256-browser": "npm:5.2.0"
     "@aws-crypto/sha256-js": "npm:5.2.0"
@@ -2363,7 +2363,7 @@ __metadata:
     "@smithy/util-retry": "npm:^3.0.10"
     "@smithy/util-utf8": "npm:^3.0.0"
     tslib: "npm:^2.6.2"
-  checksum: 10c0/bafbb9901590809a8a5ff4a73fb9bd92096fd357c48ed878a2f1126958396324e745d934df51fcbb89e544bcf99188f4597b5176454228c148e19d3747ed3b22
+  checksum: 10c0/65dcf9cbe9b94986a29975e23decf080c33ce5dc86ad7aec4872c2bf011600e19fc0f1504735a8479f00a2b90b249fdfab36d94bbd68a5db9a8ed26371d1d3b5
   languageName: node
   linkType: hard
 
@@ -4377,6 +4377,17 @@ __metadata:
   dependencies:
     possible-typed-array-names: "npm:^1.0.0"
   checksum: 10c0/d07226ef4f87daa01bd0fe80f8f310982e345f372926da2e5296aecc25c41cab440916bbaa4c5e1034b453af3392f67df5961124e4b586df1e99793a1374bdb2
+  languageName: node
+  linkType: hard
+
+"axios@npm:^1.7.7":
+  version: 1.7.7
+  resolution: "axios@npm:1.7.7"
+  dependencies:
+    follow-redirects: "npm:^1.15.6"
+    form-data: "npm:^4.0.0"
+    proxy-from-env: "npm:^1.1.0"
+  checksum: 10c0/4499efc89e86b0b49ffddc018798de05fab26e3bf57913818266be73279a6418c3ce8f9e934c7d2d707ab8c095e837fc6c90608fb7715b94d357720b5f568af7
   languageName: node
   linkType: hard
 
@@ -7108,6 +7119,16 @@ __metadata:
   version: 0.252.0
   resolution: "flow-parser@npm:0.252.0"
   checksum: 10c0/ac3bdb297012910bd979599bcc16aea243fcaf5dc911046397c322dd79e59039066b8d4f44031eb35f5c93270a68b6475ea75ca980853f573d46baf60ddf3d8b
+  languageName: node
+  linkType: hard
+
+"follow-redirects@npm:^1.15.6":
+  version: 1.15.9
+  resolution: "follow-redirects@npm:1.15.9"
+  peerDependenciesMeta:
+    debug:
+      optional: true
+  checksum: 10c0/5829165bd112c3c0e82be6c15b1a58fa9dcfaede3b3c54697a82fe4a62dd5ae5e8222956b448d2f98e331525f05d00404aba7d696de9e761ef6e42fdc780244f
   languageName: node
   linkType: hard
 
@@ -10827,8 +10848,8 @@ __metadata:
     "@expo/vector-icons": "npm:^14.0.2"
     "@gorhom/bottom-sheet": "npm:^5.0.5"
     "@gorhom/portal": "npm:^1.0.14"
-    "@partystream/client-app": "npm:^0.0.4"
-    "@partystream/client-device-auth": "npm:^0.0.4"
+    "@partystream/client-app": "npm:^0.0.5"
+    "@partystream/client-device-auth": "npm:^0.0.5"
     "@react-navigation/bottom-tabs": "npm:^7.0.0"
     "@react-navigation/native": "npm:^7.0.0"
     "@react-navigation/stack": "npm:^7.0.0"
@@ -10839,6 +10860,7 @@ __metadata:
     "@types/react-native-torch": "npm:^1.1.2"
     "@types/react-test-renderer": "npm:^18.0.7"
     "@types/url-parse": "npm:^1.4.11"
+    axios: "npm:^1.7.7"
     babel-plugin-inline-import: "npm:^3.0.0"
     blob-polyfill: "npm:^9.0.20240710"
     eslint: "npm:^8.57.0"
@@ -11170,6 +11192,13 @@ __metadata:
     object-assign: "npm:^4.1.1"
     react-is: "npm:^16.13.1"
   checksum: 10c0/59ece7ca2fb9838031d73a48d4becb9a7cc1ed10e610517c7d8f19a1e02fa47f7c27d557d8a5702bec3cfeccddc853579832b43f449e54635803f277b1c78077
+  languageName: node
+  linkType: hard
+
+"proxy-from-env@npm:^1.1.0":
+  version: 1.1.0
+  resolution: "proxy-from-env@npm:1.1.0"
+  checksum: 10c0/fe7dd8b1bdbbbea18d1459107729c3e4a2243ca870d26d34c2c1bcd3e4425b7bcc5112362df2d93cc7fb9746f6142b5e272fd1cc5c86ddf8580175186f6ad42b
   languageName: node
   linkType: hard
 

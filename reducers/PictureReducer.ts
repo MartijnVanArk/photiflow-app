@@ -4,6 +4,7 @@ import { emptyImage } from "@/utils/pictureprocessing";
 import { mergeTags } from "@/utils/tagutils";
 
 export type PictureState = {
+  isUploading: boolean;
   lastPicture: InternalImageData | null;
 };
 
@@ -23,7 +24,11 @@ const PictureReducer = (
       if (state.lastPicture) {
         return {
           ...state,
-          lastPicture: { ...state.lastPicture, wasUploaded: true },
+          isUploading: false,
+          lastPicture: {
+            ...state.lastPicture,
+            wasUploaded: action.payload.success,
+          },
         };
       }
       break;
@@ -34,10 +39,11 @@ const PictureReducer = (
         newLp.tags = mergeTags(action.payload.tags, newLp.tags);
 
         newLp.comment = action.payload.comment;
-        newLp.guest.name = action.payload.name;
+        newLp.guest.name = action.payload.guestName;
 
         return {
           ...state,
+          isUploading: true,
           lastPicture: newLp,
         };
       }

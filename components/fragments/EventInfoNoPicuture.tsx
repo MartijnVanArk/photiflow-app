@@ -26,7 +26,7 @@ const EventInfoNoPicture = () => {
   return (
     <View className="flex-1 w-full items-center justify-center">
       <ThemeText className="text-3xl text-center text-white">
-        [notfound]
+        {preferredInfo?.WelcomeTitle}
       </ThemeText>
       <Image
         placeholder={introImage.blurhash}

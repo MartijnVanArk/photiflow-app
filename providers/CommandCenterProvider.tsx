@@ -1,3 +1,4 @@
+import axios from "axios";
 import { PropsWithChildren, useCallback } from "react";
 
 import { CCActions, CCActionTypes } from "@/actions/CommandCenterActions";
@@ -10,6 +11,7 @@ import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import { InternalImageData } from "@/types/pictureinfo";
 import {
+  loadAsJpeg,
   processCameraPicture,
   processGalleryPicture,
 } from "@/utils/pictureprocessing";
@@ -76,24 +78,6 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
           };
 
           tryJoin();
-          // //todo call api, for now we fake a timeout
-          // setTimeout(() => {
-          //   if (validateEventId(action.payload.EventId)) {
-          //     EventStateDispatch({
-          //       type: EventAuthActionTypes.TRYJOINRESULT,
-          //       payload: {
-          //         Event: fakeTestEvent,
-          //       },
-          //     });
-          //   } else {
-          //     EventStateDispatch({
-          //       type: EventAuthActionTypes.TRYJOINRESULT,
-          //       payload: {
-          //         Event: null,
-          //       },
-          //     });
-          //   }
-          // }, 2000);
 
           break;
         }
@@ -131,6 +115,51 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
               });
             },
           );
+          break;
+        }
+        case CCActionTypes.UPLOAD_PHOTO: {
+          pictureStateDispatch({
+            type: PictureActionTypes.SET_PRE_UPLOAD_INFO,
+            payload: action.payload,
+          });
+
+          const upload = async () => {
+            let uploadOK = false;
+
+            await new Promise((resolve) => setTimeout(resolve, 2000));
+
+            // console.log("uploading photo: ", action.payload.uri);
+
+            // const url = await publicEventsApi.makeUploadUrl(
+            //   action.payload.guestName,
+            //   action.payload.comment,
+            //   action.payload.tags,
+            // );
+
+            // console.log("upload url: ", url);
+
+            // if (url) {
+            //   const jpeg = await loadAsJpeg(action.payload.uri);
+
+            //   const result = await publicEventsApi.uploadJpegPhoto(url, jpeg);
+
+            //   if (result && result.status === 200) {
+            //     uploadOK = true;
+            //   }
+
+            //   console.log("upload result: ", result);
+            // }
+
+            pictureStateDispatch({
+              type: PictureActionTypes.WAS_UPLOADED,
+              payload: {
+                success: uploadOK,
+              },
+            });
+          };
+
+          upload();
+
           break;
         }
       }

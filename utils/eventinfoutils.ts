@@ -37,8 +37,9 @@ export const makeEventImageUri = (
 export interface PreferredEventSourceInfo {
   Name: string;
   WelcomeMessage: string;
-  IntroImage: EventImage | undefined;
-  BackgroundImage: EventImage | undefined;
+  WelcomeTitle: string;
+  IntroImage: EventImage;
+  BackgroundImage: EventImage;
 }
 export const getPreferredEventSourceInfo = (
   info: GetInfoCommandOutput | null,
@@ -48,6 +49,7 @@ export const getPreferredEventSourceInfo = (
   const res: PreferredEventSourceInfo = {
     Name: info.Event.Name,
     WelcomeMessage: info.Event.WelcomeMessage,
+    WelcomeTitle: info.Event.WelcomeTitle,
     IntroImage: info.Event.IntroImage,
     BackgroundImage: info.Event.BackgroundImage,
   };
@@ -57,10 +59,10 @@ export const getPreferredEventSourceInfo = (
 
   if (info.Source.IntroImage) res.IntroImage = info.Source.IntroImage;
 
-  if (info.Source.Name) res.Name = info.Source.Name;
-
   if (info.Source.WelcomeMessage)
     res.WelcomeMessage = info.Source.WelcomeMessage;
+
+  if (info.Source.WelcomeTitle) res.WelcomeTitle = info.Source.WelcomeTitle;
 
   return res;
 };

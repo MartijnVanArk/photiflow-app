@@ -2,12 +2,14 @@ import { getLocales } from "expo-localization";
 import i18n from "i18next";
 import { initReactI18next } from "react-i18next";
 
+import de from "@/languages/de.json";
 import en from "@/languages/en.json";
 import nl from "@/languages/nl.json";
 
 const resources = {
   en: en,
   nl: nl,
+  de: de,
 };
 
 const supportedLanguages = Object.keys(resources);
@@ -43,7 +45,7 @@ export const initLanguages = () => {
     //@ts-expect-error types thing
     .use(LangDetect)
     .init({
-      //fallbackLng: fallBackLang, /// in devmode uit laten om makkelijk te zien waar wat mist etc
+      //fallbackLng: fallBackLang, ///TODO: in devmode uit laten om makkelijk te zien waar wat mist etc
       lng: undefined, // anders geen detector
       compatibilityJSON: "v3",
       resources,

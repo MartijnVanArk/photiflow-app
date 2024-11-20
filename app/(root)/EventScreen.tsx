@@ -222,6 +222,7 @@ export default function EventScreen() {
           {!hasLastPicture && <EventInfoNoPicture />}
           {hasLastPicture && (
             <EventLastPictureView
+              isUploading={pictureState.isUploading}
               onPictureClick={(uri: string) => {
                 showImageViewer(uri);
               }}
