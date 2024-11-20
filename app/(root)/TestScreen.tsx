@@ -1,4 +1,5 @@
 import { Image } from "expo-image";
+import { jwtDecode, JwtPayload } from "jwt-decode";
 import React, { useState } from "react";
 import { Animated, Pressable, View } from "react-native";
 import { SafeAreaView } from "react-native-safe-area-context";
@@ -13,7 +14,6 @@ import WorkingIndicator from "@/components/ui/WorkingIndicator";
 import useImageViewer from "@/hooks/useImageViewer";
 import { parseCodeUrl } from "@/utils/codeurls";
 
-import { jwtDecode, JwtPayload } from "jwt-decode";
 export default function TestScreen() {
   const [progress, setProgress] = useState(0.3);
 
@@ -32,7 +32,12 @@ export default function TestScreen() {
 
     if (token) {
       console.log(publicEventsApi.BEARER_TOKEN);
+
       console.log("token recived");
+
+      const data = await publicEventsApi.getEventInf();
+
+      console.log(JSON.stringify(data));
     } else {
       console.log("no token");
     }

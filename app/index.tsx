@@ -1,4 +1,6 @@
 import "react-native-get-random-values";
+import "blob-polyfill";
+
 import { Redirect } from "expo-router";
 
 import useEventAuthContext from "@/hooks/useEventAuthContext";

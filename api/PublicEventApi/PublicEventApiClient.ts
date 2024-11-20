@@ -1,4 +1,9 @@
 import {
+  AppService,
+  GetInfoCommand,
+  GetInfoCommandOutput,
+} from "@partystream/client-app";
+import {
   AuthServiceClient,
   ConnectAppDeviceCommand,
 } from "@partystream/client-device-auth";
@@ -32,6 +37,30 @@ export class PublicEventsApiClient extends BaseApiHandler {
         .catch((err) => {
           console.log("Error : ", err);
           resolve(false);
+        });
+    });
+  }
+
+  async getEventInf(): Promise<GetInfoCommandOutput | null> {
+    return new Promise<GetInfoCommandOutput | null>((resolve, reject) => {
+      const appService = new AppService({
+        endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
+        token: async () => {
+          return { token: this.BEARER_TOKEN };
+        },
+      });
+
+      const cmd = new GetInfoCommand({});
+
+      appService
+        .send(cmd)
+        .then((result) => {
+          console.log("Result : ", result);
+          resolve(result);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+          resolve(null);
         });
     });
   }
