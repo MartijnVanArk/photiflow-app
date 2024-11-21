@@ -20,6 +20,7 @@ import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import useCommandCenter from "@/hooks/useCommandCenter";
 import useEventAuthContext from "@/hooks/useEventAuthContext";
 import { parseCodeUrl } from "@/utils/codeurls";
+import { includeTrailingSlash } from "@/utils/stringutils";
 
 const { width: winWidth, height: winHeight } = Dimensions.get("window");
 
@@ -71,10 +72,14 @@ export default function ScanScreen() {
   const fakeCode = async () => {
     if (EventState.isTryingToJoin) return;
 
+    const url =
+      includeTrailingSlash(process.env.EXPO_PUBLIC_BASE_CODE_DOMAIN || "") +
+      "src-2lXirrvabfIf4FK";
+
     const fake: BarcodeScanningResult = {
       type: "qr",
-      data: "https://code.photobooth.com/src-2lXirrvabfIf4FK",
-      raw: "https://code.photobooth.com/src-2lXirrvabfIf4FK",
+      data: url,
+      raw: url,
       bounds: {
         origin: { x: 0, y: 0 },
         size: { width: 10, height: 10 },

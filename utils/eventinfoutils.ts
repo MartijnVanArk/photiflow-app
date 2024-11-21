@@ -40,6 +40,7 @@ export interface PreferredEventSourceInfo {
   WelcomeTitle: string;
   IntroImage: EventImage;
   BackgroundImage: EventImage;
+  SourceID: string;
 }
 export const getPreferredEventSourceInfo = (
   info: GetInfoCommandOutput | null,
@@ -52,6 +53,7 @@ export const getPreferredEventSourceInfo = (
     WelcomeTitle: info.Event.WelcomeTitle,
     IntroImage: info.Event.IntroImage,
     BackgroundImage: info.Event.BackgroundImage,
+    SourceID: info.Event.EventId,
   };
 
   if (info.Source.BackgroundImage)
@@ -63,6 +65,8 @@ export const getPreferredEventSourceInfo = (
     res.WelcomeMessage = info.Source.WelcomeMessage;
 
   if (info.Source.WelcomeTitle) res.WelcomeTitle = info.Source.WelcomeTitle;
+
+  if (info.Source.SourceId) res.SourceID = info.Source.SourceId;
 
   return res;
 };

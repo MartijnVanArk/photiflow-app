@@ -197,6 +197,11 @@ export default function EventScreen() {
                 icon={{ name: "cog" }}
                 onPress={enterPin}
               />
+              <PopupMenuItem
+                titlei18n="event-menu-share-event"
+                icon={{ name: "share-variant" }}
+                onPress={() => router.push("/(root)/ShareEventScreen")}
+              />
             </PopupMenu>
           </View>
 

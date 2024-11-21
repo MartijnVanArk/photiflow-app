@@ -25,6 +25,7 @@ const Layout = () => {
         options={{ headerShown: false }}
       />
       <Stack.Screen name="MyPicturesScreen" options={{ headerShown: false }} />
+      <Stack.Screen name="ShareEventScreen" options={{ headerShown: false }} />
       <Stack.Screen name="TestScreen" options={{ headerShown: false }} />
     </Stack>
   );

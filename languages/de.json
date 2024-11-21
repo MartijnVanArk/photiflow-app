@@ -17,6 +17,7 @@
     "event-generic-upload": "Hochladen",
     "event-menu-profile": "Profil",
     "event-menu-management": "Verwaltung",
+    "event-menu-share-event": "Ereignis teilen",
     "event-enter-management-pin-title": "Verwaltungspin eingeben",
     "event-enter-management-pin-message": "Der Verwaltungspin wird benötigt, um fortzufahren",
     "profile-name-placeholder": "dein Name",
@@ -48,6 +49,11 @@
     "tag-length-error-title": "Tag zu kurz",
     "tag-length-error-message": "Tags sollten mindestens {{minTagLen}} Zeichen lang sein",
     "tag-limit-error-title": "Zu viele Tags",
-    "tag-limit-error-message": "Du kannst maximal {{maxTagCount}} Tags hinzufügen"
+    "tag-limit-error-message": "Du kannst maximal {{maxTagCount}} Tags hinzufügen",
+    "share-event-screen-title": "Event teilen",
+    "share-event-screen-subtitle": "Ereignisdetails",
+    "share-event-screen-introduction": "Zeige den QR-Code an andere Menschen, damit sie ihn scannen und auch teilnehmen",
+    "share-event-screen-alt-linkshareinfo": "Du kannst die Link mit jemandem teilen, indem du hier klickst",
+    "share-event-screen-button-share-link": "Link teilen"
   }
 }

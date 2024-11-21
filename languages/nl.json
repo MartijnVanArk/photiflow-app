@@ -18,6 +18,7 @@
     "event-menu-profile": "Profiel",
     "event-menu-management": "Beheer",
     "event-menu-mypictures": "Mijn foto's",
+    "event-menu-share-event": "Deel Evenement",
     "event-enter-management-pin-title": "Geef beheerder pin",
     "event-enter-management-pin-message": "De beheerder pin is nodig om verder te gaan",
     "profile-name-placeholder": "je naam",
@@ -50,6 +51,11 @@
     "tag-length-error-title": "Tag te kort",
     "tag-length-error-message": "Tags moeten minimaal {{minTagLen}} tekens lang zijn",
     "tag-limit-error-title": "Te veel tags",
-    "tag-limit-error-message": "Je kan maximaal {{maxTagCount}} tags toevoegen"
+    "tag-limit-error-message": "Je kan maximaal {{maxTagCount}} tags toevoegen",
+    "share-event-screen-title": "Deel Event",
+    "share-event-screen-subtitle": "Evenement details",
+    "share-event-screen-introduction": "Toon de QR code aan andere mensen zodat ze hem kunnen scannen om ook mee te doen",
+    "share-event-screen-alt-linkshareinfo": "Je kunt ook de link met iemand delen door hieronder te klikken",
+    "share-event-screen-button-share-link": "Link delen"
   }
 }

@@ -17,6 +17,7 @@
     "event-generic-upload": "Upload",
     "event-menu-profile": "Profile",
     "event-menu-management": "Management",
+    "event-menu-share-event": "Share Event",
     "event-enter-management-pin-title": "Enter Management Pin",
     "event-enter-management-pin-message": "The management pin is needed to continue",
     "profile-name-placeholder": "your name",
@@ -48,6 +49,11 @@
     "tag-length-error-title": "Tag too short",
     "tag-length-error-message": "Tags must be at least {{minTagLen}} characters long",
     "tag-limit-error-title": "Too many tags",
-    "tag-limit-error-message": "You can only add {{maxTagCount}} tags"
+    "tag-limit-error-message": "You can only add {{maxTagCount}} tags",
+    "share-event-screen-title": "Share Event",
+    "share-event-screen-subtitle": "Event details",
+    "share-event-screen-introduction": "Show the QR code to other people so they can join you",
+    "share-event-screen-alt-linkshareinfo": "You can also share the link with someone by clicking here",
+    "share-event-screen-button-share-link": "Share Link"
   }
 }
