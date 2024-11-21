@@ -16,8 +16,8 @@ export default class BaseApiHandler {
     //       android: process.env.EXPO_PUBLIC_CLIENT_ANDROID,
     //     });
 
-    this.SECRET_ID =
-      "551234a5392d6ffe20c377f2478a000703c0c22af638e74db44eebde0598ae27";
+    this.SECRET_ID = process.env.EXPO_PUBLIC_CLIENT_MVATESTING;
+    // "551234a5392d6ffe20c377f2478a000703c0c22af638e74db44eebde0598ae27";
 
     this.JWT_TOKEN_KEY = tokenKey;
 

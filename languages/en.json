@@ -42,6 +42,10 @@
     "enter-pin-enter-pin": "enter pin",
     "event-picture-uploading": "Uploading...",
     "event-picture-upload-error-title": "Error during upload",
-    "event-picture-upload-error-message": "Something went wrong while uploading your picture"
+    "event-picture-upload-error-message": "Something went wrong while uploading your picture",
+    "tag-length-error-title": "Tag too short",
+    "tag-length-error-message": "Tags must be at least {{minTagLen}} characters long",
+    "tag-limit-error-title": "Too many tags",
+    "tag-limit-error-message": "You can only add {{maxTagCount}} tags",
   }
 }

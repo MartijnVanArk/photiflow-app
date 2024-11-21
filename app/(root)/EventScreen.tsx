@@ -200,16 +200,18 @@ export default function EventScreen() {
             </PopupMenu>
           </View>
 
-          <ThemeBasicButton
-            title="manage"
-            onPress={() =>
-              router.push("/(management)/(Tabs)/EventSettingsScreen")
-            }
-          />
-          <ThemeBasicButton
-            title="test"
-            onPress={() => router.push("/(root)/TestScreen")}
-          />
+          <View className="flex flex-row gap-4">
+            <ThemeBasicButton
+              title="manage"
+              onPress={() =>
+                router.push("/(management)/(Tabs)/EventSettingsScreen")
+              }
+            />
+            <ThemeBasicButton
+              title="test"
+              onPress={() => router.push("/(root)/TestScreen")}
+            />
+          </View>
 
           <View className="flex items-center gap-4 pt-8">
             <ThemeText className="text-slate-300 text-xl">

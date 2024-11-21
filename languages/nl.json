@@ -44,6 +44,10 @@
     "screen-event-my-pictures": "Jouw foto's",
     "event-picture-uploading": "Uploaden...",
     "event-picture-upload-error-title": "Fout tijdens uploaden",
-    "event-picture-upload-error-message": "Er is iets mis gegaan tijdens het uploaden van je foto"
+    "event-picture-upload-error-message": "Er is iets mis gegaan tijdens het uploaden van je foto",
+    "tag-length-error-title": "Tag te kort",
+    "tag-length-error-message": "Tags moeten minimaal {{minTagLen}} tekens lang zijn",
+    "tag-limit-error-title": "Te veel tags",
+    "tag-limit-error-message": "Je kan maximaal {{maxTagCount}} tags toevoegen"
   }
 }

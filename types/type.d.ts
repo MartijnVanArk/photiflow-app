@@ -82,6 +82,8 @@ export interface TagInputProps extends InputControlProps {
   tags: string[];
   triggerKeys?: string[];
   onNewTags?: (tags: string[]) => void;
+  minTagLen?: number;
+  maxTagCount?: mumber;
 }
 
 export interface TagInputTagProps {

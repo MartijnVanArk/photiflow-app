@@ -42,6 +42,10 @@
     "enter-pin-enter-pin": "Pin eingeben",
     "event-picture-uploading": "Wird hochgeladen...",
     "event-picture-upload-error-title": "Fehler beim Hochladen",
-    "event-picture-upload-error-message": "Etwas ist schiefgelaufen beim Hochladen deines Bildes"
+    "event-picture-upload-error-message": "Etwas ist schiefgelaufen beim Hochladen deines Bildes",
+    "tag-length-error-title": "Tag zu kurz",
+    "tag-length-error-message": "Tags sollten mindestens {{minTagLen}} Zeichen lang sein",
+    "tag-limit-error-title": "Zu viele Tags",
+    "tag-limit-error-message": "Du kannst maximal {{maxTagCount}} Tags hinzufügen"
   }
 }

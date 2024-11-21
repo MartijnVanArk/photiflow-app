@@ -1,5 +1,12 @@
 import React, { useRef, useState } from "react";
-import { View, Platform, UIManager, LayoutAnimation } from "react-native";
+import { useTranslation } from "react-i18next";
+import {
+  View,
+  Platform,
+  UIManager,
+  LayoutAnimation,
+  Alert,
+} from "react-native";
 import { TextInput } from "react-native-gesture-handler";
 
 import { TagInputProps } from "@/types/type";
@@ -13,6 +20,8 @@ const TagInput = ({
   tags,
   triggerKeys = [",", ";", " "],
   onNewTags,
+  minTagLen = 3,
+  maxTagCount = 15,
   ...props
 }: TagInputProps) => {
   const [useTags, setUseTags] = useState<string[]>(tags);
@@ -26,6 +35,8 @@ const TagInput = ({
   ) {
     UIManager.setLayoutAnimationEnabledExperimental(true);
   }
+
+  const { t } = useTranslation();
 
   const hasTag = (tag: string): boolean => {
     return useTags.findIndex((t) => t === tag) >= 0;
@@ -58,7 +69,19 @@ const TagInput = ({
 
       const possibleTag = val.replace(regexp, "").trim();
 
-      if (possibleTag && !hasTag(possibleTag)) {
+      if (possibleTag && possibleTag.length < minTagLen) {
+        Alert.alert(
+          t("tag-length-error-title"),
+          t("tag-length-error-message", { minTagLen }),
+        );
+        return setText(val.slice(0, -1));
+      } else if (possibleTag && useTags.length >= maxTagCount) {
+        Alert.alert(
+          t("tag-limit-error-title"),
+          t("tag-limit-error-message", { maxTagCount }),
+        );
+        return setText(val.slice(0, -1));
+      } else if (possibleTag && !hasTag(possibleTag)) {
         const newTags = [...useTags, possibleTag];
         setUseTags(newTags);
         if (onNewTags) onNewTags(newTags);
