@@ -41,7 +41,9 @@ export default function DateInputControl({
     if (onDateChange) onDateChange(date);
   };
 
-  const displayDate = !isNaN(useDate.getTime()) ? useDate.toDateString() : "";
+  const displayDate = !isNaN(useDate.getTime())
+    ? useDate.toLocaleDateString()
+    : "";
 
   const togglePicker = () => {
     setPickerVisible(!pickerVisible);

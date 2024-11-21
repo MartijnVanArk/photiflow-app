@@ -3,6 +3,7 @@ import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
 import { PixelRatio, ScrollView, View } from "react-native";
+import { Pressable } from "react-native-gesture-handler";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
@@ -89,18 +90,20 @@ export default function GuestProfileScreen() {
           ></View>
 
           <View className="relative flex items-center  gap-4">
-            <DynamicAvatar
-              size={64}
-              className="rounded-full border-8 border-light"
-              imageUri={guestProfile.avatar}
-              name={guestProfile.name}
-              fallback={images.userplaceholder}
-            />
-            <ThemeBasicButton
+            <Pressable onPress={openSourceSel}>
+              <DynamicAvatar
+                size={64}
+                className="rounded-full border-8 border-light"
+                imageUri={guestProfile.avatar}
+                name={guestProfile.name}
+                fallback={images.userplaceholdercam}
+              />
+            </Pressable>
+            {/* <ThemeBasicButton
               className="absolute z-10 border-4 border-light bottom-[32]"
               title={t("profile-avatar-change")}
               onPress={openSourceSel}
-            />
+            /> */}
           </View>
           <ScrollView className="flex-1 flex ">
             <InputControl
