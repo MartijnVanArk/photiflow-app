@@ -60,8 +60,6 @@ const useImageViewer = (
 
   const { width: winWitdh, height: winHeight } = Dimensions.get("window");
 
-  const AnimatedExpoImage = Animated.createAnimatedComponent(Image);
-
   const ImageModal = ({ className, style, ...props }: ViewProps) => {
     return (
       <>
@@ -87,12 +85,11 @@ const useImageViewer = (
                 contentDimensions={{ width: winWitdh, height: winHeight }}
                 containerDimensions={{ width: winWitdh, height: winHeight }}
               >
-                <AnimatedExpoImage
-                  sharedTransitionTag="previewimage"
+                <Image
                   contentFit="contain"
                   style={{ width: "100%", height: "100%" }}
                   source={{ uri: useUri }}
-                ></AnimatedExpoImage>
+                />
               </PanPinchView>
               <CloseBackButton onPress={hideImageViewer} />
             </Animated.View>

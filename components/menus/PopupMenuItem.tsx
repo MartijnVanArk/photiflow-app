@@ -66,7 +66,7 @@ const PopupMenuItem = ({
             color={ic}
           />
         )}
-        <ThemeText className="flex px-2 text-textmedium">
+        <ThemeText className="flex px-4 py-2 text-textmedium text-xl">
           {titlei18n ? t(titlei18n) : title}
         </ThemeText>
       </View>

@@ -2,7 +2,6 @@ import { Image } from "expo-image";
 import moment from "moment";
 import React from "react";
 import { View, ViewProps, Pressable } from "react-native";
-import Animated from "react-native-reanimated";
 
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import SimpleIconButton from "@/components/ui/SimpleIconButton";
@@ -28,8 +27,6 @@ export default function MyPictureListItem({
     }
   };
 
-  const AnimatedPreviewImage = Animated.createAnimatedComponent(Image);
-
   return (
     <View className="py-4">
       <View className="flex-row items-center gap-4 py-2 px-4 ">
@@ -53,8 +50,7 @@ export default function MyPictureListItem({
 
       <View className="flex rounded-xl overflow-hidden mx-4">
         <Pressable onPress={() => openImageViewer(encodeSafePicUri(item.uri))}>
-          <AnimatedPreviewImage
-            sharedTransitionTag="previewimage"
+          <Image
             placeholder={item.blurhash}
             source={{
               uri: item.uri + "?" + item.id,

@@ -13,8 +13,6 @@ export default function TestScreen() {
 
   const picRef = useRef<View>(null);
 
-  const AnimatedImage = Animated.createAnimatedComponent(Image);
-
   return (
     <>
       <SafeAreaView className="bg-light h-full flex items-center gap-4 justify-center">
@@ -33,7 +31,7 @@ export default function TestScreen() {
           }
         >
           <Animated.View ref={picRef}>
-            <AnimatedImage
+            <Image
               source={{
                 uri: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
               }}
@@ -41,6 +39,13 @@ export default function TestScreen() {
             />
           </Animated.View>
         </Pressable>
+
+        <Image
+          source={{
+            uri: "https://mvanark.nl/_astro/martijn-van-ark.DTLosh3__Z1EspRT.webp",
+          }}
+          style={{ width: 100, height: 100 }}
+        />
 
         <CloseBackButton />
       </SafeAreaView>

@@ -81,7 +81,7 @@ const ThemeBasicButton = ({
   title,
   subtitle,
   variant = "primary",
-  textSize = "text-lg",
+  textSize = "text-xl",
   className,
   iconLeft = { size: 24 },
   iconRight = { size: 24 },
@@ -171,7 +171,7 @@ const ThemeBasicButton = ({
         style={[style, { opacity: disabled ? 0.4 : 1 }]}
         disabled={disabled}
         onPress={internalPress}
-        className={`${rounded} relative p-3 flex flex-row gap-2 justify-center items-center overflow-hidden ${useBgVariant} ${className}`}
+        className={`${rounded} relative p-4 flex flex-row gap-2 justify-center items-center overflow-hidden ${useBgVariant} ${className}`}
         {...props}
         onLongPress={onLongPress}
         onPressIn={internalPressIn}

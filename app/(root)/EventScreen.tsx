@@ -153,6 +153,7 @@ export default function EventScreen() {
   return (
     <KeyboardDismisWrappable>
       <MutedBGPhoto
+        className="flex flex-1 w-full h-full bg-red-600"
         placeholder={backGroundImage.blurhash}
         overlayOpacity={0.75}
         source={{
@@ -161,7 +162,7 @@ export default function EventScreen() {
           height: backGroundImage.height,
         }}
       >
-        <ThemeStatusBar backgroundColor="transparent" />
+        <ThemeStatusBar hidden={false} backgroundColor="transparent" />
         <SafeAreaView className="flex flex-1 justify-between p-8 h-screen gap-8 items-center relative">
           <View
             style={{

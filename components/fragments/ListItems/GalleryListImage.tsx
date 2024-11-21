@@ -10,8 +10,6 @@ export interface GalleryListImageProps extends ViewProps {
   onPictureClick?: (uri: string) => void;
 }
 
-const AnimatedExpoImage = Animated.createAnimatedComponent(Image);
-
 const ratio = PixelRatio.get();
 export default function GalleryListImage({
   item,
@@ -47,8 +45,7 @@ export default function GalleryListImage({
           }
         }}
       >
-        <AnimatedExpoImage
-          sharedTransitionTag="previewimage"
+        <Image
           source={{
             uri: item.uri + "?" + item.id,
             width: 3000,
