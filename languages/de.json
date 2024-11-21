@@ -21,6 +21,8 @@
     "event-enter-management-pin-message": "Der Verwaltungspin wird benötigt, um fortzufahren",
     "profile-name-placeholder": "dein Name",
     "profile-email-placeholder": "deine E-Mail",
+    "profile-birthday-placeholder": "deine Geburtstag",
+    "profile-tags-placeholder": "standart Tags",
     "profile-button-save-title": "Speichern",
     "profile-avatar-change": "Ändern",
     "profile-source-camera": "Kamera",

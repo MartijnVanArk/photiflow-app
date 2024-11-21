@@ -46,7 +46,11 @@ export default function WelcomeScreen() {
 
   return (
     <View className="bg-red-600 flex flex-1 w-screen h-screen">
-      <ThemeStatusBar style="auto" backgroundColor="transparent" />
+      <ThemeStatusBar
+        hidden={false}
+        style="auto"
+        backgroundColor="transparent"
+      />
       <LinearGradient
         colors={bgColors}
         start={{ x: 0, y: 0 }}

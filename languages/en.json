@@ -21,6 +21,8 @@
     "event-enter-management-pin-message": "The management pin is needed to continue",
     "profile-name-placeholder": "your name",
     "profile-email-placeholder": "your email",
+    "profile-birthday-placeholder": "your birthday",
+    "profile-tags-placeholder": "default tags",
     "profile-button-save-title": "Save",
     "profile-avatar-change": "kies",
     "profile-source-camera": "Camera",
@@ -46,6 +48,6 @@
     "tag-length-error-title": "Tag too short",
     "tag-length-error-message": "Tags must be at least {{minTagLen}} characters long",
     "tag-limit-error-title": "Too many tags",
-    "tag-limit-error-message": "You can only add {{maxTagCount}} tags",
+    "tag-limit-error-message": "You can only add {{maxTagCount}} tags"
   }
 }

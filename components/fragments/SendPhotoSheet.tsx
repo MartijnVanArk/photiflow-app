@@ -40,7 +40,7 @@ const SendPhotoSheet = forwardRef<BottomSheet, BottomSheetViewProps>(
 
     const [guestName, setGuestName] = useState(guestInfo.name);
     const [comment, setComment] = useState("");
-    const [tags, setTags] = useState<string[]>([]);
+    const [tags, setTags] = useState<string[]>(guestInfo.defTags);
 
     const internalSheetRef = useRef<BottomSheet>(null);
 

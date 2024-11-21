@@ -2,7 +2,7 @@ import BottomSheet from "@gorhom/bottom-sheet";
 import { router, useLocalSearchParams } from "expo-router";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { useTranslation } from "react-i18next";
-import { PixelRatio, View } from "react-native";
+import { PixelRatio, ScrollView, View } from "react-native";
 import { useSafeAreaInsets } from "react-native-safe-area-context";
 
 import { GuestActionTypes } from "@/actions/GuestActions";
@@ -12,6 +12,7 @@ import CloseBackButton from "@/components/ui/CloseBackButton";
 import DateInputControl from "@/components/ui/DateInputControl";
 import DynamicAvatar from "@/components/ui/DynamicAvatar";
 import InputControl from "@/components/ui/input/InputControl";
+import TagInput from "@/components/ui/input/TagInput";
 import ThemeBasicButton from "@/components/ui/themed/ThemeBasicButton";
 import ThemeStatusBar from "@/components/ui/themed/ThemeStatusBar";
 import { images } from "@/constants/images";
@@ -101,7 +102,7 @@ export default function GuestProfileScreen() {
               onPress={openSourceSel}
             />
           </View>
-          <View className="flex-1 flex gap-4 ">
+          <ScrollView className="flex-1 flex ">
             <InputControl
               inputMode="text"
               autoComplete="name"
@@ -125,6 +126,7 @@ export default function GuestProfileScreen() {
             />
 
             <DateInputControl
+              wrapperClassName="mt-2"
               date={new Date(guestProfile.birthDate)}
               placeholder={t("profile-birthday-placeholder")}
               onDateChange={(date) => {
@@ -134,7 +136,16 @@ export default function GuestProfileScreen() {
                 });
               }}
             />
-          </View>
+
+            <TagInput
+              className="mt-2"
+              tags={guestProfile.defTags}
+              onNewTags={(tags) => {
+                setGuestProfile({ ...guestProfile, defTags: tags });
+              }}
+              placeholder={t("profile-tags-placeholder")}
+            />
+          </ScrollView>
           <ThemeBasicButton
             title={t("profile-button-save-title")}
             className="py-4"

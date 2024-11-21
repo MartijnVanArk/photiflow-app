@@ -15,6 +15,7 @@ export const GuestContextProvider = ({ children }: PropsWithChildren) => {
     avatar: "",
     uid: "",
     birthDate: "",
+    defTags: [],
   });
 
   useEffect(() => {

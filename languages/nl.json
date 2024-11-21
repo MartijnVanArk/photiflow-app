@@ -22,6 +22,8 @@
     "event-enter-management-pin-message": "De beheerder pin is nodig om verder te gaan",
     "profile-name-placeholder": "je naam",
     "profile-email-placeholder": "je email",
+    "profile-birthday-placeholder": "je geboortedatum",
+    "profile-tags-placeholder": "standaard tags",
     "profile-button-save-title": "Opslaan",
     "profile-avatar-change": "change",
     "profile-source-camera": "Camera",

@@ -49,6 +49,29 @@ export default function DateInputControl({
 
   const { getVarColor } = useTheme();
 
+  const picker = (
+    <RNDateTimePicker
+      maximumDate={new Date()}
+      minimumDate={new Date(1900, 0, 1)}
+      value={!isNaN(useDate.getTime()) ? useDate : new Date()}
+      mode="date"
+      display="spinner"
+      onChange={(event, date) => {
+        if (event.type === "set") {
+          if (Platform.OS === "ios") {
+            setTmpDate(date || useDate);
+          } else {
+            updateDate(date || useDate);
+            setPickerVisible(false);
+          }
+        } else {
+          setPickerVisible(false);
+          //              togglePicker();
+        }
+      }}
+    />
+  );
+
   return (
     <View className={` ${wrapperClassName}`}>
       <View
@@ -86,26 +109,7 @@ export default function DateInputControl({
             style={{ backgroundColor: "rgba(0,0,0,0.5)" }}
           >
             <View className="p-8 rounded-2xl bg-light justify-center items-center">
-              <RNDateTimePicker
-                maximumDate={new Date()}
-                minimumDate={new Date(1900, 0, 1)}
-                value={!isNaN(useDate.getTime()) ? useDate : new Date()}
-                mode="date"
-                display="spinner"
-                onChange={(event, date) => {
-                  if (event.type === "set") {
-                    if (Platform.OS === "ios") {
-                      setTmpDate(date || useDate);
-                    } else {
-                      updateDate(date || useDate);
-                      setPickerVisible(false);
-                    }
-                  } else {
-                    setPickerVisible(false);
-                    //              togglePicker();
-                  }
-                }}
-              />
+              {picker}
 
               <View className="flex-row gap-4 items-center justify-center">
                 <ThemeBasicButton
@@ -130,28 +134,7 @@ export default function DateInputControl({
         </Modal>
       )}
 
-      {pickerVisible && Platform.OS === "android" && (
-        <RNDateTimePicker
-          maximumDate={new Date()}
-          minimumDate={new Date(1900, 0, 1)}
-          value={!isNaN(useDate.getTime()) ? useDate : new Date()}
-          mode="date"
-          display="spinner"
-          onChange={(event, date) => {
-            if (event.type === "set") {
-              if (Platform.OS === "ios") {
-                setTmpDate(date || useDate);
-              } else {
-                updateDate(date || useDate);
-                setPickerVisible(false);
-              }
-            } else {
-              setPickerVisible(false);
-              //              togglePicker();
-            }
-          }}
-        />
-      )}
+      {pickerVisible && Platform.OS === "android" && picker}
     </View>
   );
 }
