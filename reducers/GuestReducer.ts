@@ -1,4 +1,6 @@
 import { GuestActions, GuestActionTypes } from "@/actions/GuestActions";
+import { publicEventsApi } from "@/api/PublicEventApi/PublicEventApiClient";
+import { loadAsJpeg } from "@/utils/pictureprocessing";
 import { AppMainStorage, GUEST_INFO_KEY } from "@/utils/system/storage";
 
 export type GuestInfoState = {
@@ -16,9 +18,26 @@ export const GuestReducer = (
 ): GuestInfoState => {
   console.log("Guest Reducer : ", action);
 
-  const saveGuest = (guest: GuestInfoState) => {
+  const saveGuest = async (guest: GuestInfoState) => {
     const saveInfo = JSON.stringify(guest);
     AppMainStorage.saveItem(GUEST_INFO_KEY, saveInfo);
+
+    await publicEventsApi.updateGuestInfo(
+      guest.name,
+      guest.email,
+      guest.birthDate,
+      guest.defTags,
+    );
+
+    const url = await publicEventsApi.makeAvatarUploadUrl();
+
+    if (url) {
+      const jpeg = await loadAsJpeg(guest.avatar);
+
+      if (jpeg) {
+        await publicEventsApi.uploadAvatarJpeg(url, jpeg);
+      }
+    }
   };
 
   switch (action.type) {
@@ -32,6 +51,10 @@ export const GuestReducer = (
       return newState;
     }
     case GuestActionTypes.UPDATENAME: {
+      if (action.payload.name === state.name) {
+        return state;
+      }
+
       const newState = { ...state, name: action.payload.name };
 
       saveGuest(newState);

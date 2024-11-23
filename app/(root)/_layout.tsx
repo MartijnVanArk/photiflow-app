@@ -27,6 +27,14 @@ const Layout = () => {
       <Stack.Screen name="MyPicturesScreen" options={{ headerShown: false }} />
       <Stack.Screen name="ShareEventScreen" options={{ headerShown: false }} />
       <Stack.Screen name="TestScreen" options={{ headerShown: false }} />
+      <Stack.Screen
+        name="TestScreen2"
+        options={{
+          headerShown: false,
+          presentation: "modal",
+          animation: "fade",
+        }}
+      />
     </Stack>
   );
 };

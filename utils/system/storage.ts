@@ -8,11 +8,11 @@ export const AppMainStorage = {
     try {
       const item = await SecureStore.getItemAsync(key);
 
-      if (item) {
-        console.log("Got Item : ", item);
-      } else {
-        console.log("No such item - ", key);
-      }
+      // if (item) {
+      //   console.log("Got Item : ", item);
+      // } else {
+      //   console.log("No such item - ", key);
+      // }
 
       return item;
     } catch {
@@ -21,7 +21,7 @@ export const AppMainStorage = {
   },
 
   async saveItem(key: string, value: string) {
-    console.log("try save : ", key, " - ", value);
+    //    console.log("try save : ", key, " - ", value);
 
     try {
       return SecureStore.setItemAsync(key, value);

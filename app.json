@@ -1,7 +1,7 @@
 {
   "expo": {
-    "name": "Photobooth",
-    "slug": "photobooth-test",
+    "name": "Photiflow",
+    "slug": "photiflow-app",
     "version": "1.0.0",
     "orientation": "portrait",
     "icon": "./assets/images/icon.png",
@@ -30,7 +30,7 @@
         "android.permission.CAMERA",
         "android.permission.RECORD_AUDIO"
       ],
-      "package": "com.martijnvanark.photoboothtest"
+      "package": "com.photiflow.photiflowapp"
     },
     "web": {
       "bundler": "metro",

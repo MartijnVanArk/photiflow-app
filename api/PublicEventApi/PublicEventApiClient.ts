@@ -1,8 +1,11 @@
 import {
   AppService,
+  CreateAvatarUploadUrlCommand,
   CreateFileUploadUrlCommand,
   GetInfoCommand,
   GetInfoCommandOutput,
+  UpdateUserInfoCommand,
+  UpdateUserInfoCommandOutput,
 } from "@partystream/client-app";
 import {
   AuthServiceClient,
@@ -37,6 +40,7 @@ export class PublicEventsApiClient extends BaseApiHandler {
       this.authClient
         .send(command)
         .then((result) => {
+          console.log("register device result : ", result);
           this.setBearerToken(result.EventToken);
           resolve(true);
         })
@@ -83,6 +87,7 @@ export class PublicEventsApiClient extends BaseApiHandler {
       });
 
       const cmd = new CreateFileUploadUrlCommand({
+        UserName: guestName,
         Message: guestComment,
         Tags: tags,
       });
@@ -107,6 +112,90 @@ export class PublicEventsApiClient extends BaseApiHandler {
   }
 
   async uploadJpegPhoto(
+    url: string,
+    file: any,
+  ): Promise<AxiosResponse<any, any> | null> {
+    return new Promise<AxiosResponse<any, any> | null>((resolve, reject) => {
+      this.uploadClient
+        .put(url, file, {
+          headers: {
+            "Content-Type": "image/jpeg",
+          },
+        })
+        .then((result) => {
+          resolve(result);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+          resolve(null);
+        });
+    });
+  }
+
+  async updateGuestInfo(
+    userName: string,
+    userEmail: string,
+    userBirthDate: string,
+    userTags: string[],
+  ): Promise<UpdateUserInfoCommandOutput | null> {
+    return new Promise<UpdateUserInfoCommandOutput | null>(
+      (resolve, reject) => {
+        const appService = new AppService({
+          endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
+          token: async () => {
+            return { token: this.BEARER_TOKEN };
+          },
+        });
+
+        const tags: Record<string, string> = {};
+        userTags.forEach((tag) => {
+          tags[tag] = "true";
+        });
+
+        const cmd = new UpdateUserInfoCommand({
+          UserName: userName,
+          UserEmail: userEmail,
+          UserBirthDate: userBirthDate,
+          UserTags: tags,
+        });
+
+        appService
+          .send(cmd)
+          .then((result) => {
+            resolve(result);
+          })
+          .catch((err) => {
+            console.log("Error : ", err);
+            resolve(null);
+          });
+      },
+    );
+  }
+
+  async makeAvatarUploadUrl(): Promise<string> {
+    return new Promise<string>((resolve, reject) => {
+      const cmd = new CreateAvatarUploadUrlCommand({});
+
+      const appService = new AppService({
+        endpoint: process.env.EXPO_PUBLIC_EVENTS_API_BASE_URL || "",
+        token: async () => {
+          return { token: this.BEARER_TOKEN };
+        },
+      });
+
+      appService
+        .send(cmd)
+        .then((result) => {
+          resolve(result.Url);
+        })
+        .catch((err) => {
+          console.log("Error : ", err);
+          resolve("");
+        });
+    });
+  }
+
+  async uploadAvatarJpeg(
     url: string,
     file: any,
   ): Promise<AxiosResponse<any, any> | null> {

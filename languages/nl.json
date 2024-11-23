@@ -1,6 +1,6 @@
 {
   "translation": {
-    "welcome-welcome-title": "Welkom bij Photobooth",
+    "welcome-welcome-title": "Welkom bij Photiflow",
     "welcome-welcome-tagline": "Laten we herinneringen maken",
     "welcome-scan-button-title": "Scan Code",
     "welcome-scan-button-subtitle": "en begin direct",
@@ -36,7 +36,7 @@
     "sendphoto-sendbutton-title": "Deel Photo",
     "takepicture-error-title": "Fout tijdens maken van foto",
     "takepicture-error-message": "Er is iets mis gegaan tijdens het maken van je foto",
-    "camera-permission-statement": "Photobooth heeft je toestemming nodig om te camera te gebruiken",
+    "camera-permission-statement": "Photiflow heeft je toestemming nodig om te camera te gebruiken",
     "camera-permission-button-grant": "Toestemming verlenen",
     "management-tab-settings": "Evenement",
     "management-tab-moderation": "Moderatie",

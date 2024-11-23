@@ -1,6 +1,6 @@
 {
   "translation": {
-    "welcome-welcome-title": "Willkommen bei Photobooth",
+    "welcome-welcome-title": "Willkommen bei Photiflow",
     "welcome-welcome-tagline": "Lass uns Erinnerungen schaffen",
     "welcome-scan-button-title": "Ereigniscode scannen",
     "welcome-scan-button-subtitle": "und loslegen",
@@ -35,7 +35,7 @@
     "sendphoto-sendbutton-title": "Bild teilen",
     "takepicture-error-title": "Fehler beim Fotografieren",
     "takepicture-error-message": "Etwas ist schiefgelaufen beim Fotografieren",
-    "camera-permission-statement": "Photobooth benötigt deine Erlaubnis, um auf die Kamera zuzugreifen",
+    "camera-permission-statement": "Photiflow benötigt deine Erlaubnis, um auf die Kamera zuzugreifen",
     "camera-permission-button-grant": "Erlaubnis erteilen",
     "management-tab-settings": "Ereignis",
     "management-tab-moderation": "Moderation",

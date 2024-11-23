@@ -8,8 +8,8 @@ export const TestEventResponse: GetInfoCommandOutput = {
   },
   Event: {
     BackgroundImage: {
+      CreationDate: new Date("2024-11-18T09:04:05.000Z"),
       Height: 1600,
-      ImageId: "emi-N2E9AsH14eEMHh0X70d2nKGGskc",
       ImageKey:
         "event-media/evt-OK77YZPYw2mqZFB/emi-N2E9AsH14eEMHh0X70d2nKGGskc",
       Preview: "TKIq_o4nNHDij[%g~qn$4:.8aeS$",
@@ -19,8 +19,8 @@ export const TestEventResponse: GetInfoCommandOutput = {
     EventDate: new Date("2024-11-20T00:00:00.000Z"),
     EventId: "evt-OK77YZPYw2mqZFB",
     IntroImage: {
+      CreationDate: new Date("2024-11-18T09:04:05.000Z"),
       Height: 535,
-      ImageId: "emi-hsAOkGP7s4SSd7JEZG3i0zhyAjY",
       ImageKey:
         "event-media/evt-OK77YZPYw2mqZFB/emi-hsAOkGP7s4SSd7JEZG3i0zhyAjY",
       Preview: "TTL}BE%M_3~qayj[%MRjD%-;j[Rj",

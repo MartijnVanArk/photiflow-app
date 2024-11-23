@@ -10,6 +10,7 @@ import useGuestContext from "@/hooks/useGuestContext";
 import usePictureContext from "@/hooks/usePictureContext";
 import { InternalImageData } from "@/types/pictureinfo";
 import {
+  loadAsJpeg,
   processCameraPicture,
   processGalleryPicture,
 } from "@/utils/pictureprocessing";
@@ -122,25 +123,25 @@ const CommandCenterProvider = ({ children }: PropsWithChildren) => {
           });
 
           const upload = async () => {
-            let uploadOK = true;
+            let uploadOK = false;
 
-            await new Promise((resolve) => setTimeout(resolve, 1000));
+            //            await new Promise((resolve) => setTimeout(resolve, 1000));
 
-            // const url = await publicEventsApi.makeUploadUrl(
-            //   action.payload.guestName,
-            //   action.payload.comment,
-            //   action.payload.tags,
-            // );
+            const url = await publicEventsApi.makeUploadUrl(
+              action.payload.guestName,
+              action.payload.comment,
+              action.payload.tags,
+            );
 
-            // if (url) {
-            //   const jpeg = await loadAsJpeg(action.payload.uri);
+            if (url) {
+              const jpeg = await loadAsJpeg(action.payload.uri);
 
-            //   const result = await publicEventsApi.uploadJpegPhoto(url, jpeg);
+              const result = await publicEventsApi.uploadJpegPhoto(url, jpeg);
 
-            //   if (result && result.status === 200) {
-            //     uploadOK = true;
-            //   }
-            // }
+              if (result && result.status === 200) {
+                uploadOK = true;
+              }
+            }
 
             pictureStateDispatch({
               type: PictureActionTypes.WAS_UPLOADED,
